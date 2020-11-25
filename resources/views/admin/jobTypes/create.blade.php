@@ -23,7 +23,7 @@
                             <label class="required">{{ trans('cruds.jobType.fields.is_active') }}</label>
                             @foreach(App\Models\JobType::IS_ACTIVE_RADIO as $key => $label)
                                 <div>
-                                    <input type="radio" id="is_active_{{ $key }}" name="is_active" value="{{ $key }}" {{ old('is_active', '') === (string) $key ? 'checked' : '' }} required>
+                                    <input type="radio" id="is_active_{{ $key }}" name="is_active" value="{{ $key }}" {{ old('is_active', '1') === (string) $key ? 'checked' : '' }} required>
                                     <label for="is_active_{{ $key }}" style="font-weight: 400">{{ $label }}</label>
                                 </div>
                             @endforeach

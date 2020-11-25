@@ -499,4 +499,60 @@ return [
             'deleted_at_helper'        => ' ',
         ],
     ],
+    'osoNetwork'              => [
+        'title'          => '171KL Network',
+        'title_singular' => '171KL Network',
+    ],
+    'tndpImsNewtork'          => [
+        'title'          => 'TNDP IMS Newtork',
+        'title_singular' => 'TNDP IMS Newtork',
+    ],
+    'script'                  => [
+        'title'          => 'Scripts',
+        'title_singular' => 'Script',
+    ],
+    'history'                 => [
+        'title'          => 'History',
+        'title_singular' => 'History',
+    ],
+    'coreJobRequest'          => [
+        'title'          => 'Core Job Request',
+        'title_singular' => 'Core Job Request',
+    ],
+    'oltJobRequest'           => [
+        'title'          => 'OLT Job Request',
+        'title_singular' => 'OLT Job Request',
+    ],
+    'coreJob'                 => [
+        'title'          => 'Core Job Request',
+        'title_singular' => 'Core Job Request',
+    ],
+    'ontJob'                  => [
+        'title'          => 'ONT Job Request',
+        'title_singular' => 'ONT Job Request',
+    ],
+    'osoReport'               => [
+        'title'          => 'Reports',
+        'title_singular' => 'Report',
+    ],
+    'imsReport'               => [
+        'title'          => 'Reports',
+        'title_singular' => 'Report',
+    ],
+    'coreJobOso'              => [
+        'title'          => 'Core Job (171Kl Network)',
+        'title_singular' => 'Core Job (171Kl Network)',
+    ],
+    'oltOso'                  => [
+        'title'          => 'OLT Job (171KL Network)',
+        'title_singular' => 'OLT Job (171KL Network)',
+    ],
+    'coreJobIm'               => [
+        'title'          => 'Core Job (IMS Network)',
+        'title_singular' => 'Core Job (IMS Network)',
+    ],
+    'ontJobIm'                => [
+        'title'          => 'ONT Job (IMS Network)',
+        'title_singular' => 'ONT Job (IMS Network)',
+    ],
 ];

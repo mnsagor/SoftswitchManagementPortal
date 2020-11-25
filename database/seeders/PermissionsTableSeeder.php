@@ -420,6 +420,62 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 103,
+                'title' => 'oso_network_access',
+            ],
+            [
+                'id'    => 104,
+                'title' => 'tndp_ims_newtork_access',
+            ],
+            [
+                'id'    => 105,
+                'title' => 'script_access',
+            ],
+            [
+                'id'    => 106,
+                'title' => 'history_access',
+            ],
+            [
+                'id'    => 107,
+                'title' => 'core_job_request_access',
+            ],
+            [
+                'id'    => 108,
+                'title' => 'olt_job_request_access',
+            ],
+            [
+                'id'    => 109,
+                'title' => 'core_job_access',
+            ],
+            [
+                'id'    => 110,
+                'title' => 'ont_job_access',
+            ],
+            [
+                'id'    => 111,
+                'title' => 'oso_report_access',
+            ],
+            [
+                'id'    => 112,
+                'title' => 'ims_report_access',
+            ],
+            [
+                'id'    => 113,
+                'title' => 'core_job_oso_access',
+            ],
+            [
+                'id'    => 114,
+                'title' => 'olt_oso_access',
+            ],
+            [
+                'id'    => 115,
+                'title' => 'core_job_im_access',
+            ],
+            [
+                'id'    => 116,
+                'title' => 'ont_job_im_access',
+            ],
+            [
+                'id'    => 117,
                 'title' => 'profile_password_edit',
             ],
         ];

@@ -131,6 +131,36 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('job-requests/process-csv-import', 'JobRequestController@processCsvImport')->name('job-requests.processCsvImport');
     Route::resource('job-requests', 'JobRequestController');
 
+    // Core Job Requests
+    Route::resource('core-job-requests', 'CoreJobRequestController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Olt Job Requests
+    Route::resource('olt-job-requests', 'OltJobRequestController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Core Jobs
+    Route::resource('core-jobs', 'CoreJobController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Ont Jobs
+    Route::resource('ont-jobs', 'OntJobController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Oso Reports
+    Route::resource('oso-reports', 'OsoReportsController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Ims Reports
+    Route::resource('ims-reports', 'ImsReportsController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Core Job Osos
+    Route::resource('core-job-osos', 'CoreJobOsoController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Olt Osos
+    Route::resource('olt-osos', 'OltOsoController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Core Job Ims
+    Route::resource('core-job-ims', 'CoreJobImsController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Ont Job Ims
+    Route::resource('ont-job-ims', 'OntJobImsController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('user-alerts/read', 'UserAlertsController@read');
 });
