@@ -66,14 +66,22 @@
                 </div>
                 <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
                     <li role="presentation">
-                        <a href="#designation_emplpyees" aria-controls="designation_emplpyees" role="tab" data-toggle="tab">
-                            {{ trans('cruds.emplpyee.title') }}
+                        <a href="#designation_users" aria-controls="designation_users" role="tab" data-toggle="tab">
+                            {{ trans('cruds.user.title') }}
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#designation_employees" aria-controls="designation_employees" role="tab" data-toggle="tab">
+                            {{ trans('cruds.employee.title') }}
                         </a>
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane" role="tabpanel" id="designation_emplpyees">
-                        @includeIf('admin.designations.relationships.designationEmplpyees', ['emplpyees' => $designation->designationEmplpyees])
+                    <div class="tab-pane" role="tabpanel" id="designation_users">
+                        @includeIf('admin.designations.relationships.designationUsers', ['users' => $designation->designationUsers])
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="designation_employees">
+                        @includeIf('admin.designations.relationships.designationEmployees', ['employees' => $designation->designationEmployees])
                     </div>
                 </div>
             </div>

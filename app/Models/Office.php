@@ -46,9 +46,19 @@ class Office extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function officeEmplpyees()
+    public function officeOsoAgws()
     {
-        return $this->hasMany(Emplpyee::class, 'office_id', 'id');
+        return $this->hasMany(OsoAgw::class, 'office_id', 'id');
+    }
+
+    public function officeTndpImsAgws()
+    {
+        return $this->hasMany(TndpImsAgw::class, 'office_id', 'id');
+    }
+
+    public function officeUsers()
+    {
+        return $this->belongsToMany(User::class);
     }
 
     public function region()

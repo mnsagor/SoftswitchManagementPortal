@@ -39,8 +39,13 @@ class Designation extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function designationEmplpyees()
+    public function designationUsers()
     {
-        return $this->hasMany(Emplpyee::class, 'designation_id', 'id');
+        return $this->hasMany(User::class, 'designation_id', 'id');
+    }
+
+    public function designationEmployees()
+    {
+        return $this->hasMany(Employee::class, 'designation_id', 'id');
     }
 }
