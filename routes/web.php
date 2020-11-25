@@ -99,6 +99,38 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('employees/process-csv-import', 'EmployeeController@processCsvImport')->name('employees.processCsvImport');
     Route::resource('employees', 'EmployeeController');
 
+    // Request Types
+    Route::delete('request-types/destroy', 'RequestTypeController@massDestroy')->name('request-types.massDestroy');
+    Route::post('request-types/parse-csv-import', 'RequestTypeController@parseCsvImport')->name('request-types.parseCsvImport');
+    Route::post('request-types/process-csv-import', 'RequestTypeController@processCsvImport')->name('request-types.processCsvImport');
+    Route::resource('request-types', 'RequestTypeController');
+
+    // Job Request Statuses
+    Route::delete('job-request-statuses/destroy', 'JobRequestStatusController@massDestroy')->name('job-request-statuses.massDestroy');
+    Route::post('job-request-statuses/parse-csv-import', 'JobRequestStatusController@parseCsvImport')->name('job-request-statuses.parseCsvImport');
+    Route::post('job-request-statuses/process-csv-import', 'JobRequestStatusController@processCsvImport')->name('job-request-statuses.processCsvImport');
+    Route::resource('job-request-statuses', 'JobRequestStatusController');
+
+    // Network Types
+    Route::delete('network-types/destroy', 'NetworkTypeController@massDestroy')->name('network-types.massDestroy');
+    Route::post('network-types/parse-csv-import', 'NetworkTypeController@parseCsvImport')->name('network-types.parseCsvImport');
+    Route::post('network-types/process-csv-import', 'NetworkTypeController@processCsvImport')->name('network-types.processCsvImport');
+    Route::resource('network-types', 'NetworkTypeController');
+
+    // Job Types
+    Route::delete('job-types/destroy', 'JobTypeController@massDestroy')->name('job-types.massDestroy');
+    Route::post('job-types/parse-csv-import', 'JobTypeController@parseCsvImport')->name('job-types.parseCsvImport');
+    Route::post('job-types/process-csv-import', 'JobTypeController@processCsvImport')->name('job-types.processCsvImport');
+    Route::resource('job-types', 'JobTypeController');
+
+    // Job Requests
+    Route::delete('job-requests/destroy', 'JobRequestController@massDestroy')->name('job-requests.massDestroy');
+    Route::post('job-requests/media', 'JobRequestController@storeMedia')->name('job-requests.storeMedia');
+    Route::post('job-requests/ckmedia', 'JobRequestController@storeCKEditorImages')->name('job-requests.storeCKEditorImages');
+    Route::post('job-requests/parse-csv-import', 'JobRequestController@parseCsvImport')->name('job-requests.parseCsvImport');
+    Route::post('job-requests/process-csv-import', 'JobRequestController@processCsvImport')->name('job-requests.processCsvImport');
+    Route::resource('job-requests', 'JobRequestController');
+
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('user-alerts/read', 'UserAlertsController@read');
 });

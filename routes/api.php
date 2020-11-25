@@ -41,4 +41,20 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Employees
     Route::apiResource('employees', 'EmployeeApiController');
+
+    // Request Types
+    Route::apiResource('request-types', 'RequestTypeApiController');
+
+    // Job Request Statuses
+    Route::apiResource('job-request-statuses', 'JobRequestStatusApiController');
+
+    // Network Types
+    Route::apiResource('network-types', 'NetworkTypeApiController');
+
+    // Job Types
+    Route::apiResource('job-types', 'JobTypeApiController');
+
+    // Job Requests
+    Route::post('job-requests/media', 'JobRequestApiController@storeMedia')->name('job-requests.storeMedia');
+    Route::apiResource('job-requests', 'JobRequestApiController');
 });

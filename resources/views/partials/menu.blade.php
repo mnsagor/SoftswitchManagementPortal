@@ -103,6 +103,50 @@
                         <span class="pull-right-container"><i class="fa fa-fw fa-angle-left pull-right"></i></span>
                     </a>
                     <ul class="treeview-menu">
+                        @can('network_type_access')
+                            <li class="{{ request()->is("admin/network-types") || request()->is("admin/network-types/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.network-types.index") }}">
+                                    <i class="fa-fw fab fa-r-project">
+
+                                    </i>
+                                    <span>{{ trans('cruds.networkType.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('job_type_access')
+                            <li class="{{ request()->is("admin/job-types") || request()->is("admin/job-types/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.job-types.index") }}">
+                                    <i class="fa-fw fas fa-award">
+
+                                    </i>
+                                    <span>{{ trans('cruds.jobType.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('request_type_access')
+                            <li class="{{ request()->is("admin/request-types") || request()->is("admin/request-types/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.request-types.index") }}">
+                                    <i class="fa-fw fas fa-cogs">
+
+                                    </i>
+                                    <span>{{ trans('cruds.requestType.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('job_request_status_access')
+                            <li class="{{ request()->is("admin/job-request-statuses") || request()->is("admin/job-request-statuses/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.job-request-statuses.index") }}">
+                                    <i class="fa-fw fas fa-star">
+
+                                    </i>
+                                    <span>{{ trans('cruds.jobRequestStatus.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
                         @can('designation_access')
                             <li class="{{ request()->is("admin/designations") || request()->is("admin/designations/*") ? "active" : "" }}">
                                 <a href="{{ route("admin.designations.index") }}">
@@ -235,6 +279,30 @@
 
                                     </i>
                                     <span>{{ trans('cruds.tndpImsNumberProfile.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
+            @can('job_request_management_access')
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa-fw fas fa-book-open">
+
+                        </i>
+                        <span>{{ trans('cruds.jobRequestManagement.title') }}</span>
+                        <span class="pull-right-container"><i class="fa fa-fw fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        @can('job_request_access')
+                            <li class="{{ request()->is("admin/job-requests") || request()->is("admin/job-requests/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.job-requests.index") }}">
+                                    <i class="fa-fw fas fa-star">
+
+                                    </i>
+                                    <span>{{ trans('cruds.jobRequest.title') }}</span>
 
                                 </a>
                             </li>
