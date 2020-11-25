@@ -310,6 +310,155 @@
                     </ul>
                 </li>
             @endcan
+            @can('oso_network_access')
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa-fw fas fa-basketball-ball">
+
+                        </i>
+                        <span>{{ trans('cruds.osoNetwork.title') }}</span>
+                        <span class="pull-right-container"><i class="fa fa-fw fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        @can('core_job_request_access')
+                            <li class="{{ request()->is("admin/core-job-requests") || request()->is("admin/core-job-requests/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.core-job-requests.index") }}">
+                                    <i class="fa-fw far fa-file">
+
+                                    </i>
+                                    <span>{{ trans('cruds.coreJobRequest.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('olt_job_request_access')
+                            <li class="{{ request()->is("admin/olt-job-requests") || request()->is("admin/olt-job-requests/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.olt-job-requests.index") }}">
+                                    <i class="fa-fw far fa-calendar">
+
+                                    </i>
+                                    <span>{{ trans('cruds.oltJobRequest.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('oso_report_access')
+                            <li class="{{ request()->is("admin/oso-reports") || request()->is("admin/oso-reports/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.oso-reports.index") }}">
+                                    <i class="fa-fw fas fa-book">
+
+                                    </i>
+                                    <span>{{ trans('cruds.osoReport.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
+            @can('tndp_ims_newtork_access')
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa-fw fas fa-box">
+
+                        </i>
+                        <span>{{ trans('cruds.tndpImsNewtork.title') }}</span>
+                        <span class="pull-right-container"><i class="fa fa-fw fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        @can('core_job_access')
+                            <li class="{{ request()->is("admin/core-jobs") || request()->is("admin/core-jobs/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.core-jobs.index") }}">
+                                    <i class="fa-fw far fa-calendar-alt">
+
+                                    </i>
+                                    <span>{{ trans('cruds.coreJob.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('ont_job_access')
+                            <li class="{{ request()->is("admin/ont-jobs") || request()->is("admin/ont-jobs/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.ont-jobs.index") }}">
+                                    <i class="fa-fw fas fa-calendar-alt">
+
+                                    </i>
+                                    <span>{{ trans('cruds.ontJob.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('ims_report_access')
+                            <li class="{{ request()->is("admin/ims-reports") || request()->is("admin/ims-reports/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.ims-reports.index") }}">
+                                    <i class="fa-fw fas fa-book">
+
+                                    </i>
+                                    <span>{{ trans('cruds.imsReport.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
+            @can('script_access')
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa-fw fas fa-book">
+
+                        </i>
+                        <span>{{ trans('cruds.script.title') }}</span>
+                        <span class="pull-right-container"><i class="fa fa-fw fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        @can('core_job_oso_access')
+                            <li class="{{ request()->is("admin/core-job-osos") || request()->is("admin/core-job-osos/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.core-job-osos.index") }}">
+                                    <i class="fa-fw far fa-file">
+
+                                    </i>
+                                    <span>{{ trans('cruds.coreJobOso.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('olt_oso_access')
+                            <li class="{{ request()->is("admin/olt-osos") || request()->is("admin/olt-osos/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.olt-osos.index") }}">
+                                    <i class="fa-fw far fa-calendar">
+
+                                    </i>
+                                    <span>{{ trans('cruds.oltOso.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('core_job_im_access')
+                            <li class="{{ request()->is("admin/core-job-ims") || request()->is("admin/core-job-ims/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.core-job-ims.index") }}">
+                                    <i class="fa-fw far fa-calendar-alt">
+
+                                    </i>
+                                    <span>{{ trans('cruds.coreJobIm.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('ont_job_im_access')
+                            <li class="{{ request()->is("admin/ont-job-ims") || request()->is("admin/ont-job-ims/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.ont-job-ims.index") }}">
+                                    <i class="fa-fw fas fa-calendar-alt">
+
+                                    </i>
+                                    <span>{{ trans('cruds.ontJobIm.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
             @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
                 @can('profile_password_edit')
                     <li class="{{ request()->is('profile/password') || request()->is('profile/password/*') ? 'active' : '' }}">
