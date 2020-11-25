@@ -22,6 +22,10 @@ class User extends Authenticatable
 
     public $table = 'users';
 
+    public static $searchable = [
+        'username',
+    ];
+
     protected $hidden = [
         'remember_token',
         'password',
@@ -36,12 +40,13 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
+        'username',
+        'designation_id',
         'email',
         'email_verified_at',
         'password',
         'approved',
         'remember_token',
-        'employee_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -74,6 +79,11 @@ class User extends Authenticatable
         return $this->belongsToMany(UserAlert::class);
     }
 
+    public function designation()
+    {
+        return $this->belongsTo(Designation::class, 'designation_id');
+    }
+
     public function getEmailVerifiedAtAttribute($value)
     {
         return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('panel.date_format') . ' ' . config('panel.time_format')) : null;
@@ -101,8 +111,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    public function employee()
+    public function offices()
     {
-        return $this->belongsTo(Emplpyee::class, 'employee_id');
+        return $this->belongsToMany(Office::class);
     }
 }

@@ -31,6 +31,12 @@
                                         {{ trans('cruds.user.fields.name') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.user.fields.username') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.user.fields.designation') }}
+                                    </th>
+                                    <th>
                                         {{ trans('cruds.user.fields.email') }}
                                     </th>
                                     <th>
@@ -43,7 +49,7 @@
                                         {{ trans('cruds.user.fields.roles') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.user.fields.employee') }}
+                                        {{ trans('cruds.user.fields.office') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -57,6 +63,17 @@
                                     </td>
                                     <td>
                                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                    </td>
+                                    <td>
+                                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                    </td>
+                                    <td>
+                                        <select class="search">
+                                            <option value>{{ trans('global.all') }}</option>
+                                            @foreach($designations as $key => $item)
+                                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </td>
                                     <td>
                                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -77,7 +94,7 @@
                                     <td>
                                         <select class="search">
                                             <option value>{{ trans('global.all') }}</option>
-                                            @foreach($emplpyees as $key => $item)
+                                            @foreach($offices as $key => $item)
                                                 <option value="{{ $item->name }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
@@ -99,6 +116,12 @@
                                             {{ $user->name ?? '' }}
                                         </td>
                                         <td>
+                                            {{ $user->username ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $user->designation->name ?? '' }}
+                                        </td>
+                                        <td>
                                             {{ $user->email ?? '' }}
                                         </td>
                                         <td>
@@ -114,7 +137,9 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            {{ $user->employee->name ?? '' }}
+                                            @foreach($user->offices as $key => $item)
+                                                <span class="label label-info label-many">{{ $item->name }}</span>
+                                            @endforeach
                                         </td>
                                         <td>
                                             @can('user_show')
