@@ -81,7 +81,7 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $user->load('designation', 'roles', 'offices', 'userUserAlerts');
+        $user->load('designation', 'roles', 'offices', 'requestedByJobRequests', 'verifiedByJobRequests', 'approvedByJobRequests', 'rejectedByJobRequests', 'userUserAlerts');
 
         return view('admin.users.show', compact('user'));
     }

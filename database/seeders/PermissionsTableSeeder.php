@@ -316,6 +316,110 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 77,
+                'title' => 'job_request_management_access',
+            ],
+            [
+                'id'    => 78,
+                'title' => 'request_type_create',
+            ],
+            [
+                'id'    => 79,
+                'title' => 'request_type_edit',
+            ],
+            [
+                'id'    => 80,
+                'title' => 'request_type_show',
+            ],
+            [
+                'id'    => 81,
+                'title' => 'request_type_delete',
+            ],
+            [
+                'id'    => 82,
+                'title' => 'request_type_access',
+            ],
+            [
+                'id'    => 83,
+                'title' => 'job_request_status_create',
+            ],
+            [
+                'id'    => 84,
+                'title' => 'job_request_status_edit',
+            ],
+            [
+                'id'    => 85,
+                'title' => 'job_request_status_show',
+            ],
+            [
+                'id'    => 86,
+                'title' => 'job_request_status_delete',
+            ],
+            [
+                'id'    => 87,
+                'title' => 'job_request_status_access',
+            ],
+            [
+                'id'    => 88,
+                'title' => 'network_type_create',
+            ],
+            [
+                'id'    => 89,
+                'title' => 'network_type_edit',
+            ],
+            [
+                'id'    => 90,
+                'title' => 'network_type_show',
+            ],
+            [
+                'id'    => 91,
+                'title' => 'network_type_delete',
+            ],
+            [
+                'id'    => 92,
+                'title' => 'network_type_access',
+            ],
+            [
+                'id'    => 93,
+                'title' => 'job_type_create',
+            ],
+            [
+                'id'    => 94,
+                'title' => 'job_type_edit',
+            ],
+            [
+                'id'    => 95,
+                'title' => 'job_type_show',
+            ],
+            [
+                'id'    => 96,
+                'title' => 'job_type_delete',
+            ],
+            [
+                'id'    => 97,
+                'title' => 'job_type_access',
+            ],
+            [
+                'id'    => 98,
+                'title' => 'job_request_create',
+            ],
+            [
+                'id'    => 99,
+                'title' => 'job_request_edit',
+            ],
+            [
+                'id'    => 100,
+                'title' => 'job_request_show',
+            ],
+            [
+                'id'    => 101,
+                'title' => 'job_request_delete',
+            ],
+            [
+                'id'    => 102,
+                'title' => 'job_request_access',
+            ],
+            [
+                'id'    => 103,
                 'title' => 'profile_password_edit',
             ],
         ];

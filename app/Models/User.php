@@ -74,6 +74,26 @@ class User extends Authenticatable
         });
     }
 
+    public function requestedByJobRequests()
+    {
+        return $this->hasMany(JobRequest::class, 'requested_by_id', 'id');
+    }
+
+    public function verifiedByJobRequests()
+    {
+        return $this->hasMany(JobRequest::class, 'verified_by_id', 'id');
+    }
+
+    public function approvedByJobRequests()
+    {
+        return $this->hasMany(JobRequest::class, 'approved_by_id', 'id');
+    }
+
+    public function rejectedByJobRequests()
+    {
+        return $this->hasMany(JobRequest::class, 'rejected_by_id', 'id');
+    }
+
     public function userUserAlerts()
     {
         return $this->belongsToMany(UserAlert::class);
