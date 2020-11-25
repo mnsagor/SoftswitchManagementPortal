@@ -35,6 +35,22 @@
                                 </tr>
                                 <tr>
                                     <th>
+                                        {{ trans('cruds.user.fields.username') }}
+                                    </th>
+                                    <td>
+                                        {{ $user->username }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.user.fields.designation') }}
+                                    </th>
+                                    <td>
+                                        {{ $user->designation->name ?? '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
                                         {{ trans('cruds.user.fields.email') }}
                                     </th>
                                     <td>
@@ -69,10 +85,12 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.user.fields.employee') }}
+                                        {{ trans('cruds.user.fields.office') }}
                                     </th>
                                     <td>
-                                        {{ $user->employee->name ?? '' }}
+                                        @foreach($user->offices as $key => $office)
+                                            <span class="label label-info">{{ $office->name }}</span>
+                                        @endforeach
                                     </td>
                                 </tr>
                             </tbody>

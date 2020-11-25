@@ -136,13 +136,105 @@
                                 </a>
                             </li>
                         @endcan
-                        @can('emplpyee_access')
-                            <li class="{{ request()->is("admin/emplpyees") || request()->is("admin/emplpyees/*") ? "active" : "" }}">
-                                <a href="{{ route("admin.emplpyees.index") }}">
+                        @can('employee_access')
+                            <li class="{{ request()->is("admin/employees") || request()->is("admin/employees/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.employees.index") }}">
+                                    <i class="fa-fw fas fa-user-cog">
+
+                                    </i>
+                                    <span>{{ trans('cruds.employee.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
+            @can('agw_management_access')
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa-fw fas fa-cogs">
+
+                        </i>
+                        <span>{{ trans('cruds.agwManagement.title') }}</span>
+                        <span class="pull-right-container"><i class="fa fa-fw fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        @can('oso_agw_access')
+                            <li class="{{ request()->is("admin/oso-agws") || request()->is("admin/oso-agws/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.oso-agws.index") }}">
                                     <i class="fa-fw fas fa-cogs">
 
                                     </i>
-                                    <span>{{ trans('cruds.emplpyee.title') }}</span>
+                                    <span>{{ trans('cruds.osoAgw.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('tndp_ims_agw_access')
+                            <li class="{{ request()->is("admin/tndp-ims-agws") || request()->is("admin/tndp-ims-agws/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.tndp-ims-agws.index") }}">
+                                    <i class="fa-fw fas fa-cogs">
+
+                                    </i>
+                                    <span>{{ trans('cruds.tndpImsAgw.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
+            @can('number_management_access')
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa-fw fas fa-cogs">
+
+                        </i>
+                        <span>{{ trans('cruds.numberManagement.title') }}</span>
+                        <span class="pull-right-container"><i class="fa fa-fw fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        @can('oso_number_access')
+                            <li class="{{ request()->is("admin/oso-numbers") || request()->is("admin/oso-numbers/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.oso-numbers.index") }}">
+                                    <i class="fa-fw fas fa-cogs">
+
+                                    </i>
+                                    <span>{{ trans('cruds.osoNumber.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('oso_number_profile_access')
+                            <li class="{{ request()->is("admin/oso-number-profiles") || request()->is("admin/oso-number-profiles/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.oso-number-profiles.index") }}">
+                                    <i class="fa-fw fas fa-cogs">
+
+                                    </i>
+                                    <span>{{ trans('cruds.osoNumberProfile.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('tndp_ims_number_access')
+                            <li class="{{ request()->is("admin/tndp-ims-numbers") || request()->is("admin/tndp-ims-numbers/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.tndp-ims-numbers.index") }}">
+                                    <i class="fa-fw fas fa-cogs">
+
+                                    </i>
+                                    <span>{{ trans('cruds.tndpImsNumber.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('tndp_ims_number_profile_access')
+                            <li class="{{ request()->is("admin/tndp-ims-number-profiles") || request()->is("admin/tndp-ims-number-profiles/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.tndp-ims-number-profiles.index") }}">
+                                    <i class="fa-fw fas fa-cogs">
+
+                                    </i>
+                                    <span>{{ trans('cruds.tndpImsNumberProfile.title') }}</span>
 
                                 </a>
                             </li>

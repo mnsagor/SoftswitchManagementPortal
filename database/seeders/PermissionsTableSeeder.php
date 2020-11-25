@@ -168,26 +168,154 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 40,
-                'title' => 'emplpyee_create',
+                'title' => 'agw_management_access',
             ],
             [
                 'id'    => 41,
-                'title' => 'emplpyee_edit',
+                'title' => 'oso_agw_create',
             ],
             [
                 'id'    => 42,
-                'title' => 'emplpyee_show',
+                'title' => 'oso_agw_edit',
             ],
             [
                 'id'    => 43,
-                'title' => 'emplpyee_delete',
+                'title' => 'oso_agw_show',
             ],
             [
                 'id'    => 44,
-                'title' => 'emplpyee_access',
+                'title' => 'oso_agw_delete',
             ],
             [
                 'id'    => 45,
+                'title' => 'oso_agw_access',
+            ],
+            [
+                'id'    => 46,
+                'title' => 'tndp_ims_agw_create',
+            ],
+            [
+                'id'    => 47,
+                'title' => 'tndp_ims_agw_edit',
+            ],
+            [
+                'id'    => 48,
+                'title' => 'tndp_ims_agw_show',
+            ],
+            [
+                'id'    => 49,
+                'title' => 'tndp_ims_agw_delete',
+            ],
+            [
+                'id'    => 50,
+                'title' => 'tndp_ims_agw_access',
+            ],
+            [
+                'id'    => 51,
+                'title' => 'number_management_access',
+            ],
+            [
+                'id'    => 52,
+                'title' => 'oso_number_create',
+            ],
+            [
+                'id'    => 53,
+                'title' => 'oso_number_edit',
+            ],
+            [
+                'id'    => 54,
+                'title' => 'oso_number_show',
+            ],
+            [
+                'id'    => 55,
+                'title' => 'oso_number_delete',
+            ],
+            [
+                'id'    => 56,
+                'title' => 'oso_number_access',
+            ],
+            [
+                'id'    => 57,
+                'title' => 'oso_number_profile_create',
+            ],
+            [
+                'id'    => 58,
+                'title' => 'oso_number_profile_edit',
+            ],
+            [
+                'id'    => 59,
+                'title' => 'oso_number_profile_show',
+            ],
+            [
+                'id'    => 60,
+                'title' => 'oso_number_profile_delete',
+            ],
+            [
+                'id'    => 61,
+                'title' => 'oso_number_profile_access',
+            ],
+            [
+                'id'    => 62,
+                'title' => 'tndp_ims_number_create',
+            ],
+            [
+                'id'    => 63,
+                'title' => 'tndp_ims_number_edit',
+            ],
+            [
+                'id'    => 64,
+                'title' => 'tndp_ims_number_show',
+            ],
+            [
+                'id'    => 65,
+                'title' => 'tndp_ims_number_delete',
+            ],
+            [
+                'id'    => 66,
+                'title' => 'tndp_ims_number_access',
+            ],
+            [
+                'id'    => 67,
+                'title' => 'tndp_ims_number_profile_create',
+            ],
+            [
+                'id'    => 68,
+                'title' => 'tndp_ims_number_profile_edit',
+            ],
+            [
+                'id'    => 69,
+                'title' => 'tndp_ims_number_profile_show',
+            ],
+            [
+                'id'    => 70,
+                'title' => 'tndp_ims_number_profile_delete',
+            ],
+            [
+                'id'    => 71,
+                'title' => 'tndp_ims_number_profile_access',
+            ],
+            [
+                'id'    => 72,
+                'title' => 'employee_create',
+            ],
+            [
+                'id'    => 73,
+                'title' => 'employee_edit',
+            ],
+            [
+                'id'    => 74,
+                'title' => 'employee_show',
+            ],
+            [
+                'id'    => 75,
+                'title' => 'employee_delete',
+            ],
+            [
+                'id'    => 76,
+                'title' => 'employee_access',
+            ],
+            [
+                'id'    => 77,
                 'title' => 'profile_password_edit',
             ],
         ];

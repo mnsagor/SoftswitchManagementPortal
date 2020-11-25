@@ -90,14 +90,30 @@
                 </div>
                 <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
                     <li role="presentation">
-                        <a href="#office_emplpyees" aria-controls="office_emplpyees" role="tab" data-toggle="tab">
-                            {{ trans('cruds.emplpyee.title') }}
+                        <a href="#office_oso_agws" aria-controls="office_oso_agws" role="tab" data-toggle="tab">
+                            {{ trans('cruds.osoAgw.title') }}
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#office_tndp_ims_agws" aria-controls="office_tndp_ims_agws" role="tab" data-toggle="tab">
+                            {{ trans('cruds.tndpImsAgw.title') }}
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#office_users" aria-controls="office_users" role="tab" data-toggle="tab">
+                            {{ trans('cruds.user.title') }}
                         </a>
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane" role="tabpanel" id="office_emplpyees">
-                        @includeIf('admin.offices.relationships.officeEmplpyees', ['emplpyees' => $office->officeEmplpyees])
+                    <div class="tab-pane" role="tabpanel" id="office_oso_agws">
+                        @includeIf('admin.offices.relationships.officeOsoAgws', ['osoAgws' => $office->officeOsoAgws])
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="office_tndp_ims_agws">
+                        @includeIf('admin.offices.relationships.officeTndpImsAgws', ['tndpImsAgws' => $office->officeTndpImsAgws])
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="office_users">
+                        @includeIf('admin.offices.relationships.officeUsers', ['users' => $office->officeUsers])
                     </div>
                 </div>
             </div>

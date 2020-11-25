@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use App\Models\Emplpyee;
+use App\Models\Designation;
+use App\Models\Office;
 use App\Models\Role;
 use App\Models\User;
 use Gate;
@@ -21,28 +22,33 @@ class UsersController extends Controller
 
         $users = User::all();
 
+        $designations = Designation::get();
+
         $roles = Role::get();
 
-        $emplpyees = Emplpyee::get();
+        $offices = Office::get();
 
-        return view('admin.users.index', compact('users', 'roles', 'emplpyees'));
+        return view('admin.users.index', compact('users', 'designations', 'roles', 'offices'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $designations = Designation::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
         $roles = Role::all()->pluck('title', 'id');
 
-        $employees = Emplpyee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $offices = Office::all()->pluck('name', 'id');
 
-        return view('admin.users.create', compact('roles', 'employees'));
+        return view('admin.users.create', compact('designations', 'roles', 'offices'));
     }
 
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->all());
         $user->roles()->sync($request->input('roles', []));
+        $user->offices()->sync($request->input('offices', []));
 
         return redirect()->route('admin.users.index');
     }
@@ -51,19 +57,22 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $designations = Designation::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
         $roles = Role::all()->pluck('title', 'id');
 
-        $employees = Emplpyee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $offices = Office::all()->pluck('name', 'id');
 
-        $user->load('roles', 'employee');
+        $user->load('designation', 'roles', 'offices');
 
-        return view('admin.users.edit', compact('roles', 'employees', 'user'));
+        return view('admin.users.edit', compact('designations', 'roles', 'offices', 'user'));
     }
 
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->all());
         $user->roles()->sync($request->input('roles', []));
+        $user->offices()->sync($request->input('offices', []));
 
         return redirect()->route('admin.users.index');
     }
@@ -72,7 +81,7 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $user->load('roles', 'employee', 'userUserAlerts');
+        $user->load('designation', 'roles', 'offices', 'userUserAlerts');
 
         return view('admin.users.show', compact('user'));
     }

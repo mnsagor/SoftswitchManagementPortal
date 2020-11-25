@@ -96,7 +96,7 @@ class DesignationController extends Controller
     {
         abort_if(Gate::denies('designation_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $designation->load('designationEmplpyees');
+        $designation->load('designationUsers', 'designationEmployees');
 
         return view('admin.designations.show', compact('designation'));
     }

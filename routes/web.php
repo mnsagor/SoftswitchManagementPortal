@@ -1,9 +1,17 @@
 <?php
 
-Route::view('/', 'welcome');
+Route::redirect('/', '/login');
+Route::get('/home', function () {
+    if (session('status')) {
+        return redirect()->route('admin.home')->with('status', session('status'));
+    }
+
+    return redirect()->route('admin.home');
+});
+
 Auth::routes();
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
@@ -45,11 +53,51 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('offices/process-csv-import', 'OfficeController@processCsvImport')->name('offices.processCsvImport');
     Route::resource('offices', 'OfficeController');
 
-    // Emplpyees
-    Route::delete('emplpyees/destroy', 'EmplpyeeController@massDestroy')->name('emplpyees.massDestroy');
-    Route::post('emplpyees/parse-csv-import', 'EmplpyeeController@parseCsvImport')->name('emplpyees.parseCsvImport');
-    Route::post('emplpyees/process-csv-import', 'EmplpyeeController@processCsvImport')->name('emplpyees.processCsvImport');
-    Route::resource('emplpyees', 'EmplpyeeController');
+    // Oso Agws
+    Route::delete('oso-agws/destroy', 'OsoAgwController@massDestroy')->name('oso-agws.massDestroy');
+    Route::post('oso-agws/media', 'OsoAgwController@storeMedia')->name('oso-agws.storeMedia');
+    Route::post('oso-agws/ckmedia', 'OsoAgwController@storeCKEditorImages')->name('oso-agws.storeCKEditorImages');
+    Route::post('oso-agws/parse-csv-import', 'OsoAgwController@parseCsvImport')->name('oso-agws.parseCsvImport');
+    Route::post('oso-agws/process-csv-import', 'OsoAgwController@processCsvImport')->name('oso-agws.processCsvImport');
+    Route::resource('oso-agws', 'OsoAgwController');
+
+    // Tndp Ims Agws
+    Route::delete('tndp-ims-agws/destroy', 'TndpImsAgwController@massDestroy')->name('tndp-ims-agws.massDestroy');
+    Route::post('tndp-ims-agws/media', 'TndpImsAgwController@storeMedia')->name('tndp-ims-agws.storeMedia');
+    Route::post('tndp-ims-agws/ckmedia', 'TndpImsAgwController@storeCKEditorImages')->name('tndp-ims-agws.storeCKEditorImages');
+    Route::post('tndp-ims-agws/parse-csv-import', 'TndpImsAgwController@parseCsvImport')->name('tndp-ims-agws.parseCsvImport');
+    Route::post('tndp-ims-agws/process-csv-import', 'TndpImsAgwController@processCsvImport')->name('tndp-ims-agws.processCsvImport');
+    Route::resource('tndp-ims-agws', 'TndpImsAgwController');
+
+    // Oso Numbers
+    Route::delete('oso-numbers/destroy', 'OsoNumbersController@massDestroy')->name('oso-numbers.massDestroy');
+    Route::post('oso-numbers/parse-csv-import', 'OsoNumbersController@parseCsvImport')->name('oso-numbers.parseCsvImport');
+    Route::post('oso-numbers/process-csv-import', 'OsoNumbersController@processCsvImport')->name('oso-numbers.processCsvImport');
+    Route::resource('oso-numbers', 'OsoNumbersController');
+
+    // Oso Number Profiles
+    Route::delete('oso-number-profiles/destroy', 'OsoNumberProfileController@massDestroy')->name('oso-number-profiles.massDestroy');
+    Route::post('oso-number-profiles/parse-csv-import', 'OsoNumberProfileController@parseCsvImport')->name('oso-number-profiles.parseCsvImport');
+    Route::post('oso-number-profiles/process-csv-import', 'OsoNumberProfileController@processCsvImport')->name('oso-number-profiles.processCsvImport');
+    Route::resource('oso-number-profiles', 'OsoNumberProfileController');
+
+    // Tndp Ims Numbers
+    Route::delete('tndp-ims-numbers/destroy', 'TndpImsNumbersController@massDestroy')->name('tndp-ims-numbers.massDestroy');
+    Route::post('tndp-ims-numbers/parse-csv-import', 'TndpImsNumbersController@parseCsvImport')->name('tndp-ims-numbers.parseCsvImport');
+    Route::post('tndp-ims-numbers/process-csv-import', 'TndpImsNumbersController@processCsvImport')->name('tndp-ims-numbers.processCsvImport');
+    Route::resource('tndp-ims-numbers', 'TndpImsNumbersController');
+
+    // Tndp Ims Number Profiles
+    Route::delete('tndp-ims-number-profiles/destroy', 'TndpImsNumberProfileController@massDestroy')->name('tndp-ims-number-profiles.massDestroy');
+    Route::post('tndp-ims-number-profiles/parse-csv-import', 'TndpImsNumberProfileController@parseCsvImport')->name('tndp-ims-number-profiles.parseCsvImport');
+    Route::post('tndp-ims-number-profiles/process-csv-import', 'TndpImsNumberProfileController@processCsvImport')->name('tndp-ims-number-profiles.processCsvImport');
+    Route::resource('tndp-ims-number-profiles', 'TndpImsNumberProfileController');
+
+    // Employees
+    Route::delete('employees/destroy', 'EmployeeController@massDestroy')->name('employees.massDestroy');
+    Route::post('employees/parse-csv-import', 'EmployeeController@parseCsvImport')->name('employees.parseCsvImport');
+    Route::post('employees/process-csv-import', 'EmployeeController@processCsvImport')->name('employees.processCsvImport');
+    Route::resource('employees', 'EmployeeController');
 
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('user-alerts/read', 'UserAlertsController@read');
@@ -62,50 +110,4 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
         Route::post('profile', 'ChangePasswordController@updateProfile')->name('password.updateProfile');
         Route::post('profile/destroy', 'ChangePasswordController@destroy')->name('password.destroyProfile');
     }
-});
-Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['auth']], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
-
-    // Permissions
-    Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
-    Route::resource('permissions', 'PermissionsController');
-
-    // Roles
-    Route::delete('roles/destroy', 'RolesController@massDestroy')->name('roles.massDestroy');
-    Route::resource('roles', 'RolesController');
-
-    // Users
-    Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
-    Route::resource('users', 'UsersController');
-
-    // Audit Logs
-    Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
-
-    // User Alerts
-    Route::delete('user-alerts/destroy', 'UserAlertsController@massDestroy')->name('user-alerts.massDestroy');
-    Route::resource('user-alerts', 'UserAlertsController', ['except' => ['edit', 'update']]);
-
-    // User Registration Requests
-    Route::resource('user-registration-requests', 'UserRegistrationRequestController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
-
-    // Regions
-    Route::delete('regions/destroy', 'RegionController@massDestroy')->name('regions.massDestroy');
-    Route::resource('regions', 'RegionController');
-
-    // Designations
-    Route::delete('designations/destroy', 'DesignationController@massDestroy')->name('designations.massDestroy');
-    Route::resource('designations', 'DesignationController');
-
-    // Offices
-    Route::delete('offices/destroy', 'OfficeController@massDestroy')->name('offices.massDestroy');
-    Route::resource('offices', 'OfficeController');
-
-    // Emplpyees
-    Route::delete('emplpyees/destroy', 'EmplpyeeController@massDestroy')->name('emplpyees.massDestroy');
-    Route::resource('emplpyees', 'EmplpyeeController');
-
-    Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
-    Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');
-    Route::post('frontend/profile/destroy', 'ProfileController@destroy')->name('profile.destroy');
-    Route::post('frontend/profile/password', 'ProfileController@password')->name('profile.password');
 });

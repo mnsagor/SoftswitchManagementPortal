@@ -4,11 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmplpyeesTable extends Migration
+class CreateEmployeesTable extends Migration
 {
     public function up()
     {
-        Schema::create('emplpyees', function (Blueprint $table) {
+        Schema::create('employees', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('mobile')->unique();
