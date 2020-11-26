@@ -27,6 +27,14 @@
                                 </tr>
                                 <tr>
                                     <th>
+                                        {{ trans('cruds.osoNumberProfile.fields.oso_agw_ip') }}
+                                    </th>
+                                    <td>
+                                        {{ $osoNumberProfile->oso_agw_ip->ip ?? '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
                                         {{ trans('cruds.osoNumberProfile.fields.number') }}
                                     </th>
                                     <td>

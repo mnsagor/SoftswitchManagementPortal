@@ -60,6 +60,11 @@ class OsoAgw extends Model implements HasMedia
         return $this->hasMany(OsoNumber::class, 'agw_ip_id', 'id');
     }
 
+    public function osoAgwIpOsoNumberProfiles()
+    {
+        return $this->hasMany(OsoNumberProfile::class, 'oso_agw_ip_id', 'id');
+    }
+
     public function office()
     {
         return $this->belongsTo(Office::class, 'office_id');

@@ -26,6 +26,10 @@ class StoreUserRequest extends FormRequest
                 'required',
                 'unique:users',
             ],
+            'payroll_emp_id' => [
+                'required',
+                'integer',
+            ],
             'designation_id' => [
                 'required',
                 'integer',

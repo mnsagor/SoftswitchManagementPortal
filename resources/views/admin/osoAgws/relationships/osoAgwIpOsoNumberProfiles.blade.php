@@ -1,9 +1,9 @@
 <div class="content">
-    @can('user_create')
+    @can('oso_number_profile_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.users.create') }}">
-                    {{ trans('global.add') }} {{ trans('cruds.user.title_singular') }}
+                <a class="btn btn-success" href="{{ route('admin.oso-number-profiles.create') }}">
+                    {{ trans('global.add') }} {{ trans('cruds.osoNumberProfile.title_singular') }}
                 </a>
             </div>
         </div>
@@ -13,46 +13,43 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    {{ trans('cruds.user.title_singular') }} {{ trans('global.list') }}
+                    {{ trans('cruds.osoNumberProfile.title_singular') }} {{ trans('global.list') }}
                 </div>
                 <div class="panel-body">
 
                     <div class="table-responsive">
-                        <table class=" table table-bordered table-striped table-hover datatable datatable-officeUsers">
+                        <table class=" table table-bordered table-striped table-hover datatable datatable-osoAgwIpOsoNumberProfiles">
                             <thead>
                                 <tr>
                                     <th width="10">
 
                                     </th>
                                     <th>
-                                        {{ trans('cruds.user.fields.id') }}
+                                        {{ trans('cruds.osoNumberProfile.fields.id') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.user.fields.name') }}
+                                        {{ trans('cruds.osoNumberProfile.fields.oso_agw_ip') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.user.fields.username') }}
+                                        {{ trans('cruds.osoNumberProfile.fields.number') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.user.fields.payroll_emp') }}
+                                        {{ trans('cruds.osoNumberProfile.fields.is_active') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.user.fields.designation') }}
+                                        {{ trans('cruds.osoNumberProfile.fields.is_td') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.user.fields.email') }}
+                                        {{ trans('cruds.osoNumberProfile.fields.is_isd') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.user.fields.email_verified_at') }}
+                                        {{ trans('cruds.osoNumberProfile.fields.is_eisd') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.user.fields.approved') }}
+                                        {{ trans('cruds.osoNumberProfile.fields.is_pbx') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.user.fields.roles') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.user.fields.office') }}
+                                        {{ trans('cruds.osoNumberProfile.fields.pbx_poilot_number') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -60,61 +57,53 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($users as $key => $user)
-                                    <tr data-entry-id="{{ $user->id }}">
+                                @foreach($osoNumberProfiles as $key => $osoNumberProfile)
+                                    <tr data-entry-id="{{ $osoNumberProfile->id }}">
                                         <td>
 
                                         </td>
                                         <td>
-                                            {{ $user->id ?? '' }}
+                                            {{ $osoNumberProfile->id ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $user->name ?? '' }}
+                                            {{ $osoNumberProfile->oso_agw_ip->ip ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $user->username ?? '' }}
+                                            {{ $osoNumberProfile->number->number ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $user->payroll_emp->name ?? '' }}
+                                            {{ App\Models\OsoNumberProfile::IS_ACTIVE_RADIO[$osoNumberProfile->is_active] ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $user->designation->name ?? '' }}
+                                            {{ App\Models\OsoNumberProfile::IS_TD_RADIO[$osoNumberProfile->is_td] ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $user->email ?? '' }}
+                                            {{ App\Models\OsoNumberProfile::IS_ISD_RADIO[$osoNumberProfile->is_isd] ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $user->email_verified_at ?? '' }}
+                                            {{ App\Models\OsoNumberProfile::IS_EISD_RADIO[$osoNumberProfile->is_eisd] ?? '' }}
                                         </td>
                                         <td>
-                                            <span style="display:none">{{ $user->approved ?? '' }}</span>
-                                            <input type="checkbox" disabled="disabled" {{ $user->approved ? 'checked' : '' }}>
+                                            {{ App\Models\OsoNumberProfile::IS_PBX_RADIO[$osoNumberProfile->is_pbx] ?? '' }}
                                         </td>
                                         <td>
-                                            @foreach($user->roles as $key => $item)
-                                                <span class="label label-info label-many">{{ $item->title }}</span>
-                                            @endforeach
+                                            {{ $osoNumberProfile->pbx_poilot_number ?? '' }}
                                         </td>
                                         <td>
-                                            @foreach($user->offices as $key => $item)
-                                                <span class="label label-info label-many">{{ $item->name }}</span>
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            @can('user_show')
-                                                <a class="btn btn-xs btn-primary" href="{{ route('admin.users.show', $user->id) }}">
+                                            @can('oso_number_profile_show')
+                                                <a class="btn btn-xs btn-primary" href="{{ route('admin.oso-number-profiles.show', $osoNumberProfile->id) }}">
                                                     {{ trans('global.view') }}
                                                 </a>
                                             @endcan
 
-                                            @can('user_edit')
-                                                <a class="btn btn-xs btn-info" href="{{ route('admin.users.edit', $user->id) }}">
+                                            @can('oso_number_profile_edit')
+                                                <a class="btn btn-xs btn-info" href="{{ route('admin.oso-number-profiles.edit', $osoNumberProfile->id) }}">
                                                     {{ trans('global.edit') }}
                                                 </a>
                                             @endcan
 
-                                            @can('user_delete')
-                                                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                            @can('oso_number_profile_delete')
+                                                <form action="{{ route('admin.oso-number-profiles.destroy', $osoNumberProfile->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
@@ -140,11 +129,11 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('user_delete')
+@can('oso_number_profile_delete')
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.users.massDestroy') }}",
+    url: "{{ route('admin.oso-number-profiles.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
@@ -175,7 +164,7 @@
     order: [[ 1, 'desc' ]],
     pageLength: 100,
   });
-  let table = $('.datatable-officeUsers:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+  let table = $('.datatable-osoAgwIpOsoNumberProfiles:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();

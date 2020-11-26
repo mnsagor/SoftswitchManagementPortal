@@ -26,6 +26,10 @@ class UpdateUserRequest extends FormRequest
                 'required',
                 'unique:users,username,' . request()->route('user')->id,
             ],
+            'payroll_emp_id' => [
+                'required',
+                'integer',
+            ],
             'designation_id' => [
                 'required',
                 'integer',

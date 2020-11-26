@@ -7,6 +7,7 @@ use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Designation;
+use App\Models\Employee;
 use App\Models\Office;
 use App\Models\Role;
 use App\Models\User;
@@ -22,18 +23,22 @@ class UsersController extends Controller
 
         $users = User::all();
 
+        $employees = Employee::get();
+
         $designations = Designation::get();
 
         $roles = Role::get();
 
         $offices = Office::get();
 
-        return view('admin.users.index', compact('users', 'designations', 'roles', 'offices'));
+        return view('admin.users.index', compact('users', 'employees', 'designations', 'roles', 'offices'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $payroll_emps = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $designations = Designation::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
@@ -41,7 +46,7 @@ class UsersController extends Controller
 
         $offices = Office::all()->pluck('name', 'id');
 
-        return view('admin.users.create', compact('designations', 'roles', 'offices'));
+        return view('admin.users.create', compact('payroll_emps', 'designations', 'roles', 'offices'));
     }
 
     public function store(StoreUserRequest $request)
@@ -57,15 +62,17 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $payroll_emps = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
         $designations = Designation::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $roles = Role::all()->pluck('title', 'id');
 
         $offices = Office::all()->pluck('name', 'id');
 
-        $user->load('designation', 'roles', 'offices');
+        $user->load('payroll_emp', 'designation', 'roles', 'offices');
 
-        return view('admin.users.edit', compact('designations', 'roles', 'offices', 'user'));
+        return view('admin.users.edit', compact('payroll_emps', 'designations', 'roles', 'offices', 'user'));
     }
 
     public function update(UpdateUserRequest $request, User $user)
@@ -81,7 +88,7 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $user->load('designation', 'roles', 'offices', 'requestedByJobRequests', 'verifiedByJobRequests', 'approvedByJobRequests', 'rejectedByJobRequests', 'userUserAlerts');
+        $user->load('payroll_emp', 'designation', 'roles', 'offices', 'requestedByJobRequests', 'verifiedByJobRequests', 'approvedByJobRequests', 'rejectedByJobRequests', 'userUserAlerts');
 
         return view('admin.users.show', compact('user'));
     }
