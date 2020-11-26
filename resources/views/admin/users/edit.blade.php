@@ -28,6 +28,18 @@
                             @endif
                             <span class="help-block">{{ trans('cruds.user.fields.username_helper') }}</span>
                         </div>
+                        <div class="form-group {{ $errors->has('payroll_emp') ? 'has-error' : '' }}">
+                            <label class="required" for="payroll_emp_id">{{ trans('cruds.user.fields.payroll_emp') }}</label>
+                            <select class="form-control select2" name="payroll_emp_id" id="payroll_emp_id" required>
+                                @foreach($payroll_emps as $id => $payroll_emp)
+                                    <option value="{{ $id }}" {{ (old('payroll_emp_id') ? old('payroll_emp_id') : $user->payroll_emp->id ?? '') == $id ? 'selected' : '' }}>{{ $payroll_emp }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('payroll_emp'))
+                                <span class="help-block" role="alert">{{ $errors->first('payroll_emp') }}</span>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.user.fields.payroll_emp_helper') }}</span>
+                        </div>
                         <div class="form-group {{ $errors->has('designation') ? 'has-error' : '' }}">
                             <label class="required" for="designation_id">{{ trans('cruds.user.fields.designation') }}</label>
                             <select class="form-control select2" name="designation_id" id="designation_id" required>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Requests\MassDestroyOsoNumberProfileRequest;
 use App\Http\Requests\StoreOsoNumberProfileRequest;
 use App\Http\Requests\UpdateOsoNumberProfileRequest;
+use App\Models\OsoAgw;
 use App\Models\OsoNumber;
 use App\Models\OsoNumberProfile;
 use Gate;
@@ -23,7 +24,7 @@ class OsoNumberProfileController extends Controller
         abort_if(Gate::denies('oso_number_profile_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = OsoNumberProfile::with(['number'])->select(sprintf('%s.*', (new OsoNumberProfile)->table));
+            $query = OsoNumberProfile::with(['oso_agw_ip', 'number'])->select(sprintf('%s.*', (new OsoNumberProfile)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -47,6 +48,10 @@ class OsoNumberProfileController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : "";
             });
+            $table->addColumn('oso_agw_ip_ip', function ($row) {
+                return $row->oso_agw_ip ? $row->oso_agw_ip->ip : '';
+            });
+
             $table->addColumn('number_number', function ($row) {
                 return $row->number ? $row->number->number : '';
             });
@@ -70,23 +75,26 @@ class OsoNumberProfileController extends Controller
                 return $row->pbx_poilot_number ? $row->pbx_poilot_number : "";
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'number']);
+            $table->rawColumns(['actions', 'placeholder', 'oso_agw_ip', 'number']);
 
             return $table->make(true);
         }
 
+        $oso_agws    = OsoAgw::get();
         $oso_numbers = OsoNumber::get();
 
-        return view('admin.osoNumberProfiles.index', compact('oso_numbers'));
+        return view('admin.osoNumberProfiles.index', compact('oso_agws', 'oso_numbers'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('oso_number_profile_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $oso_agw_ips = OsoAgw::all()->pluck('ip', 'id')->prepend(trans('global.pleaseSelect'), '');
+
         $numbers = OsoNumber::all()->pluck('number', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.osoNumberProfiles.create', compact('numbers'));
+        return view('admin.osoNumberProfiles.create', compact('oso_agw_ips', 'numbers'));
     }
 
     public function store(StoreOsoNumberProfileRequest $request)
@@ -100,11 +108,13 @@ class OsoNumberProfileController extends Controller
     {
         abort_if(Gate::denies('oso_number_profile_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $oso_agw_ips = OsoAgw::all()->pluck('ip', 'id')->prepend(trans('global.pleaseSelect'), '');
+
         $numbers = OsoNumber::all()->pluck('number', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $osoNumberProfile->load('number');
+        $osoNumberProfile->load('oso_agw_ip', 'number');
 
-        return view('admin.osoNumberProfiles.edit', compact('numbers', 'osoNumberProfile'));
+        return view('admin.osoNumberProfiles.edit', compact('oso_agw_ips', 'numbers', 'osoNumberProfile'));
     }
 
     public function update(UpdateOsoNumberProfileRequest $request, OsoNumberProfile $osoNumberProfile)
@@ -118,7 +128,7 @@ class OsoNumberProfileController extends Controller
     {
         abort_if(Gate::denies('oso_number_profile_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $osoNumberProfile->load('number');
+        $osoNumberProfile->load('oso_agw_ip', 'number');
 
         return view('admin.osoNumberProfiles.show', compact('osoNumberProfile'));
     }

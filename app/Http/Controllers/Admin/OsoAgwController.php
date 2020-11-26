@@ -115,7 +115,7 @@ class OsoAgwController extends Controller
     {
         abort_if(Gate::denies('oso_agw_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $osoAgw->load('office', 'agwIpOsoNumbers');
+        $osoAgw->load('office', 'agwIpOsoNumbers', 'osoAgwIpOsoNumberProfiles');
 
         return view('admin.osoAgws.show', compact('osoAgw'));
     }

@@ -11,6 +11,18 @@
                 <div class="panel-body">
                     <form method="POST" action="{{ route("admin.oso-number-profiles.store") }}" enctype="multipart/form-data">
                         @csrf
+                        <div class="form-group {{ $errors->has('oso_agw_ip') ? 'has-error' : '' }}">
+                            <label class="required" for="oso_agw_ip_id">{{ trans('cruds.osoNumberProfile.fields.oso_agw_ip') }}</label>
+                            <select class="form-control select2" name="oso_agw_ip_id" id="oso_agw_ip_id" required>
+                                @foreach($oso_agw_ips as $id => $oso_agw_ip)
+                                    <option value="{{ $id }}" {{ old('oso_agw_ip_id') == $id ? 'selected' : '' }}>{{ $oso_agw_ip }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('oso_agw_ip'))
+                                <span class="help-block" role="alert">{{ $errors->first('oso_agw_ip') }}</span>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.osoNumberProfile.fields.oso_agw_ip_helper') }}</span>
+                        </div>
                         <div class="form-group {{ $errors->has('number') ? 'has-error' : '' }}">
                             <label class="required" for="number_id">{{ trans('cruds.osoNumberProfile.fields.number') }}</label>
                             <select class="form-control select2" name="number_id" id="number_id" required>

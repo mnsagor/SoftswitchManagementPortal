@@ -34,6 +34,9 @@
                                         {{ trans('cruds.user.fields.username') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.user.fields.payroll_emp') }}
+                                    </th>
+                                    <th>
                                         {{ trans('cruds.user.fields.designation') }}
                                     </th>
                                     <th>
@@ -70,6 +73,9 @@
                                         </td>
                                         <td>
                                             {{ $user->username ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $user->payroll_emp->name ?? '' }}
                                         </td>
                                         <td>
                                             {{ $user->designation->name ?? '' }}

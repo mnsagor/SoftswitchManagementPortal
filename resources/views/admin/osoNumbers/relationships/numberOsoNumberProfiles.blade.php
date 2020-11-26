@@ -28,6 +28,9 @@
                                         {{ trans('cruds.osoNumberProfile.fields.id') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.osoNumberProfile.fields.oso_agw_ip') }}
+                                    </th>
+                                    <th>
                                         {{ trans('cruds.osoNumberProfile.fields.number') }}
                                     </th>
                                     <th>
@@ -61,6 +64,9 @@
                                         </td>
                                         <td>
                                             {{ $osoNumberProfile->id ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $osoNumberProfile->oso_agw_ip->ip ?? '' }}
                                         </td>
                                         <td>
                                             {{ $osoNumberProfile->number->number ?? '' }}

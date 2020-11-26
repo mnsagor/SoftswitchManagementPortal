@@ -71,6 +71,8 @@ return [
             'username_helper'          => ' ',
             'designation'              => 'Designation',
             'designation_helper'       => ' ',
+            'payroll_emp'              => 'Payroll Employee Name',
+            'payroll_emp_helper'       => ' ',
         ],
     ],
     'auditLog'                => [
@@ -120,7 +122,7 @@ return [
         'title_singular' => 'User Registration Request',
     ],
     'setting'                 => [
-        'title'          => 'Setting',
+        'title'          => 'Settings',
         'title_singular' => 'Setting',
     ],
     'region'                  => [
@@ -289,6 +291,8 @@ return [
             'is_pbx_helper'            => ' ',
             'pbx_poilot_number'        => 'PBX Poilot Number',
             'pbx_poilot_number_helper' => ' ',
+            'oso_agw_ip'               => '171KL AGW IP',
+            'oso_agw_ip_helper'        => ' ',
         ],
     ],
     'tndpImsNumber'           => [
