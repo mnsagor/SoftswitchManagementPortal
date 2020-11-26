@@ -41,6 +41,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'username',
+        'payroll_emp_id',
         'designation_id',
         'email',
         'email_verified_at',
@@ -97,6 +98,11 @@ class User extends Authenticatable
     public function userUserAlerts()
     {
         return $this->belongsToMany(UserAlert::class);
+    }
+
+    public function payroll_emp()
+    {
+        return $this->belongsTo(Employee::class, 'payroll_emp_id');
     }
 
     public function designation()

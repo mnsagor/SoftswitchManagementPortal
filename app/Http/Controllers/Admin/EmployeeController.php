@@ -115,7 +115,7 @@ class EmployeeController extends Controller
     {
         abort_if(Gate::denies('employee_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $employee->load('designation');
+        $employee->load('designation', 'payrollEmpUsers');
 
         return view('admin.employees.show', compact('employee'));
     }

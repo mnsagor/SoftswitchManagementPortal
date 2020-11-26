@@ -34,6 +34,9 @@
                                         {{ trans('cruds.user.fields.username') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.user.fields.payroll_emp') }}
+                                    </th>
+                                    <th>
                                         {{ trans('cruds.user.fields.designation') }}
                                     </th>
                                     <th>
@@ -66,6 +69,14 @@
                                     </td>
                                     <td>
                                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                    </td>
+                                    <td>
+                                        <select class="search">
+                                            <option value>{{ trans('global.all') }}</option>
+                                            @foreach($employees as $key => $item)
+                                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </td>
                                     <td>
                                         <select class="search">
@@ -117,6 +128,9 @@
                                         </td>
                                         <td>
                                             {{ $user->username ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $user->payroll_emp->name ?? '' }}
                                         </td>
                                         <td>
                                             {{ $user->designation->name ?? '' }}

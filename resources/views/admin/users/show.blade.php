@@ -43,6 +43,14 @@
                                 </tr>
                                 <tr>
                                     <th>
+                                        {{ trans('cruds.user.fields.payroll_emp') }}
+                                    </th>
+                                    <td>
+                                        {{ $user->payroll_emp->name ?? '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
                                         {{ trans('cruds.user.fields.designation') }}
                                     </th>
                                     <td>

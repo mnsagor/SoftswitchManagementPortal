@@ -17,6 +17,10 @@ class StoreOsoNumberProfileRequest extends FormRequest
     public function rules()
     {
         return [
+            'oso_agw_ip_id'     => [
+                'required',
+                'integer',
+            ],
             'number_id'         => [
                 'required',
                 'integer',

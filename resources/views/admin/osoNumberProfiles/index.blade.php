@@ -31,6 +31,9 @@
                                     {{ trans('cruds.osoNumberProfile.fields.id') }}
                                 </th>
                                 <th>
+                                    {{ trans('cruds.osoNumberProfile.fields.oso_agw_ip') }}
+                                </th>
+                                <th>
                                     {{ trans('cruds.osoNumberProfile.fields.number') }}
                                 </th>
                                 <th>
@@ -60,6 +63,14 @@
                                 </td>
                                 <td>
                                     <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                </td>
+                                <td>
+                                    <select class="search">
+                                        <option value>{{ trans('global.all') }}</option>
+                                        @foreach($oso_agws as $key => $item)
+                                            <option value="{{ $item->ip }}">{{ $item->ip }}</option>
+                                        @endforeach
+                                    </select>
                                 </td>
                                 <td>
                                     <select class="search">
@@ -171,6 +182,7 @@
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
+{ data: 'oso_agw_ip_ip', name: 'oso_agw_ip.ip' },
 { data: 'number_number', name: 'number.number' },
 { data: 'is_active', name: 'is_active' },
 { data: 'is_td', name: 'is_td' },

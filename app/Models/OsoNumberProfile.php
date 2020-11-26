@@ -47,6 +47,7 @@ class OsoNumberProfile extends Model
     ];
 
     protected $fillable = [
+        'oso_agw_ip_id',
         'number_id',
         'is_active',
         'is_td',
@@ -62,6 +63,11 @@ class OsoNumberProfile extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function oso_agw_ip()
+    {
+        return $this->belongsTo(OsoAgw::class, 'oso_agw_ip_id');
     }
 
     public function number()

@@ -92,7 +92,23 @@
                 </div>
             </div>
 
-
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ trans('global.relatedData') }}
+                </div>
+                <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+                    <li role="presentation">
+                        <a href="#payroll_emp_users" aria-controls="payroll_emp_users" role="tab" data-toggle="tab">
+                            {{ trans('cruds.user.title') }}
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane" role="tabpanel" id="payroll_emp_users">
+                        @includeIf('admin.employees.relationships.payrollEmpUsers', ['users' => $employee->payrollEmpUsers])
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

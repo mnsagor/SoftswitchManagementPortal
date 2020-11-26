@@ -54,6 +54,11 @@ class Employee extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
+    public function payrollEmpUsers()
+    {
+        return $this->hasMany(User::class, 'payroll_emp_id', 'id');
+    }
+
     public function designation()
     {
         return $this->belongsTo(Designation::class, 'designation_id');

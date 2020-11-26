@@ -17,7 +17,7 @@ class OsoNumberProfileApiController extends Controller
     {
         abort_if(Gate::denies('oso_number_profile_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new OsoNumberProfileResource(OsoNumberProfile::with(['number'])->get());
+        return new OsoNumberProfileResource(OsoNumberProfile::with(['oso_agw_ip', 'number'])->get());
     }
 
     public function store(StoreOsoNumberProfileRequest $request)
@@ -33,7 +33,7 @@ class OsoNumberProfileApiController extends Controller
     {
         abort_if(Gate::denies('oso_number_profile_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new OsoNumberProfileResource($osoNumberProfile->load(['number']));
+        return new OsoNumberProfileResource($osoNumberProfile->load(['oso_agw_ip', 'number']));
     }
 
     public function update(UpdateOsoNumberProfileRequest $request, OsoNumberProfile $osoNumberProfile)

@@ -86,10 +86,18 @@
                             {{ trans('cruds.osoNumber.title') }}
                         </a>
                     </li>
+                    <li role="presentation">
+                        <a href="#oso_agw_ip_oso_number_profiles" aria-controls="oso_agw_ip_oso_number_profiles" role="tab" data-toggle="tab">
+                            {{ trans('cruds.osoNumberProfile.title') }}
+                        </a>
+                    </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane" role="tabpanel" id="agw_ip_oso_numbers">
                         @includeIf('admin.osoAgws.relationships.agwIpOsoNumbers', ['osoNumbers' => $osoAgw->agwIpOsoNumbers])
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="oso_agw_ip_oso_number_profiles">
+                        @includeIf('admin.osoAgws.relationships.osoAgwIpOsoNumberProfiles', ['osoNumberProfiles' => $osoAgw->osoAgwIpOsoNumberProfiles])
                     </div>
                 </div>
             </div>
