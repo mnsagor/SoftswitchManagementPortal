@@ -42,4 +42,14 @@ class JobType extends Model
     {
         return $this->hasMany(JobRequest::class, 'job_type_id', 'id');
     }
+
+    public function jobTypeTndpImsOltProfiles()
+    {
+        return $this->hasMany(TndpImsOltProfile::class, 'job_type_id', 'id');
+    }
+
+    public function jobTypeOltJobRequests()
+    {
+        return $this->hasMany(OltJobRequest::class, 'job_type_id', 'id');
+    }
 }

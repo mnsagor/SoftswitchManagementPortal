@@ -57,7 +57,7 @@ class JobRequestStatusController extends Controller
     {
         abort_if(Gate::denies('job_request_status_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $jobRequestStatus->load('requestStatusJobRequests');
+        $jobRequestStatus->load('requestStatusJobRequests', 'statusTndpImsOltProfiles', 'requestStatusOltJobRequests');
 
         return view('admin.jobRequestStatuses.show', compact('jobRequestStatus'));
     }

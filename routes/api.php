@@ -57,4 +57,15 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Job Requests
     Route::post('job-requests/media', 'JobRequestApiController@storeMedia')->name('job-requests.storeMedia');
     Route::apiResource('job-requests', 'JobRequestApiController');
+
+    // Olts
+    Route::apiResource('olts', 'OltApiController');
+
+    // Tndp Ims Olt Profiles
+    Route::post('tndp-ims-olt-profiles/media', 'TndpImsOltProfileApiController@storeMedia')->name('tndp-ims-olt-profiles.storeMedia');
+    Route::apiResource('tndp-ims-olt-profiles', 'TndpImsOltProfileApiController');
+
+    // Olt Job Requests
+    Route::post('olt-job-requests/media', 'OltJobRequestApiController@storeMedia')->name('olt-job-requests.storeMedia');
+    Route::apiResource('olt-job-requests', 'OltJobRequestApiController');
 });

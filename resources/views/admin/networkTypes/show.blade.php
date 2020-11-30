@@ -62,10 +62,18 @@
                             {{ trans('cruds.jobRequest.title') }}
                         </a>
                     </li>
+                    <li role="presentation">
+                        <a href="#network_type_olt_job_requests" aria-controls="network_type_olt_job_requests" role="tab" data-toggle="tab">
+                            {{ trans('cruds.oltJobRequest.title') }}
+                        </a>
+                    </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane" role="tabpanel" id="network_type_job_requests">
                         @includeIf('admin.networkTypes.relationships.networkTypeJobRequests', ['jobRequests' => $networkType->networkTypeJobRequests])
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="network_type_olt_job_requests">
+                        @includeIf('admin.networkTypes.relationships.networkTypeOltJobRequests', ['oltJobRequests' => $networkType->networkTypeOltJobRequests])
                     </div>
                 </div>
             </div>

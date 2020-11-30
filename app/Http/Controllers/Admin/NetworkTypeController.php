@@ -57,7 +57,7 @@ class NetworkTypeController extends Controller
     {
         abort_if(Gate::denies('network_type_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $networkType->load('networkTypeJobRequests');
+        $networkType->load('networkTypeJobRequests', 'networkTypeOltJobRequests');
 
         return view('admin.networkTypes.show', compact('networkType'));
     }
