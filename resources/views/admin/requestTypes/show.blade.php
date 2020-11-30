@@ -62,10 +62,18 @@
                             {{ trans('cruds.jobRequest.title') }}
                         </a>
                     </li>
+                    <li role="presentation">
+                        <a href="#request_type_olt_job_requests" aria-controls="request_type_olt_job_requests" role="tab" data-toggle="tab">
+                            {{ trans('cruds.oltJobRequest.title') }}
+                        </a>
+                    </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane" role="tabpanel" id="request_type_job_requests">
                         @includeIf('admin.requestTypes.relationships.requestTypeJobRequests', ['jobRequests' => $requestType->requestTypeJobRequests])
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="request_type_olt_job_requests">
+                        @includeIf('admin.requestTypes.relationships.requestTypeOltJobRequests', ['oltJobRequests' => $requestType->requestTypeOltJobRequests])
                     </div>
                 </div>
             </div>

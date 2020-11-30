@@ -440,42 +440,110 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 108,
-                'title' => 'olt_job_request_access',
-            ],
-            [
-                'id'    => 109,
                 'title' => 'core_job_access',
             ],
             [
-                'id'    => 110,
+                'id'    => 109,
                 'title' => 'ont_job_access',
             ],
             [
-                'id'    => 111,
+                'id'    => 110,
                 'title' => 'oso_report_access',
             ],
             [
-                'id'    => 112,
+                'id'    => 111,
                 'title' => 'ims_report_access',
             ],
             [
-                'id'    => 113,
+                'id'    => 112,
                 'title' => 'core_job_oso_access',
             ],
             [
-                'id'    => 114,
+                'id'    => 113,
                 'title' => 'olt_oso_access',
             ],
             [
-                'id'    => 115,
+                'id'    => 114,
                 'title' => 'core_job_im_access',
             ],
             [
-                'id'    => 116,
+                'id'    => 115,
                 'title' => 'ont_job_im_access',
             ],
             [
+                'id'    => 116,
+                'title' => 'job_request_authenticatioin_access',
+            ],
+            [
                 'id'    => 117,
+                'title' => 'my_job_request_access',
+            ],
+            [
+                'id'    => 118,
+                'title' => 'olt_create',
+            ],
+            [
+                'id'    => 119,
+                'title' => 'olt_edit',
+            ],
+            [
+                'id'    => 120,
+                'title' => 'olt_show',
+            ],
+            [
+                'id'    => 121,
+                'title' => 'olt_delete',
+            ],
+            [
+                'id'    => 122,
+                'title' => 'olt_access',
+            ],
+            [
+                'id'    => 123,
+                'title' => 'tndp_ims_olt_profile_create',
+            ],
+            [
+                'id'    => 124,
+                'title' => 'tndp_ims_olt_profile_edit',
+            ],
+            [
+                'id'    => 125,
+                'title' => 'tndp_ims_olt_profile_show',
+            ],
+            [
+                'id'    => 126,
+                'title' => 'tndp_ims_olt_profile_delete',
+            ],
+            [
+                'id'    => 127,
+                'title' => 'tndp_ims_olt_profile_access',
+            ],
+            [
+                'id'    => 128,
+                'title' => 'oso_olt_job_access',
+            ],
+            [
+                'id'    => 129,
+                'title' => 'olt_job_request_create',
+            ],
+            [
+                'id'    => 130,
+                'title' => 'olt_job_request_edit',
+            ],
+            [
+                'id'    => 131,
+                'title' => 'olt_job_request_show',
+            ],
+            [
+                'id'    => 132,
+                'title' => 'olt_job_request_delete',
+            ],
+            [
+                'id'    => 133,
+                'title' => 'olt_job_request_access',
+            ],
+            [
+                'id'    => 134,
                 'title' => 'profile_password_edit',
             ],
         ];

@@ -57,7 +57,7 @@ class RequestTypeController extends Controller
     {
         abort_if(Gate::denies('request_type_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $requestType->load('requestTypeJobRequests');
+        $requestType->load('requestTypeJobRequests', 'requestTypeOltJobRequests');
 
         return view('admin.requestTypes.show', compact('requestType'));
     }

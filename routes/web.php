@@ -134,9 +134,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Core Job Requests
     Route::resource('core-job-requests', 'CoreJobRequestController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
 
-    // Olt Job Requests
-    Route::resource('olt-job-requests', 'OltJobRequestController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
-
     // Core Jobs
     Route::resource('core-jobs', 'CoreJobController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
 
@@ -160,6 +157,37 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Ont Job Ims
     Route::resource('ont-job-ims', 'OntJobImsController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Job Request Authenticatioins
+    Route::resource('job-request-authenticatioins', 'JobRequestAuthenticatioinController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // My Job Requests
+    Route::resource('my-job-requests', 'MyJobRequestsController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Olts
+    Route::delete('olts/destroy', 'OltController@massDestroy')->name('olts.massDestroy');
+    Route::post('olts/parse-csv-import', 'OltController@parseCsvImport')->name('olts.parseCsvImport');
+    Route::post('olts/process-csv-import', 'OltController@processCsvImport')->name('olts.processCsvImport');
+    Route::resource('olts', 'OltController');
+
+    // Tndp Ims Olt Profiles
+    Route::delete('tndp-ims-olt-profiles/destroy', 'TndpImsOltProfileController@massDestroy')->name('tndp-ims-olt-profiles.massDestroy');
+    Route::post('tndp-ims-olt-profiles/media', 'TndpImsOltProfileController@storeMedia')->name('tndp-ims-olt-profiles.storeMedia');
+    Route::post('tndp-ims-olt-profiles/ckmedia', 'TndpImsOltProfileController@storeCKEditorImages')->name('tndp-ims-olt-profiles.storeCKEditorImages');
+    Route::post('tndp-ims-olt-profiles/parse-csv-import', 'TndpImsOltProfileController@parseCsvImport')->name('tndp-ims-olt-profiles.parseCsvImport');
+    Route::post('tndp-ims-olt-profiles/process-csv-import', 'TndpImsOltProfileController@processCsvImport')->name('tndp-ims-olt-profiles.processCsvImport');
+    Route::resource('tndp-ims-olt-profiles', 'TndpImsOltProfileController');
+
+    // Oso Olt Jobs
+    Route::resource('oso-olt-jobs', 'OsoOltJobController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Olt Job Requests
+    Route::delete('olt-job-requests/destroy', 'OltJobRequestController@massDestroy')->name('olt-job-requests.massDestroy');
+    Route::post('olt-job-requests/media', 'OltJobRequestController@storeMedia')->name('olt-job-requests.storeMedia');
+    Route::post('olt-job-requests/ckmedia', 'OltJobRequestController@storeCKEditorImages')->name('olt-job-requests.storeCKEditorImages');
+    Route::post('olt-job-requests/parse-csv-import', 'OltJobRequestController@parseCsvImport')->name('olt-job-requests.parseCsvImport');
+    Route::post('olt-job-requests/process-csv-import', 'OltJobRequestController@processCsvImport')->name('olt-job-requests.processCsvImport');
+    Route::resource('olt-job-requests', 'OltJobRequestController');
 
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('user-alerts/read', 'UserAlertsController@read');

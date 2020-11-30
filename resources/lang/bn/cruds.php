@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'userManagement'          => [
+    'userManagement'            => [
         'title'          => 'ইউজার ম্যানেজমেন্ট',
         'title_singular' => 'ইউজার ম্যানেজমেন্ট',
     ],
-    'permission'              => [
+    'permission'                => [
         'title'          => 'অনুমতিসমূহ',
         'title_singular' => 'অনুমতি',
         'fields'         => [
@@ -21,7 +21,7 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
-    'role'                    => [
+    'role'                      => [
         'title'          => 'ভূমিকা/রোলগুলি',
         'title_singular' => 'ভূমিকা/রোল',
         'fields'         => [
@@ -39,7 +39,7 @@ return [
             'deleted_at_helper'  => ' ',
         ],
     ],
-    'user'                    => [
+    'user'                      => [
         'title'          => 'ব্যবহারকারীগণ',
         'title_singular' => 'ব্যবহারকারী',
         'fields'         => [
@@ -75,7 +75,7 @@ return [
             'payroll_emp_helper'       => ' ',
         ],
     ],
-    'auditLog'                => [
+    'auditLog'                  => [
         'title'          => 'Audit Logs',
         'title_singular' => 'Audit Log',
         'fields'         => [
@@ -99,7 +99,7 @@ return [
             'updated_at_helper'   => ' ',
         ],
     ],
-    'userAlert'               => [
+    'userAlert'                 => [
         'title'          => 'User Alerts',
         'title_singular' => 'User Alert',
         'fields'         => [
@@ -117,15 +117,15 @@ return [
             'updated_at_helper' => ' ',
         ],
     ],
-    'userRegistrationRequest' => [
+    'userRegistrationRequest'   => [
         'title'          => 'User Registration Request',
         'title_singular' => 'User Registration Request',
     ],
-    'setting'                 => [
+    'setting'                   => [
         'title'          => 'Settings',
         'title_singular' => 'Setting',
     ],
-    'region'                  => [
+    'region'                    => [
         'title'          => 'Regional Office',
         'title_singular' => 'Regional Office',
         'fields'         => [
@@ -143,7 +143,7 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
-    'designation'             => [
+    'designation'               => [
         'title'          => 'Designation',
         'title_singular' => 'Designation',
         'fields'         => [
@@ -163,7 +163,7 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
-    'office'                  => [
+    'office'                    => [
         'title'          => 'Zonal Office',
         'title_singular' => 'Zonal Office',
         'fields'         => [
@@ -189,11 +189,11 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
-    'agwManagement'           => [
+    'agwManagement'             => [
         'title'          => 'AGW Management',
         'title_singular' => 'AGW Management',
     ],
-    'osoAgw'                  => [
+    'osoAgw'                    => [
         'title'          => '171KL AGW',
         'title_singular' => '171KL AGW',
         'fields'         => [
@@ -217,7 +217,7 @@ return [
             'deleted_at_helper'  => ' ',
         ],
     ],
-    'tndpImsAgw'              => [
+    'tndpImsAgw'                => [
         'title'          => 'TNDP IMS AGW',
         'title_singular' => 'TNDP IMS AGW',
         'fields'         => [
@@ -241,11 +241,11 @@ return [
             'description_helper' => ' ',
         ],
     ],
-    'numberManagement'        => [
+    'numberManagement'          => [
         'title'          => 'Number Management',
         'title_singular' => 'Number Management',
     ],
-    'osoNumber'               => [
+    'osoNumber'                 => [
         'title'          => '171KL Numbers',
         'title_singular' => '171KL Number',
         'fields'         => [
@@ -265,7 +265,7 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
-    'osoNumberProfile'        => [
+    'osoNumberProfile'          => [
         'title'          => '171KL Number Profile',
         'title_singular' => '171KL Number Profile',
         'fields'         => [
@@ -295,7 +295,7 @@ return [
             'oso_agw_ip_helper'        => ' ',
         ],
     ],
-    'tndpImsNumber'           => [
+    'tndpImsNumber'             => [
         'title'          => 'TNDP IMS Numbers',
         'title_singular' => 'TNDP IMS Number',
         'fields'         => [
@@ -315,7 +315,7 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
-    'tndpImsNumberProfile'    => [
+    'tndpImsNumberProfile'      => [
         'title'          => 'TNDP IMS Number Profile',
         'title_singular' => 'TNDP IMS Number Profile',
         'fields'         => [
@@ -343,7 +343,7 @@ return [
             'pbx_poilot_number_helper' => ' ',
         ],
     ],
-    'employee'                => [
+    'employee'                  => [
         'title'          => 'Employee',
         'title_singular' => 'Employee',
         'fields'         => [
@@ -371,11 +371,11 @@ return [
             'deleted_at_helper'  => ' ',
         ],
     ],
-    'jobRequestManagement'    => [
+    'jobRequestManagement'      => [
         'title'          => 'Job Request Management',
         'title_singular' => 'Job Request Management',
     ],
-    'requestType'             => [
+    'requestType'               => [
         'title'          => 'Job Request Type',
         'title_singular' => 'Job Request Type',
         'fields'         => [
@@ -393,7 +393,7 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
-    'jobRequestStatus'        => [
+    'jobRequestStatus'          => [
         'title'          => 'Job Request Status',
         'title_singular' => 'Job Request Status',
         'fields'         => [
@@ -411,7 +411,7 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
-    'networkType'             => [
+    'networkType'               => [
         'title'          => 'Network Type',
         'title_singular' => 'Network Type',
         'fields'         => [
@@ -429,7 +429,7 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
-    'jobType'                 => [
+    'jobType'                   => [
         'title'          => 'Job Type',
         'title_singular' => 'Job Type',
         'fields'         => [
@@ -447,9 +447,9 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
-    'jobRequest'              => [
-        'title'          => 'Job Request',
-        'title_singular' => 'Job Request',
+    'jobRequest'                => [
+        'title'          => 'Job Request (Core Job)',
+        'title_singular' => 'Job Request (Core Job)',
         'fields'         => [
             'id'                       => 'ID',
             'id_helper'                => ' ',
@@ -503,60 +503,188 @@ return [
             'deleted_at_helper'        => ' ',
         ],
     ],
-    'osoNetwork'              => [
+    'osoNetwork'                => [
         'title'          => '171KL Network',
         'title_singular' => '171KL Network',
     ],
-    'tndpImsNewtork'          => [
+    'tndpImsNewtork'            => [
         'title'          => 'TNDP IMS Newtork',
         'title_singular' => 'TNDP IMS Newtork',
     ],
-    'script'                  => [
+    'script'                    => [
         'title'          => 'Scripts',
         'title_singular' => 'Script',
     ],
-    'history'                 => [
+    'history'                   => [
         'title'          => 'History',
         'title_singular' => 'History',
     ],
-    'coreJobRequest'          => [
+    'coreJobRequest'            => [
         'title'          => 'Core Job Request',
         'title_singular' => 'Core Job Request',
     ],
-    'oltJobRequest'           => [
+    'coreJob'                   => [
+        'title'          => 'Core Job Request',
+        'title_singular' => 'Core Job Request',
+    ],
+    'ontJob'                    => [
         'title'          => 'OLT Job Request',
         'title_singular' => 'OLT Job Request',
     ],
-    'coreJob'                 => [
-        'title'          => 'Core Job Request',
-        'title_singular' => 'Core Job Request',
-    ],
-    'ontJob'                  => [
-        'title'          => 'ONT Job Request',
-        'title_singular' => 'ONT Job Request',
-    ],
-    'osoReport'               => [
+    'osoReport'                 => [
         'title'          => 'Reports',
         'title_singular' => 'Report',
     ],
-    'imsReport'               => [
+    'imsReport'                 => [
         'title'          => 'Reports',
         'title_singular' => 'Report',
     ],
-    'coreJobOso'              => [
+    'coreJobOso'                => [
         'title'          => 'Core Job (171Kl Network)',
         'title_singular' => 'Core Job (171Kl Network)',
     ],
-    'oltOso'                  => [
+    'oltOso'                    => [
         'title'          => 'OLT Job (171KL Network)',
         'title_singular' => 'OLT Job (171KL Network)',
     ],
-    'coreJobIm'               => [
+    'coreJobIm'                 => [
         'title'          => 'Core Job (IMS Network)',
         'title_singular' => 'Core Job (IMS Network)',
     ],
-    'ontJobIm'                => [
+    'ontJobIm'                  => [
         'title'          => 'ONT Job (IMS Network)',
         'title_singular' => 'ONT Job (IMS Network)',
+    ],
+    'jobRequestAuthenticatioin' => [
+        'title'          => 'Job Request Authenticatioin',
+        'title_singular' => 'Job Request Authenticatioin',
+    ],
+    'myJobRequest'              => [
+        'title'          => 'My Job Requests',
+        'title_singular' => 'My Job Request',
+    ],
+    'olt'                       => [
+        'title'          => 'OLT List',
+        'title_singular' => 'OLT List',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => ' ',
+            'name'              => 'Name',
+            'name_helper'       => ' ',
+            'ip'                => 'OLT IP',
+            'ip_helper'         => ' ',
+            'vlan'              => 'Data VLAN',
+            'vlan_helper'       => ' ',
+            'created_at'        => 'Created at',
+            'created_at_helper' => ' ',
+            'updated_at'        => 'Updated at',
+            'updated_at_helper' => ' ',
+            'deleted_at'        => 'Deleted at',
+            'deleted_at_helper' => ' ',
+        ],
+    ],
+    'tndpImsOltProfile'         => [
+        'title'          => 'OLT Number Profile',
+        'title_singular' => 'OLT Number Profile',
+        'fields'         => [
+            'id'                   => 'ID',
+            'id_helper'            => ' ',
+            'olt_name'             => 'OLT Name',
+            'olt_name_helper'      => ' ',
+            'date'                 => 'Date',
+            'date_helper'          => ' ',
+            'job_type'             => 'Job Type',
+            'job_type_helper'      => ' ',
+            'device_type'          => 'Device Type',
+            'device_type_helper'   => ' ',
+            'no_of_ports'          => 'No Of Ports',
+            'no_of_ports_helper'   => ' ',
+            'serial_number'        => 'Serial Number',
+            'serial_number_helper' => ' ',
+            'interface'            => 'Interface',
+            'interface_helper'     => ' ',
+            'ip'                   => 'Device IP',
+            'ip_helper'            => ' ',
+            'number'               => 'Number',
+            'number_helper'        => ' ',
+            'port_number'          => 'Port Number',
+            'port_number_helper'   => ' ',
+            'service'              => 'Service',
+            'service_helper'       => ' ',
+            'status'               => 'Status',
+            'status_helper'        => ' ',
+            'description'          => 'Description',
+            'description_helper'   => ' ',
+            'created_at'           => 'Created at',
+            'created_at_helper'    => ' ',
+            'updated_at'           => 'Updated at',
+            'updated_at_helper'    => ' ',
+            'deleted_at'           => 'Deleted at',
+            'deleted_at_helper'    => ' ',
+        ],
+    ],
+    'osoOltJob'                 => [
+        'title'          => 'OLT Job Request',
+        'title_singular' => 'OLT Job Request',
+    ],
+    'oltJobRequest'             => [
+        'title'          => 'Job Request (OLT Job)',
+        'title_singular' => 'Job Request (OLT Job)',
+        'fields'         => [
+            'id'                       => 'ID',
+            'id_helper'                => ' ',
+            'network_type'             => 'Network Type',
+            'network_type_helper'      => ' ',
+            'created_at'               => 'Created at',
+            'created_at_helper'        => ' ',
+            'updated_at'               => 'Updated at',
+            'updated_at_helper'        => ' ',
+            'deleted_at'               => 'Deleted at',
+            'deleted_at_helper'        => ' ',
+            'job_type'                 => 'Job Type',
+            'job_type_helper'          => ' ',
+            'request_type'             => 'Request Type',
+            'request_type_helper'      => ' ',
+            'request_status'           => 'Request Status',
+            'request_status_helper'    => ' ',
+            'olt_ip'                   => 'OLT IP',
+            'olt_ip_helper'            => ' ',
+            'number'                   => 'Number',
+            'number_helper'            => ' ',
+            'interface'                => 'Interface',
+            'interface_helper'         => ' ',
+            'service_type'             => 'Service Type',
+            'service_type_helper'      => ' ',
+            'port_number'              => 'Port Number',
+            'port_number_helper'       => ' ',
+            'note'                     => 'Note',
+            'note_helper'              => ' ',
+            'file'                     => 'File',
+            'file_helper'              => ' ',
+            'requested_by'             => 'Requested By(User Name)',
+            'requested_by_helper'      => ' ',
+            'request_time'             => 'Request Time',
+            'request_time_helper'      => ' ',
+            'verified_by'              => 'Verified By (User Name)',
+            'verified_by_helper'       => ' ',
+            'verification_time'        => 'Verification Time',
+            'verification_time_helper' => ' ',
+            'approved_by'              => 'Approved By (User Name)',
+            'approved_by_helper'       => ' ',
+            'approval_time'            => 'Approval Time',
+            'approval_time_helper'     => ' ',
+            'approval_note'            => 'Approval Note',
+            'approval_note_helper'     => ' ',
+            'rejected_by'              => 'Rejected By (User Name)',
+            'rejected_by_helper'       => ' ',
+            'rejection_time'           => 'Rejection Time',
+            'rejection_time_helper'    => ' ',
+            'rejection_note'           => 'Rejection Note',
+            'rejection_note_helper'    => ' ',
+            'script'                   => 'Script',
+            'script_helper'            => ' ',
+            'device_ip'                => 'Device IP',
+            'device_ip_helper'         => ' ',
+        ],
     ],
 ];
