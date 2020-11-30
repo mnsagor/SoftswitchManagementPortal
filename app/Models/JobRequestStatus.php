@@ -42,4 +42,14 @@ class JobRequestStatus extends Model
     {
         return $this->hasMany(JobRequest::class, 'request_status_id', 'id');
     }
+
+    public function statusTndpImsOltProfiles()
+    {
+        return $this->hasMany(TndpImsOltProfile::class, 'status_id', 'id');
+    }
+
+    public function requestStatusOltJobRequests()
+    {
+        return $this->hasMany(OltJobRequest::class, 'request_status_id', 'id');
+    }
 }

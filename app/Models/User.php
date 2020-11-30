@@ -95,6 +95,26 @@ class User extends Authenticatable
         return $this->hasMany(JobRequest::class, 'rejected_by_id', 'id');
     }
 
+    public function requestedByOltJobRequests()
+    {
+        return $this->hasMany(OltJobRequest::class, 'requested_by_id', 'id');
+    }
+
+    public function verifiedByOltJobRequests()
+    {
+        return $this->hasMany(OltJobRequest::class, 'verified_by_id', 'id');
+    }
+
+    public function approvedByOltJobRequests()
+    {
+        return $this->hasMany(OltJobRequest::class, 'approved_by_id', 'id');
+    }
+
+    public function rejectedByOltJobRequests()
+    {
+        return $this->hasMany(OltJobRequest::class, 'rejected_by_id', 'id');
+    }
+
     public function userUserAlerts()
     {
         return $this->belongsToMany(UserAlert::class);

@@ -42,4 +42,9 @@ class NetworkType extends Model
     {
         return $this->hasMany(JobRequest::class, 'network_type_id', 'id');
     }
+
+    public function networkTypeOltJobRequests()
+    {
+        return $this->hasMany(OltJobRequest::class, 'network_type_id', 'id');
+    }
 }

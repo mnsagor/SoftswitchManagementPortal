@@ -42,4 +42,9 @@ class RequestType extends Model
     {
         return $this->hasMany(JobRequest::class, 'request_type_id', 'id');
     }
+
+    public function requestTypeOltJobRequests()
+    {
+        return $this->hasMany(OltJobRequest::class, 'request_type_id', 'id');
+    }
 }

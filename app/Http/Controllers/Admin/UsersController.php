@@ -21,7 +21,7 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::all();
+        $users = User::with(['payroll_emp', 'designation', 'roles', 'offices'])->get();
 
         $employees = Employee::get();
 
@@ -88,7 +88,7 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $user->load('payroll_emp', 'designation', 'roles', 'offices', 'requestedByJobRequests', 'verifiedByJobRequests', 'approvedByJobRequests', 'rejectedByJobRequests', 'userUserAlerts');
+        $user->load('payroll_emp', 'designation', 'roles', 'offices', 'requestedByJobRequests', 'verifiedByJobRequests', 'approvedByJobRequests', 'rejectedByJobRequests', 'requestedByOltJobRequests', 'verifiedByOltJobRequests', 'approvedByOltJobRequests', 'rejectedByOltJobRequests', 'userUserAlerts');
 
         return view('admin.users.show', compact('user'));
     }

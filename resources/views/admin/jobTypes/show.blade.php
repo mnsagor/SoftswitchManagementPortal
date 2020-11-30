@@ -62,10 +62,26 @@
                             {{ trans('cruds.jobRequest.title') }}
                         </a>
                     </li>
+                    <li role="presentation">
+                        <a href="#job_type_tndp_ims_olt_profiles" aria-controls="job_type_tndp_ims_olt_profiles" role="tab" data-toggle="tab">
+                            {{ trans('cruds.tndpImsOltProfile.title') }}
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#job_type_olt_job_requests" aria-controls="job_type_olt_job_requests" role="tab" data-toggle="tab">
+                            {{ trans('cruds.oltJobRequest.title') }}
+                        </a>
+                    </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane" role="tabpanel" id="job_type_job_requests">
                         @includeIf('admin.jobTypes.relationships.jobTypeJobRequests', ['jobRequests' => $jobType->jobTypeJobRequests])
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="job_type_tndp_ims_olt_profiles">
+                        @includeIf('admin.jobTypes.relationships.jobTypeTndpImsOltProfiles', ['tndpImsOltProfiles' => $jobType->jobTypeTndpImsOltProfiles])
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="job_type_olt_job_requests">
+                        @includeIf('admin.jobTypes.relationships.jobTypeOltJobRequests', ['oltJobRequests' => $jobType->jobTypeOltJobRequests])
                     </div>
                 </div>
             </div>

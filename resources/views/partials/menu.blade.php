@@ -191,6 +191,17 @@
                                 </a>
                             </li>
                         @endcan
+                        @can('olt_access')
+                            <li class="{{ request()->is("admin/olts") || request()->is("admin/olts/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.olts.index") }}">
+                                    <i class="fa-fw fas fa-cogs">
+
+                                    </i>
+                                    <span>{{ trans('cruds.olt.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
             @endcan
@@ -283,6 +294,17 @@
                                 </a>
                             </li>
                         @endcan
+                        @can('tndp_ims_olt_profile_access')
+                            <li class="{{ request()->is("admin/tndp-ims-olt-profiles") || request()->is("admin/tndp-ims-olt-profiles/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.tndp-ims-olt-profiles.index") }}">
+                                    <i class="fa-fw fas fa-cogs">
+
+                                    </i>
+                                    <span>{{ trans('cruds.tndpImsOltProfile.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
             @endcan
@@ -303,6 +325,39 @@
 
                                     </i>
                                     <span>{{ trans('cruds.jobRequest.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('olt_job_request_access')
+                            <li class="{{ request()->is("admin/olt-job-requests") || request()->is("admin/olt-job-requests/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.olt-job-requests.index") }}">
+                                    <i class="fa-fw fas fa-cogs">
+
+                                    </i>
+                                    <span>{{ trans('cruds.oltJobRequest.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('job_request_authenticatioin_access')
+                            <li class="{{ request()->is("admin/job-request-authenticatioins") || request()->is("admin/job-request-authenticatioins/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.job-request-authenticatioins.index") }}">
+                                    <i class="fa-fw fab fa-autoprefixer">
+
+                                    </i>
+                                    <span>{{ trans('cruds.jobRequestAuthenticatioin.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('my_job_request_access')
+                            <li class="{{ request()->is("admin/my-job-requests") || request()->is("admin/my-job-requests/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.my-job-requests.index") }}">
+                                    <i class="fa-fw fas fa-address-card">
+
+                                    </i>
+                                    <span>{{ trans('cruds.myJobRequest.title') }}</span>
 
                                 </a>
                             </li>
@@ -331,13 +386,13 @@
                                 </a>
                             </li>
                         @endcan
-                        @can('olt_job_request_access')
-                            <li class="{{ request()->is("admin/olt-job-requests") || request()->is("admin/olt-job-requests/*") ? "active" : "" }}">
-                                <a href="{{ route("admin.olt-job-requests.index") }}">
-                                    <i class="fa-fw far fa-calendar">
+                        @can('oso_olt_job_access')
+                            <li class="{{ request()->is("admin/oso-olt-jobs") || request()->is("admin/oso-olt-jobs/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.oso-olt-jobs.index") }}">
+                                    <i class="fa-fw fas fa-calendar-alt">
 
                                     </i>
-                                    <span>{{ trans('cruds.oltJobRequest.title') }}</span>
+                                    <span>{{ trans('cruds.osoOltJob.title') }}</span>
 
                                 </a>
                             </li>

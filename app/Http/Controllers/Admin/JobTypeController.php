@@ -57,7 +57,7 @@ class JobTypeController extends Controller
     {
         abort_if(Gate::denies('job_type_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $jobType->load('jobTypeJobRequests');
+        $jobType->load('jobTypeJobRequests', 'jobTypeTndpImsOltProfiles', 'jobTypeOltJobRequests');
 
         return view('admin.jobTypes.show', compact('jobType'));
     }
