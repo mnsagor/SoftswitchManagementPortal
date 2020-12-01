@@ -1,113 +1,118 @@
 @extends('layouts.admin')
 @section('content')
-@can('job_type_create')
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.job-types.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.jobType.title_singular') }}
-            </a>
-            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
-                {{ trans('global.app_csvImport') }}
-            </button>
-            @include('csvImport.modal', ['model' => 'JobType', 'route' => 'admin.job-types.parseCsvImport'])
+<div class="content">
+    @can('job_type_create')
+        <div style="margin-bottom: 10px;" class="row">
+            <div class="col-lg-12">
+                <a class="btn btn-success" href="{{ route('admin.job-types.create') }}">
+                    {{ trans('global.add') }} {{ trans('cruds.jobType.title_singular') }}
+                </a>
+                <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                    {{ trans('global.app_csvImport') }}
+                </button>
+                @include('csvImport.modal', ['model' => 'JobType', 'route' => 'admin.job-types.parseCsvImport'])
+            </div>
         </div>
-    </div>
-@endcan
-<div class="card">
-    <div class="card-header">
-        {{ trans('cruds.jobType.title_singular') }} {{ trans('global.list') }}
-    </div>
+    @endcan
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ trans('cruds.jobType.title_singular') }} {{ trans('global.list') }}
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class=" table table-bordered table-striped table-hover datatable datatable-JobType">
+                            <thead>
+                                <tr>
+                                    <th width="10">
 
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-JobType">
-                <thead>
-                    <tr>
-                        <th width="10">
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.jobType.fields.id') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.jobType.fields.name') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.jobType.fields.is_active') }}
+                                    </th>
+                                    <th>
+                                        &nbsp;
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                    </td>
+                                    <td>
+                                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                    </td>
+                                    <td>
+                                        <select class="search" strict="true">
+                                            <option value>{{ trans('global.all') }}</option>
+                                            @foreach(App\Models\JobType::IS_ACTIVE_RADIO as $key => $item)
+                                                <option value="{{ $item }}">{{ $item }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($jobTypes as $key => $jobType)
+                                    <tr data-entry-id="{{ $jobType->id }}">
+                                        <td>
 
-                        </th>
-                        <th>
-                            {{ trans('cruds.jobType.fields.id') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.jobType.fields.name') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.jobType.fields.is_active') }}
-                        </th>
-                        <th>
-                            &nbsp;
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                        </td>
-                        <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                        </td>
-                        <td>
-                            <select class="search" strict="true">
-                                <option value>{{ trans('global.all') }}</option>
-                                @foreach(App\Models\JobType::IS_ACTIVE_RADIO as $key => $item)
-                                    <option value="{{ $item }}">{{ $item }}</option>
+                                        </td>
+                                        <td>
+                                            {{ $jobType->id ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $jobType->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ App\Models\JobType::IS_ACTIVE_RADIO[$jobType->is_active] ?? '' }}
+                                        </td>
+                                        <td>
+                                            @can('job_type_show')
+                                                <a class="btn btn-xs btn-primary" href="{{ route('admin.job-types.show', $jobType->id) }}">
+                                                    {{ trans('global.view') }}
+                                                </a>
+                                            @endcan
+
+                                            @can('job_type_edit')
+                                                <a class="btn btn-xs btn-info" href="{{ route('admin.job-types.edit', $jobType->id) }}">
+                                                    {{ trans('global.edit') }}
+                                                </a>
+                                            @endcan
+
+                                            @can('job_type_delete')
+                                                <form action="{{ route('admin.job-types.destroy', $jobType->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                                </form>
+                                            @endcan
+
+                                        </td>
+
+                                    </tr>
                                 @endforeach
-                            </select>
-                        </td>
-                        <td>
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($jobTypes as $key => $jobType)
-                        <tr data-entry-id="{{ $jobType->id }}">
-                            <td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-                            </td>
-                            <td>
-                                {{ $jobType->id ?? '' }}
-                            </td>
-                            <td>
-                                {{ $jobType->name ?? '' }}
-                            </td>
-                            <td>
-                                {{ App\Models\JobType::IS_ACTIVE_RADIO[$jobType->is_active] ?? '' }}
-                            </td>
-                            <td>
-                                @can('job_type_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.job-types.show', $jobType->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan
 
-                                @can('job_type_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.job-types.edit', $jobType->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
 
-                                @can('job_type_delete')
-                                    <form action="{{ route('admin.job-types.destroy', $jobType->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                    </form>
-                                @endcan
-
-                            </td>
-
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
-
-
-
 @endsection
 @section('scripts')
 @parent
