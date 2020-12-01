@@ -4,12 +4,12 @@
 
 <div class='row'>
     <div class='col-md-12'>
-        <div class="panel panel-default">
-            <div class="panel-heading">
+        <div class="card panel-default">
+            <div class="card-header">
                 @lang('global.app_csvImport')
             </div>
 
-            <div class="panel-body table-responsive">
+            <div class="card-body table-responsive">
                 <form class="form-horizontal" method="POST" action="{{ route($routeName) }}">
                     {{ csrf_field() }}
                     <input type="hidden" name="filename" value="{{ $filename }}" />

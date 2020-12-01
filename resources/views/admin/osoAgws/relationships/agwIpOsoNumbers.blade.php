@@ -1,4 +1,4 @@
-<div class="content">
+<div class="m-3">
     @can('oso_number_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
@@ -8,89 +8,82 @@
             </div>
         </div>
     @endcan
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            {{ trans('cruds.osoNumber.title_singular') }} {{ trans('global.list') }}
+        </div>
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    {{ trans('cruds.osoNumber.title_singular') }} {{ trans('global.list') }}
-                </div>
-                <div class="panel-body">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-agwIpOsoNumbers">
+                    <thead>
+                        <tr>
+                            <th width="10">
 
-                    <div class="table-responsive">
-                        <table class=" table table-bordered table-striped table-hover datatable datatable-agwIpOsoNumbers">
-                            <thead>
-                                <tr>
-                                    <th width="10">
+                            </th>
+                            <th>
+                                {{ trans('cruds.osoNumber.fields.id') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.osoNumber.fields.number') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.osoNumber.fields.tid') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.osoNumber.fields.agw_ip') }}
+                            </th>
+                            <th>
+                                &nbsp;
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($osoNumbers as $key => $osoNumber)
+                            <tr data-entry-id="{{ $osoNumber->id }}">
+                                <td>
 
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.osoNumber.fields.id') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.osoNumber.fields.number') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.osoNumber.fields.tid') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.osoNumber.fields.agw_ip') }}
-                                    </th>
-                                    <th>
-                                        &nbsp;
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($osoNumbers as $key => $osoNumber)
-                                    <tr data-entry-id="{{ $osoNumber->id }}">
-                                        <td>
+                                </td>
+                                <td>
+                                    {{ $osoNumber->id ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $osoNumber->number ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $osoNumber->tid ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $osoNumber->agw_ip->ip ?? '' }}
+                                </td>
+                                <td>
+                                    @can('oso_number_show')
+                                        <a class="btn btn-xs btn-primary" href="{{ route('admin.oso-numbers.show', $osoNumber->id) }}">
+                                            {{ trans('global.view') }}
+                                        </a>
+                                    @endcan
 
-                                        </td>
-                                        <td>
-                                            {{ $osoNumber->id ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $osoNumber->number ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $osoNumber->tid ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $osoNumber->agw_ip->ip ?? '' }}
-                                        </td>
-                                        <td>
-                                            @can('oso_number_show')
-                                                <a class="btn btn-xs btn-primary" href="{{ route('admin.oso-numbers.show', $osoNumber->id) }}">
-                                                    {{ trans('global.view') }}
-                                                </a>
-                                            @endcan
+                                    @can('oso_number_edit')
+                                        <a class="btn btn-xs btn-info" href="{{ route('admin.oso-numbers.edit', $osoNumber->id) }}">
+                                            {{ trans('global.edit') }}
+                                        </a>
+                                    @endcan
 
-                                            @can('oso_number_edit')
-                                                <a class="btn btn-xs btn-info" href="{{ route('admin.oso-numbers.edit', $osoNumber->id) }}">
-                                                    {{ trans('global.edit') }}
-                                                </a>
-                                            @endcan
+                                    @can('oso_number_delete')
+                                        <form action="{{ route('admin.oso-numbers.destroy', $osoNumber->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                        </form>
+                                    @endcan
 
-                                            @can('oso_number_delete')
-                                                <form action="{{ route('admin.oso-numbers.destroy', $osoNumber->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                                </form>
-                                            @endcan
+                                </td>
 
-                                        </td>
-
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-
         </div>
     </div>
 </div>

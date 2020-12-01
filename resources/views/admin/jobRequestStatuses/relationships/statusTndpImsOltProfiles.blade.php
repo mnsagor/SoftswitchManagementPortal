@@ -1,4 +1,4 @@
-<div class="content">
+<div class="m-3">
     @can('tndp_ims_olt_profile_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
@@ -8,143 +8,136 @@
             </div>
         </div>
     @endcan
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            {{ trans('cruds.tndpImsOltProfile.title_singular') }} {{ trans('global.list') }}
+        </div>
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    {{ trans('cruds.tndpImsOltProfile.title_singular') }} {{ trans('global.list') }}
-                </div>
-                <div class="panel-body">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-statusTndpImsOltProfiles">
+                    <thead>
+                        <tr>
+                            <th width="10">
 
-                    <div class="table-responsive">
-                        <table class=" table table-bordered table-striped table-hover datatable datatable-statusTndpImsOltProfiles">
-                            <thead>
-                                <tr>
-                                    <th width="10">
+                            </th>
+                            <th>
+                                {{ trans('cruds.tndpImsOltProfile.fields.id') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.tndpImsOltProfile.fields.olt_name') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.tndpImsOltProfile.fields.date') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.tndpImsOltProfile.fields.job_type') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.tndpImsOltProfile.fields.device_type') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.tndpImsOltProfile.fields.no_of_ports') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.tndpImsOltProfile.fields.serial_number') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.tndpImsOltProfile.fields.interface') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.tndpImsOltProfile.fields.ip') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.tndpImsOltProfile.fields.number') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.tndpImsOltProfile.fields.port_number') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.tndpImsOltProfile.fields.service') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.tndpImsOltProfile.fields.status') }}
+                            </th>
+                            <th>
+                                &nbsp;
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($tndpImsOltProfiles as $key => $tndpImsOltProfile)
+                            <tr data-entry-id="{{ $tndpImsOltProfile->id }}">
+                                <td>
 
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.tndpImsOltProfile.fields.id') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.tndpImsOltProfile.fields.olt_name') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.tndpImsOltProfile.fields.date') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.tndpImsOltProfile.fields.job_type') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.tndpImsOltProfile.fields.device_type') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.tndpImsOltProfile.fields.no_of_ports') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.tndpImsOltProfile.fields.serial_number') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.tndpImsOltProfile.fields.interface') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.tndpImsOltProfile.fields.ip') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.tndpImsOltProfile.fields.number') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.tndpImsOltProfile.fields.port_number') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.tndpImsOltProfile.fields.service') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.tndpImsOltProfile.fields.status') }}
-                                    </th>
-                                    <th>
-                                        &nbsp;
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($tndpImsOltProfiles as $key => $tndpImsOltProfile)
-                                    <tr data-entry-id="{{ $tndpImsOltProfile->id }}">
-                                        <td>
+                                </td>
+                                <td>
+                                    {{ $tndpImsOltProfile->id ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $tndpImsOltProfile->olt_name->name ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $tndpImsOltProfile->date ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $tndpImsOltProfile->job_type->name ?? '' }}
+                                </td>
+                                <td>
+                                    {{ App\Models\TndpImsOltProfile::DEVICE_TYPE_SELECT[$tndpImsOltProfile->device_type] ?? '' }}
+                                </td>
+                                <td>
+                                    {{ App\Models\TndpImsOltProfile::NO_OF_PORTS_SELECT[$tndpImsOltProfile->no_of_ports] ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $tndpImsOltProfile->serial_number ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $tndpImsOltProfile->interface ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $tndpImsOltProfile->ip ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $tndpImsOltProfile->number ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $tndpImsOltProfile->port_number ?? '' }}
+                                </td>
+                                <td>
+                                    {{ App\Models\TndpImsOltProfile::SERVICE_SELECT[$tndpImsOltProfile->service] ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $tndpImsOltProfile->status->name ?? '' }}
+                                </td>
+                                <td>
+                                    @can('tndp_ims_olt_profile_show')
+                                        <a class="btn btn-xs btn-primary" href="{{ route('admin.tndp-ims-olt-profiles.show', $tndpImsOltProfile->id) }}">
+                                            {{ trans('global.view') }}
+                                        </a>
+                                    @endcan
 
-                                        </td>
-                                        <td>
-                                            {{ $tndpImsOltProfile->id ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $tndpImsOltProfile->olt_name->name ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $tndpImsOltProfile->date ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $tndpImsOltProfile->job_type->name ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ App\Models\TndpImsOltProfile::DEVICE_TYPE_SELECT[$tndpImsOltProfile->device_type] ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ App\Models\TndpImsOltProfile::NO_OF_PORTS_SELECT[$tndpImsOltProfile->no_of_ports] ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $tndpImsOltProfile->serial_number ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $tndpImsOltProfile->interface ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $tndpImsOltProfile->ip ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $tndpImsOltProfile->number ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $tndpImsOltProfile->port_number ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ App\Models\TndpImsOltProfile::SERVICE_SELECT[$tndpImsOltProfile->service] ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $tndpImsOltProfile->status->name ?? '' }}
-                                        </td>
-                                        <td>
-                                            @can('tndp_ims_olt_profile_show')
-                                                <a class="btn btn-xs btn-primary" href="{{ route('admin.tndp-ims-olt-profiles.show', $tndpImsOltProfile->id) }}">
-                                                    {{ trans('global.view') }}
-                                                </a>
-                                            @endcan
+                                    @can('tndp_ims_olt_profile_edit')
+                                        <a class="btn btn-xs btn-info" href="{{ route('admin.tndp-ims-olt-profiles.edit', $tndpImsOltProfile->id) }}">
+                                            {{ trans('global.edit') }}
+                                        </a>
+                                    @endcan
 
-                                            @can('tndp_ims_olt_profile_edit')
-                                                <a class="btn btn-xs btn-info" href="{{ route('admin.tndp-ims-olt-profiles.edit', $tndpImsOltProfile->id) }}">
-                                                    {{ trans('global.edit') }}
-                                                </a>
-                                            @endcan
+                                    @can('tndp_ims_olt_profile_delete')
+                                        <form action="{{ route('admin.tndp-ims-olt-profiles.destroy', $tndpImsOltProfile->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                        </form>
+                                    @endcan
 
-                                            @can('tndp_ims_olt_profile_delete')
-                                                <form action="{{ route('admin.tndp-ims-olt-profiles.destroy', $tndpImsOltProfile->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                                </form>
-                                            @endcan
+                                </td>
 
-                                        </td>
-
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-
         </div>
     </div>
 </div>

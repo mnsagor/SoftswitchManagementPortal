@@ -1,81 +1,76 @@
 @extends('layouts.admin')
 @section('content')
-<div class="content">
-    @can('designation_create')
-        <div style="margin-bottom: 10px;" class="row">
-            <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.designations.create') }}">
-                    {{ trans('global.add') }} {{ trans('cruds.designation.title_singular') }}
-                </a>
-                <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
-                    {{ trans('global.app_csvImport') }}
-                </button>
-                @include('csvImport.modal', ['model' => 'Designation', 'route' => 'admin.designations.parseCsvImport'])
-            </div>
-        </div>
-    @endcan
-    <div class="row">
+@can('designation_create')
+    <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    {{ trans('cruds.designation.title_singular') }} {{ trans('global.list') }}
-                </div>
-                <div class="panel-body">
-                    <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-Designation">
-                        <thead>
-                            <tr>
-                                <th width="10">
-
-                                </th>
-                                <th>
-                                    {{ trans('cruds.designation.fields.id') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.designation.fields.name') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.designation.fields.grade') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.designation.fields.is_active') }}
-                                </th>
-                                <th>
-                                    &nbsp;
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <select class="search" strict="true">
-                                        <option value>{{ trans('global.all') }}</option>
-                                        @foreach(App\Models\Designation::IS_ACTIVE_RADIO as $key => $item)
-                                            <option value="{{ $key }}">{{ $item }}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-
-
-
+            <a class="btn btn-success" href="{{ route('admin.designations.create') }}">
+                {{ trans('global.add') }} {{ trans('cruds.designation.title_singular') }}
+            </a>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                {{ trans('global.app_csvImport') }}
+            </button>
+            @include('csvImport.modal', ['model' => 'Designation', 'route' => 'admin.designations.parseCsvImport'])
         </div>
     </div>
+@endcan
+<div class="card">
+    <div class="card-header">
+        {{ trans('cruds.designation.title_singular') }} {{ trans('global.list') }}
+    </div>
+
+    <div class="card-body">
+        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-Designation">
+            <thead>
+                <tr>
+                    <th width="10">
+
+                    </th>
+                    <th>
+                        {{ trans('cruds.designation.fields.id') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.designation.fields.name') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.designation.fields.grade') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.designation.fields.is_active') }}
+                    </th>
+                    <th>
+                        &nbsp;
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <select class="search" strict="true">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach(App\Models\Designation::IS_ACTIVE_RADIO as $key => $item)
+                                <option value="{{ $key }}">{{ $item }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </div>
+
+
+
 @endsection
 @section('scripts')
 @parent
