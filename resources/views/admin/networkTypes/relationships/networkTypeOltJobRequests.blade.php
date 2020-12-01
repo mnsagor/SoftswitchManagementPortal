@@ -1,4 +1,4 @@
-<div class="m-3">
+<div class="content">
     @can('olt_job_request_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
@@ -8,178 +8,185 @@
             </div>
         </div>
     @endcan
-    <div class="card">
-        <div class="card-header">
-            {{ trans('cruds.oltJobRequest.title_singular') }} {{ trans('global.list') }}
-        </div>
+    <div class="row">
+        <div class="col-lg-12">
 
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-networkTypeOltJobRequests">
-                    <thead>
-                        <tr>
-                            <th width="10">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ trans('cruds.oltJobRequest.title_singular') }} {{ trans('global.list') }}
+                </div>
+                <div class="panel-body">
 
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.id') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.network_type') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.job_type') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.request_type') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.request_status') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.olt_ip') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.number') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.interface') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.service_type') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.port_number') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.device_ip') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.requested_by') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.request_time') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.verified_by') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.verification_time') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.approved_by') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.approval_time') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.rejected_by') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.rejection_time') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.oltJobRequest.fields.script') }}
-                            </th>
-                            <th>
-                                &nbsp;
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($oltJobRequests as $key => $oltJobRequest)
-                            <tr data-entry-id="{{ $oltJobRequest->id }}">
-                                <td>
+                    <div class="table-responsive">
+                        <table class=" table table-bordered table-striped table-hover datatable datatable-networkTypeOltJobRequests">
+                            <thead>
+                                <tr>
+                                    <th width="10">
 
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->id ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->network_type->name ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->job_type->name ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->request_type->name ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->request_status->name ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->olt_ip->ip ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->number ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->interface ?? '' }}
-                                </td>
-                                <td>
-                                    {{ App\Models\OltJobRequest::SERVICE_TYPE_SELECT[$oltJobRequest->service_type] ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->port_number ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->device_ip ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->requested_by->name ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->request_time ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->verified_by->name ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->verification_time ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->approved_by->name ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->approval_time ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->rejected_by->name ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->rejection_time ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $oltJobRequest->script ?? '' }}
-                                </td>
-                                <td>
-                                    @can('olt_job_request_show')
-                                        <a class="btn btn-xs btn-primary" href="{{ route('admin.olt-job-requests.show', $oltJobRequest->id) }}">
-                                            {{ trans('global.view') }}
-                                        </a>
-                                    @endcan
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.id') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.network_type') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.job_type') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.request_type') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.request_status') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.olt_ip') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.number') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.interface') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.service_type') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.port_number') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.device_ip') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.requested_by') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.request_time') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.verified_by') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.verification_time') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.approved_by') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.approval_time') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.rejected_by') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.rejection_time') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.oltJobRequest.fields.script') }}
+                                    </th>
+                                    <th>
+                                        &nbsp;
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($oltJobRequests as $key => $oltJobRequest)
+                                    <tr data-entry-id="{{ $oltJobRequest->id }}">
+                                        <td>
 
-                                    @can('olt_job_request_edit')
-                                        <a class="btn btn-xs btn-info" href="{{ route('admin.olt-job-requests.edit', $oltJobRequest->id) }}">
-                                            {{ trans('global.edit') }}
-                                        </a>
-                                    @endcan
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->id ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->network_type->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->job_type->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->request_type->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->request_status->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->olt_ip->ip ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->number ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->interface ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ App\Models\OltJobRequest::SERVICE_TYPE_SELECT[$oltJobRequest->service_type] ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->port_number ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->device_ip ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->requested_by->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->request_time ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->verified_by->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->verification_time ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->approved_by->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->approval_time ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->rejected_by->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->rejection_time ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $oltJobRequest->script ?? '' }}
+                                        </td>
+                                        <td>
+                                            @can('olt_job_request_show')
+                                                <a class="btn btn-xs btn-primary" href="{{ route('admin.olt-job-requests.show', $oltJobRequest->id) }}">
+                                                    {{ trans('global.view') }}
+                                                </a>
+                                            @endcan
 
-                                    @can('olt_job_request_delete')
-                                        <form action="{{ route('admin.olt-job-requests.destroy', $oltJobRequest->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                        </form>
-                                    @endcan
+                                            @can('olt_job_request_edit')
+                                                <a class="btn btn-xs btn-info" href="{{ route('admin.olt-job-requests.edit', $oltJobRequest->id) }}">
+                                                    {{ trans('global.edit') }}
+                                                </a>
+                                            @endcan
 
-                                </td>
+                                            @can('olt_job_request_delete')
+                                                <form action="{{ route('admin.olt-job-requests.destroy', $oltJobRequest->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                                </form>
+                                            @endcan
 
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                        </td>
+
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
             </div>
+
         </div>
     </div>
 </div>

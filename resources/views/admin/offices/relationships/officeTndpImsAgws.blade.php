@@ -1,4 +1,4 @@
-<div class="m-3">
+<div class="content">
     @can('tndp_ims_agw_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
@@ -8,88 +8,95 @@
             </div>
         </div>
     @endcan
-    <div class="card">
-        <div class="card-header">
-            {{ trans('cruds.tndpImsAgw.title_singular') }} {{ trans('global.list') }}
-        </div>
+    <div class="row">
+        <div class="col-lg-12">
 
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-officeTndpImsAgws">
-                    <thead>
-                        <tr>
-                            <th width="10">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ trans('cruds.tndpImsAgw.title_singular') }} {{ trans('global.list') }}
+                </div>
+                <div class="panel-body">
 
-                            </th>
-                            <th>
-                                {{ trans('cruds.tndpImsAgw.fields.id') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.tndpImsAgw.fields.ip') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.tndpImsAgw.fields.name') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.tndpImsAgw.fields.office') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.tndpImsAgw.fields.is_active') }}
-                            </th>
-                            <th>
-                                &nbsp;
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($tndpImsAgws as $key => $tndpImsAgw)
-                            <tr data-entry-id="{{ $tndpImsAgw->id }}">
-                                <td>
+                    <div class="table-responsive">
+                        <table class=" table table-bordered table-striped table-hover datatable datatable-officeTndpImsAgws">
+                            <thead>
+                                <tr>
+                                    <th width="10">
 
-                                </td>
-                                <td>
-                                    {{ $tndpImsAgw->id ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $tndpImsAgw->ip ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $tndpImsAgw->name ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $tndpImsAgw->office->name ?? '' }}
-                                </td>
-                                <td>
-                                    {{ App\Models\TndpImsAgw::IS_ACTIVE_RADIO[$tndpImsAgw->is_active] ?? '' }}
-                                </td>
-                                <td>
-                                    @can('tndp_ims_agw_show')
-                                        <a class="btn btn-xs btn-primary" href="{{ route('admin.tndp-ims-agws.show', $tndpImsAgw->id) }}">
-                                            {{ trans('global.view') }}
-                                        </a>
-                                    @endcan
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.tndpImsAgw.fields.id') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.tndpImsAgw.fields.ip') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.tndpImsAgw.fields.name') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.tndpImsAgw.fields.office') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.tndpImsAgw.fields.is_active') }}
+                                    </th>
+                                    <th>
+                                        &nbsp;
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($tndpImsAgws as $key => $tndpImsAgw)
+                                    <tr data-entry-id="{{ $tndpImsAgw->id }}">
+                                        <td>
 
-                                    @can('tndp_ims_agw_edit')
-                                        <a class="btn btn-xs btn-info" href="{{ route('admin.tndp-ims-agws.edit', $tndpImsAgw->id) }}">
-                                            {{ trans('global.edit') }}
-                                        </a>
-                                    @endcan
+                                        </td>
+                                        <td>
+                                            {{ $tndpImsAgw->id ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $tndpImsAgw->ip ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $tndpImsAgw->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $tndpImsAgw->office->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ App\Models\TndpImsAgw::IS_ACTIVE_RADIO[$tndpImsAgw->is_active] ?? '' }}
+                                        </td>
+                                        <td>
+                                            @can('tndp_ims_agw_show')
+                                                <a class="btn btn-xs btn-primary" href="{{ route('admin.tndp-ims-agws.show', $tndpImsAgw->id) }}">
+                                                    {{ trans('global.view') }}
+                                                </a>
+                                            @endcan
 
-                                    @can('tndp_ims_agw_delete')
-                                        <form action="{{ route('admin.tndp-ims-agws.destroy', $tndpImsAgw->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                        </form>
-                                    @endcan
+                                            @can('tndp_ims_agw_edit')
+                                                <a class="btn btn-xs btn-info" href="{{ route('admin.tndp-ims-agws.edit', $tndpImsAgw->id) }}">
+                                                    {{ trans('global.edit') }}
+                                                </a>
+                                            @endcan
 
-                                </td>
+                                            @can('tndp_ims_agw_delete')
+                                                <form action="{{ route('admin.tndp-ims-agws.destroy', $tndpImsAgw->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                                </form>
+                                            @endcan
 
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                        </td>
+
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
             </div>
+
         </div>
     </div>
 </div>

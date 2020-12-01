@@ -7,35 +7,17 @@ $(document).ready(function () {
 
   $('.date').datetimepicker({
     format: 'DD-MM-YYYY',
-    locale: 'en',
-    icons: {
-      up: 'fas fa-chevron-up',
-      down: 'fas fa-chevron-down',
-      previous: 'fas fa-chevron-left',
-      next: 'fas fa-chevron-right'
-    }
+    locale: 'en'
   })
 
   $('.datetime').datetimepicker({
     format: 'DD-MM-YYYY HH:mm:ss',
     locale: 'en',
-    sideBySide: true,
-    icons: {
-      up: 'fas fa-chevron-up',
-      down: 'fas fa-chevron-down',
-      previous: 'fas fa-chevron-left',
-      next: 'fas fa-chevron-right'
-    }
+    sideBySide: true
   })
 
   $('.timepicker').datetimepicker({
-    format: 'HH:mm:ss',
-    icons: {
-      up: 'fas fa-chevron-up',
-      down: 'fas fa-chevron-down',
-      previous: 'fas fa-chevron-left',
-      next: 'fas fa-chevron-right'
-    }
+    format: 'HH:mm:ss'
   })
 
   $('.select-all').click(function () {
@@ -63,7 +45,7 @@ $(document).ready(function () {
     }
   })
 
-  $('a[data-widget^="pushmenu"]').click(function () {
+  $('a[data-toggle^="push-menu"]').click(function () {
     setTimeout(function() {
       $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
     }, 350);
