@@ -16,7 +16,6 @@ class TndpImsNumber extends Model
 
     public static $searchable = [
         'number',
-        'agw_ip',
     ];
 
     protected $dates = [
@@ -28,7 +27,7 @@ class TndpImsNumber extends Model
     protected $fillable = [
         'number',
         'tid',
-        'agw_ip',
+        'agw_ip_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -42,5 +41,10 @@ class TndpImsNumber extends Model
     public function numberTndpImsNumberProfiles()
     {
         return $this->hasMany(TndpImsNumberProfile::class, 'number_id', 'id');
+    }
+
+    public function agw_ip()
+    {
+        return $this->belongsTo(TndpImsAgw::class, 'agw_ip_id');
     }
 }

@@ -17,7 +17,7 @@ class TndpImsNumberProfileApiController extends Controller
     {
         abort_if(Gate::denies('tndp_ims_number_profile_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new TndpImsNumberProfileResource(TndpImsNumberProfile::with(['number'])->get());
+        return new TndpImsNumberProfileResource(TndpImsNumberProfile::with(['tndp_agw_ip', 'number'])->get());
     }
 
     public function store(StoreTndpImsNumberProfileRequest $request)
@@ -33,7 +33,7 @@ class TndpImsNumberProfileApiController extends Controller
     {
         abort_if(Gate::denies('tndp_ims_number_profile_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new TndpImsNumberProfileResource($tndpImsNumberProfile->load(['number']));
+        return new TndpImsNumberProfileResource($tndpImsNumberProfile->load(['tndp_agw_ip', 'number']));
     }
 
     public function update(UpdateTndpImsNumberProfileRequest $request, TndpImsNumberProfile $tndpImsNumberProfile)
