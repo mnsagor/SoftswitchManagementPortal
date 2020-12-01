@@ -7,6 +7,7 @@ use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Requests\MassDestroyTndpImsNumberProfileRequest;
 use App\Http\Requests\StoreTndpImsNumberProfileRequest;
 use App\Http\Requests\UpdateTndpImsNumberProfileRequest;
+use App\Models\TndpImsAgw;
 use App\Models\TndpImsNumber;
 use App\Models\TndpImsNumberProfile;
 use Gate;
@@ -23,7 +24,7 @@ class TndpImsNumberProfileController extends Controller
         abort_if(Gate::denies('tndp_ims_number_profile_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = TndpImsNumberProfile::with(['number'])->select(sprintf('%s.*', (new TndpImsNumberProfile)->table));
+            $query = TndpImsNumberProfile::with(['tndp_agw_ip', 'number'])->select(sprintf('%s.*', (new TndpImsNumberProfile)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -47,6 +48,10 @@ class TndpImsNumberProfileController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : "";
             });
+            $table->addColumn('tndp_agw_ip_ip', function ($row) {
+                return $row->tndp_agw_ip ? $row->tndp_agw_ip->ip : '';
+            });
+
             $table->addColumn('number_number', function ($row) {
                 return $row->number ? $row->number->number : '';
             });
@@ -70,23 +75,26 @@ class TndpImsNumberProfileController extends Controller
                 return $row->pbx_poilot_number ? $row->pbx_poilot_number : "";
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'number']);
+            $table->rawColumns(['actions', 'placeholder', 'tndp_agw_ip', 'number']);
 
             return $table->make(true);
         }
 
+        $tndp_ims_agws    = TndpImsAgw::get();
         $tndp_ims_numbers = TndpImsNumber::get();
 
-        return view('admin.tndpImsNumberProfiles.index', compact('tndp_ims_numbers'));
+        return view('admin.tndpImsNumberProfiles.index', compact('tndp_ims_agws', 'tndp_ims_numbers'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('tndp_ims_number_profile_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $tndp_agw_ips = TndpImsAgw::all()->pluck('ip', 'id')->prepend(trans('global.pleaseSelect'), '');
+
         $numbers = TndpImsNumber::all()->pluck('number', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.tndpImsNumberProfiles.create', compact('numbers'));
+        return view('admin.tndpImsNumberProfiles.create', compact('tndp_agw_ips', 'numbers'));
     }
 
     public function store(StoreTndpImsNumberProfileRequest $request)
@@ -100,11 +108,13 @@ class TndpImsNumberProfileController extends Controller
     {
         abort_if(Gate::denies('tndp_ims_number_profile_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $tndp_agw_ips = TndpImsAgw::all()->pluck('ip', 'id')->prepend(trans('global.pleaseSelect'), '');
+
         $numbers = TndpImsNumber::all()->pluck('number', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $tndpImsNumberProfile->load('number');
+        $tndpImsNumberProfile->load('tndp_agw_ip', 'number');
 
-        return view('admin.tndpImsNumberProfiles.edit', compact('numbers', 'tndpImsNumberProfile'));
+        return view('admin.tndpImsNumberProfiles.edit', compact('tndp_agw_ips', 'numbers', 'tndpImsNumberProfile'));
     }
 
     public function update(UpdateTndpImsNumberProfileRequest $request, TndpImsNumberProfile $tndpImsNumberProfile)
@@ -118,7 +128,7 @@ class TndpImsNumberProfileController extends Controller
     {
         abort_if(Gate::denies('tndp_ims_number_profile_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $tndpImsNumberProfile->load('number');
+        $tndpImsNumberProfile->load('tndp_agw_ip', 'number');
 
         return view('admin.tndpImsNumberProfiles.show', compact('tndpImsNumberProfile'));
     }

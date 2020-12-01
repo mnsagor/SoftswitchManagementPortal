@@ -56,7 +56,12 @@
                                     <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                                 </td>
                                 <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                    <select class="search">
+                                        <option value>{{ trans('global.all') }}</option>
+                                        @foreach($tndp_ims_agws as $key => $item)
+                                            <option value="{{ $item->ip }}">{{ $item->ip }}</option>
+                                        @endforeach
+                                    </select>
                                 </td>
                                 <td>
                                 </td>
@@ -119,7 +124,7 @@
 { data: 'id', name: 'id' },
 { data: 'number', name: 'number' },
 { data: 'tid', name: 'tid' },
-{ data: 'agw_ip', name: 'agw_ip' },
+{ data: 'agw_ip_ip', name: 'agw_ip.ip' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

@@ -17,6 +17,10 @@ class UpdateTndpImsNumberProfileRequest extends FormRequest
     public function rules()
     {
         return [
+            'tndp_agw_ip_id'    => [
+                'required',
+                'integer',
+            ],
             'number_id'         => [
                 'required',
                 'integer',

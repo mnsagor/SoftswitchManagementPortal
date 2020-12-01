@@ -76,7 +76,31 @@
                 </div>
             </div>
 
-
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ trans('global.relatedData') }}
+                </div>
+                <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+                    <li role="presentation">
+                        <a href="#agw_ip_tndp_ims_numbers" aria-controls="agw_ip_tndp_ims_numbers" role="tab" data-toggle="tab">
+                            {{ trans('cruds.tndpImsNumber.title') }}
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#tndp_agw_ip_tndp_ims_number_profiles" aria-controls="tndp_agw_ip_tndp_ims_number_profiles" role="tab" data-toggle="tab">
+                            {{ trans('cruds.tndpImsNumberProfile.title') }}
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane" role="tabpanel" id="agw_ip_tndp_ims_numbers">
+                        @includeIf('admin.tndpImsAgws.relationships.agwIpTndpImsNumbers', ['tndpImsNumbers' => $tndpImsAgw->agwIpTndpImsNumbers])
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="tndp_agw_ip_tndp_ims_number_profiles">
+                        @includeIf('admin.tndpImsAgws.relationships.tndpAgwIpTndpImsNumberProfiles', ['tndpImsNumberProfiles' => $tndpImsAgw->tndpAgwIpTndpImsNumberProfiles])
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

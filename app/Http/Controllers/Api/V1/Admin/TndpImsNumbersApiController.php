@@ -17,7 +17,7 @@ class TndpImsNumbersApiController extends Controller
     {
         abort_if(Gate::denies('tndp_ims_number_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new TndpImsNumberResource(TndpImsNumber::all());
+        return new TndpImsNumberResource(TndpImsNumber::with(['agw_ip'])->get());
     }
 
     public function store(StoreTndpImsNumberRequest $request)
@@ -33,7 +33,7 @@ class TndpImsNumbersApiController extends Controller
     {
         abort_if(Gate::denies('tndp_ims_number_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new TndpImsNumberResource($tndpImsNumber);
+        return new TndpImsNumberResource($tndpImsNumber->load(['agw_ip']));
     }
 
     public function update(UpdateTndpImsNumberRequest $request, TndpImsNumber $tndpImsNumber)
