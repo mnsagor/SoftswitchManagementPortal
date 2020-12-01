@@ -12,11 +12,10 @@
         align-items: center;
         font-size: 18px;
     }
-    .text-white {
-        color: #fff !important;
-    }
-    .text-danger {
-        color: #dd4b39 !important;
+    input[type="password"], button {
+        outline: none;
+        box-shadow:none !important;
+        border: 0;
     }
 </style>
 @endsection
@@ -52,9 +51,9 @@
                 <div class="input-group">
                     <input id="password" type="password" name="password" class="form-control" placeholder="{{ __('Confirm Password') }}" required>
 
-                    <div class="input-group-btn">
+                    <div class="input-group-append">
                         <button type="submit" class="btn">
-                            <i class="fa fa-arrow-right text-muted"></i>
+                            <i class="fas fa-arrow-right text-muted"></i>
                         </button>
                     </div>
                 </div>

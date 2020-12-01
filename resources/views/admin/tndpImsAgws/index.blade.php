@@ -1,92 +1,87 @@
 @extends('layouts.admin')
 @section('content')
-<div class="content">
-    @can('tndp_ims_agw_create')
-        <div style="margin-bottom: 10px;" class="row">
-            <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.tndp-ims-agws.create') }}">
-                    {{ trans('global.add') }} {{ trans('cruds.tndpImsAgw.title_singular') }}
-                </a>
-                <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
-                    {{ trans('global.app_csvImport') }}
-                </button>
-                @include('csvImport.modal', ['model' => 'TndpImsAgw', 'route' => 'admin.tndp-ims-agws.parseCsvImport'])
-            </div>
-        </div>
-    @endcan
-    <div class="row">
+@can('tndp_ims_agw_create')
+    <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    {{ trans('cruds.tndpImsAgw.title_singular') }} {{ trans('global.list') }}
-                </div>
-                <div class="panel-body">
-                    <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-TndpImsAgw">
-                        <thead>
-                            <tr>
-                                <th width="10">
-
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsAgw.fields.id') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsAgw.fields.ip') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsAgw.fields.name') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsAgw.fields.office') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsAgw.fields.is_active') }}
-                                </th>
-                                <th>
-                                    &nbsp;
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <select class="search">
-                                        <option value>{{ trans('global.all') }}</option>
-                                        @foreach($offices as $key => $item)
-                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="search" strict="true">
-                                        <option value>{{ trans('global.all') }}</option>
-                                        @foreach(App\Models\TndpImsAgw::IS_ACTIVE_RADIO as $key => $item)
-                                            <option value="{{ $key }}">{{ $item }}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-
-
-
+            <a class="btn btn-success" href="{{ route('admin.tndp-ims-agws.create') }}">
+                {{ trans('global.add') }} {{ trans('cruds.tndpImsAgw.title_singular') }}
+            </a>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                {{ trans('global.app_csvImport') }}
+            </button>
+            @include('csvImport.modal', ['model' => 'TndpImsAgw', 'route' => 'admin.tndp-ims-agws.parseCsvImport'])
         </div>
     </div>
+@endcan
+<div class="card">
+    <div class="card-header">
+        {{ trans('cruds.tndpImsAgw.title_singular') }} {{ trans('global.list') }}
+    </div>
+
+    <div class="card-body">
+        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-TndpImsAgw">
+            <thead>
+                <tr>
+                    <th width="10">
+
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsAgw.fields.id') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsAgw.fields.ip') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsAgw.fields.name') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsAgw.fields.office') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsAgw.fields.is_active') }}
+                    </th>
+                    <th>
+                        &nbsp;
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <select class="search">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach($offices as $key => $item)
+                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                        <select class="search" strict="true">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach(App\Models\TndpImsAgw::IS_ACTIVE_RADIO as $key => $item)
+                                <option value="{{ $key }}">{{ $item }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </div>
+
+
+
 @endsection
 @section('scripts')
 @parent
