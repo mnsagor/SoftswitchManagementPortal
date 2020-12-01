@@ -1,159 +1,154 @@
 @extends('layouts.admin')
 @section('content')
-<div class="content">
-    @can('tndp_ims_olt_profile_create')
-        <div style="margin-bottom: 10px;" class="row">
-            <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.tndp-ims-olt-profiles.create') }}">
-                    {{ trans('global.add') }} {{ trans('cruds.tndpImsOltProfile.title_singular') }}
-                </a>
-                <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
-                    {{ trans('global.app_csvImport') }}
-                </button>
-                @include('csvImport.modal', ['model' => 'TndpImsOltProfile', 'route' => 'admin.tndp-ims-olt-profiles.parseCsvImport'])
-            </div>
-        </div>
-    @endcan
-    <div class="row">
+@can('tndp_ims_olt_profile_create')
+    <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    {{ trans('cruds.tndpImsOltProfile.title_singular') }} {{ trans('global.list') }}
-                </div>
-                <div class="panel-body">
-                    <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-TndpImsOltProfile">
-                        <thead>
-                            <tr>
-                                <th width="10">
-
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsOltProfile.fields.id') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsOltProfile.fields.olt_name') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsOltProfile.fields.date') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsOltProfile.fields.job_type') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsOltProfile.fields.device_type') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsOltProfile.fields.no_of_ports') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsOltProfile.fields.serial_number') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsOltProfile.fields.interface') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsOltProfile.fields.ip') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsOltProfile.fields.number') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsOltProfile.fields.port_number') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsOltProfile.fields.service') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsOltProfile.fields.status') }}
-                                </th>
-                                <th>
-                                    &nbsp;
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <select class="search">
-                                        <option value>{{ trans('global.all') }}</option>
-                                        @foreach($olts as $key => $item)
-                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <td>
-                                </td>
-                                <td>
-                                    <select class="search">
-                                        <option value>{{ trans('global.all') }}</option>
-                                        @foreach($job_types as $key => $item)
-                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="search" strict="true">
-                                        <option value>{{ trans('global.all') }}</option>
-                                        @foreach(App\Models\TndpImsOltProfile::DEVICE_TYPE_SELECT as $key => $item)
-                                            <option value="{{ $key }}">{{ $item }}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="search" strict="true">
-                                        <option value>{{ trans('global.all') }}</option>
-                                        @foreach(App\Models\TndpImsOltProfile::NO_OF_PORTS_SELECT as $key => $item)
-                                            <option value="{{ $key }}">{{ $item }}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <select class="search" strict="true">
-                                        <option value>{{ trans('global.all') }}</option>
-                                        @foreach(App\Models\TndpImsOltProfile::SERVICE_SELECT as $key => $item)
-                                            <option value="{{ $key }}">{{ $item }}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="search">
-                                        <option value>{{ trans('global.all') }}</option>
-                                        @foreach($job_request_statuses as $key => $item)
-                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-
-
-
+            <a class="btn btn-success" href="{{ route('admin.tndp-ims-olt-profiles.create') }}">
+                {{ trans('global.add') }} {{ trans('cruds.tndpImsOltProfile.title_singular') }}
+            </a>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                {{ trans('global.app_csvImport') }}
+            </button>
+            @include('csvImport.modal', ['model' => 'TndpImsOltProfile', 'route' => 'admin.tndp-ims-olt-profiles.parseCsvImport'])
         </div>
     </div>
+@endcan
+<div class="card">
+    <div class="card-header">
+        {{ trans('cruds.tndpImsOltProfile.title_singular') }} {{ trans('global.list') }}
+    </div>
+
+    <div class="card-body">
+        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-TndpImsOltProfile">
+            <thead>
+                <tr>
+                    <th width="10">
+
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsOltProfile.fields.id') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsOltProfile.fields.olt_name') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsOltProfile.fields.date') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsOltProfile.fields.job_type') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsOltProfile.fields.device_type') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsOltProfile.fields.no_of_ports') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsOltProfile.fields.serial_number') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsOltProfile.fields.interface') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsOltProfile.fields.ip') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsOltProfile.fields.number') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsOltProfile.fields.port_number') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsOltProfile.fields.service') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsOltProfile.fields.status') }}
+                    </th>
+                    <th>
+                        &nbsp;
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <select class="search">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach($olts as $key => $item)
+                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        <select class="search">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach($job_types as $key => $item)
+                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                        <select class="search" strict="true">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach(App\Models\TndpImsOltProfile::DEVICE_TYPE_SELECT as $key => $item)
+                                <option value="{{ $key }}">{{ $item }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                        <select class="search" strict="true">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach(App\Models\TndpImsOltProfile::NO_OF_PORTS_SELECT as $key => $item)
+                                <option value="{{ $key }}">{{ $item }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <select class="search" strict="true">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach(App\Models\TndpImsOltProfile::SERVICE_SELECT as $key => $item)
+                                <option value="{{ $key }}">{{ $item }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                        <select class="search">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach($job_request_statuses as $key => $item)
+                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </div>
+
+
+
 @endsection
 @section('scripts')
 @parent

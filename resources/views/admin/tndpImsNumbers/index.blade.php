@@ -1,76 +1,71 @@
 @extends('layouts.admin')
 @section('content')
-<div class="content">
-    @can('tndp_ims_number_create')
-        <div style="margin-bottom: 10px;" class="row">
-            <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.tndp-ims-numbers.create') }}">
-                    {{ trans('global.add') }} {{ trans('cruds.tndpImsNumber.title_singular') }}
-                </a>
-                <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
-                    {{ trans('global.app_csvImport') }}
-                </button>
-                @include('csvImport.modal', ['model' => 'TndpImsNumber', 'route' => 'admin.tndp-ims-numbers.parseCsvImport'])
-            </div>
-        </div>
-    @endcan
-    <div class="row">
+@can('tndp_ims_number_create')
+    <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    {{ trans('cruds.tndpImsNumber.title_singular') }} {{ trans('global.list') }}
-                </div>
-                <div class="panel-body">
-                    <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-TndpImsNumber">
-                        <thead>
-                            <tr>
-                                <th width="10">
-
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsNumber.fields.id') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsNumber.fields.number') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsNumber.fields.tid') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.tndpImsNumber.fields.agw_ip') }}
-                                </th>
-                                <th>
-                                    &nbsp;
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-
-
-
+            <a class="btn btn-success" href="{{ route('admin.tndp-ims-numbers.create') }}">
+                {{ trans('global.add') }} {{ trans('cruds.tndpImsNumber.title_singular') }}
+            </a>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                {{ trans('global.app_csvImport') }}
+            </button>
+            @include('csvImport.modal', ['model' => 'TndpImsNumber', 'route' => 'admin.tndp-ims-numbers.parseCsvImport'])
         </div>
     </div>
+@endcan
+<div class="card">
+    <div class="card-header">
+        {{ trans('cruds.tndpImsNumber.title_singular') }} {{ trans('global.list') }}
+    </div>
+
+    <div class="card-body">
+        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-TndpImsNumber">
+            <thead>
+                <tr>
+                    <th width="10">
+
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsNumber.fields.id') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsNumber.fields.number') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsNumber.fields.tid') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.tndpImsNumber.fields.agw_ip') }}
+                    </th>
+                    <th>
+                        &nbsp;
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </div>
+
+
+
 @endsection
 @section('scripts')
 @parent

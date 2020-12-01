@@ -1,81 +1,76 @@
 @extends('layouts.admin')
 @section('content')
-<div class="content">
-    @can('oso_number_create')
-        <div style="margin-bottom: 10px;" class="row">
-            <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.oso-numbers.create') }}">
-                    {{ trans('global.add') }} {{ trans('cruds.osoNumber.title_singular') }}
-                </a>
-                <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
-                    {{ trans('global.app_csvImport') }}
-                </button>
-                @include('csvImport.modal', ['model' => 'OsoNumber', 'route' => 'admin.oso-numbers.parseCsvImport'])
-            </div>
-        </div>
-    @endcan
-    <div class="row">
+@can('oso_number_create')
+    <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    {{ trans('cruds.osoNumber.title_singular') }} {{ trans('global.list') }}
-                </div>
-                <div class="panel-body">
-                    <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-OsoNumber">
-                        <thead>
-                            <tr>
-                                <th width="10">
-
-                                </th>
-                                <th>
-                                    {{ trans('cruds.osoNumber.fields.id') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.osoNumber.fields.number') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.osoNumber.fields.tid') }}
-                                </th>
-                                <th>
-                                    {{ trans('cruds.osoNumber.fields.agw_ip') }}
-                                </th>
-                                <th>
-                                    &nbsp;
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
-                                <td>
-                                    <select class="search">
-                                        <option value>{{ trans('global.all') }}</option>
-                                        @foreach($oso_agws as $key => $item)
-                                            <option value="{{ $item->ip }}">{{ $item->ip }}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-
-
-
+            <a class="btn btn-success" href="{{ route('admin.oso-numbers.create') }}">
+                {{ trans('global.add') }} {{ trans('cruds.osoNumber.title_singular') }}
+            </a>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                {{ trans('global.app_csvImport') }}
+            </button>
+            @include('csvImport.modal', ['model' => 'OsoNumber', 'route' => 'admin.oso-numbers.parseCsvImport'])
         </div>
     </div>
+@endcan
+<div class="card">
+    <div class="card-header">
+        {{ trans('cruds.osoNumber.title_singular') }} {{ trans('global.list') }}
+    </div>
+
+    <div class="card-body">
+        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-OsoNumber">
+            <thead>
+                <tr>
+                    <th width="10">
+
+                    </th>
+                    <th>
+                        {{ trans('cruds.osoNumber.fields.id') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.osoNumber.fields.number') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.osoNumber.fields.tid') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.osoNumber.fields.agw_ip') }}
+                    </th>
+                    <th>
+                        &nbsp;
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <select class="search">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach($oso_agws as $key => $item)
+                                <option value="{{ $item->ip }}">{{ $item->ip }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </div>
+
+
+
 @endsection
 @section('scripts')
 @parent
