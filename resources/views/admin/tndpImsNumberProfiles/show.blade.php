@@ -27,6 +27,14 @@
                                 </tr>
                                 <tr>
                                     <th>
+                                        {{ trans('cruds.tndpImsNumberProfile.fields.tndp_agw_ip') }}
+                                    </th>
+                                    <td>
+                                        {{ $tndpImsNumberProfile->tndp_agw_ip->ip ?? '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
                                         {{ trans('cruds.tndpImsNumberProfile.fields.number') }}
                                     </th>
                                     <td>

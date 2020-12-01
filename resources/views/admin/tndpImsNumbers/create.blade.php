@@ -28,8 +28,12 @@
                             <span class="help-block">{{ trans('cruds.tndpImsNumber.fields.tid_helper') }}</span>
                         </div>
                         <div class="form-group {{ $errors->has('agw_ip') ? 'has-error' : '' }}">
-                            <label class="required" for="agw_ip">{{ trans('cruds.tndpImsNumber.fields.agw_ip') }}</label>
-                            <input class="form-control" type="text" name="agw_ip" id="agw_ip" value="{{ old('agw_ip', '') }}" required>
+                            <label class="required" for="agw_ip_id">{{ trans('cruds.tndpImsNumber.fields.agw_ip') }}</label>
+                            <select class="form-control select2" name="agw_ip_id" id="agw_ip_id" required>
+                                @foreach($agw_ips as $id => $agw_ip)
+                                    <option value="{{ $id }}" {{ old('agw_ip_id') == $id ? 'selected' : '' }}>{{ $agw_ip }}</option>
+                                @endforeach
+                            </select>
                             @if($errors->has('agw_ip'))
                                 <span class="help-block" role="alert">{{ $errors->first('agw_ip') }}</span>
                             @endif

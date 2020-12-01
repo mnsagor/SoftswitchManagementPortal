@@ -17,18 +17,18 @@ class StoreTndpImsNumberRequest extends FormRequest
     public function rules()
     {
         return [
-            'number' => [
+            'number'    => [
                 'string',
                 'required',
                 'unique:tndp_ims_numbers',
             ],
-            'tid'    => [
+            'tid'       => [
                 'string',
                 'required',
             ],
-            'agw_ip' => [
-                'string',
+            'agw_ip_id' => [
                 'required',
+                'integer',
             ],
         ];
     }

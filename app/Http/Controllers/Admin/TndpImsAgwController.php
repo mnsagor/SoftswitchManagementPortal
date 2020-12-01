@@ -115,7 +115,7 @@ class TndpImsAgwController extends Controller
     {
         abort_if(Gate::denies('tndp_ims_agw_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $tndpImsAgw->load('office');
+        $tndpImsAgw->load('office', 'agwIpTndpImsNumbers', 'tndpAgwIpTndpImsNumberProfiles');
 
         return view('admin.tndpImsAgws.show', compact('tndpImsAgw'));
     }

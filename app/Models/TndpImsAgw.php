@@ -55,6 +55,16 @@ class TndpImsAgw extends Model implements HasMedia
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
+    public function agwIpTndpImsNumbers()
+    {
+        return $this->hasMany(TndpImsNumber::class, 'agw_ip_id', 'id');
+    }
+
+    public function tndpAgwIpTndpImsNumberProfiles()
+    {
+        return $this->hasMany(TndpImsNumberProfile::class, 'tndp_agw_ip_id', 'id');
+    }
+
     public function office()
     {
         return $this->belongsTo(Office::class, 'office_id');

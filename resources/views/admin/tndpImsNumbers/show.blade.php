@@ -46,7 +46,7 @@
                                         {{ trans('cruds.tndpImsNumber.fields.agw_ip') }}
                                     </th>
                                     <td>
-                                        {{ $tndpImsNumber->agw_ip }}
+                                        {{ $tndpImsNumber->agw_ip->ip ?? '' }}
                                     </td>
                                 </tr>
                             </tbody>

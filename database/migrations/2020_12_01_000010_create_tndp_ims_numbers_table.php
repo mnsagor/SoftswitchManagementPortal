@@ -12,7 +12,6 @@ class CreateTndpImsNumbersTable extends Migration
             $table->bigIncrements('id');
             $table->string('number')->unique();
             $table->string('tid');
-            $table->string('agw_ip');
             $table->timestamps();
             $table->softDeletes();
         });
