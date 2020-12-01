@@ -1,217 +1,222 @@
 @extends('layouts.admin')
 @section('content')
-@can('olt_job_request_create')
-    <div style="margin-bottom: 10px;" class="row">
+<div class="content">
+    @can('olt_job_request_create')
+        <div style="margin-bottom: 10px;" class="row">
+            <div class="col-lg-12">
+                <a class="btn btn-success" href="{{ route('admin.olt-job-requests.create') }}">
+                    {{ trans('global.add') }} {{ trans('cruds.oltJobRequest.title_singular') }}
+                </a>
+                <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                    {{ trans('global.app_csvImport') }}
+                </button>
+                @include('csvImport.modal', ['model' => 'OltJobRequest', 'route' => 'admin.olt-job-requests.parseCsvImport'])
+            </div>
+        </div>
+    @endcan
+    <div class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.olt-job-requests.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.oltJobRequest.title_singular') }}
-            </a>
-            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
-                {{ trans('global.app_csvImport') }}
-            </button>
-            @include('csvImport.modal', ['model' => 'OltJobRequest', 'route' => 'admin.olt-job-requests.parseCsvImport'])
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ trans('cruds.oltJobRequest.title_singular') }} {{ trans('global.list') }}
+                </div>
+                <div class="panel-body">
+                    <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-OltJobRequest">
+                        <thead>
+                            <tr>
+                                <th width="10">
+
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.id') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.network_type') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.job_type') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.request_type') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.request_status') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.olt_ip') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.number') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.interface') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.service_type') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.port_number') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.device_ip') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.requested_by') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.request_time') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.verified_by') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.verification_time') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.approved_by') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.approval_time') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.rejected_by') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.rejection_time') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.oltJobRequest.fields.script') }}
+                                </th>
+                                <th>
+                                    &nbsp;
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                </td>
+                                <td>
+                                    <select class="search">
+                                        <option value>{{ trans('global.all') }}</option>
+                                        @foreach($network_types as $key => $item)
+                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="search">
+                                        <option value>{{ trans('global.all') }}</option>
+                                        @foreach($job_types as $key => $item)
+                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="search">
+                                        <option value>{{ trans('global.all') }}</option>
+                                        @foreach($request_types as $key => $item)
+                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="search">
+                                        <option value>{{ trans('global.all') }}</option>
+                                        @foreach($job_request_statuses as $key => $item)
+                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="search">
+                                        <option value>{{ trans('global.all') }}</option>
+                                        @foreach($olts as $key => $item)
+                                            <option value="{{ $item->ip }}">{{ $item->ip }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                </td>
+                                <td>
+                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                </td>
+                                <td>
+                                    <select class="search" strict="true">
+                                        <option value>{{ trans('global.all') }}</option>
+                                        @foreach(App\Models\OltJobRequest::SERVICE_TYPE_SELECT as $key => $item)
+                                            <option value="{{ $key }}">{{ $item }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                </td>
+                                <td>
+                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                </td>
+                                <td>
+                                    <select class="search">
+                                        <option value>{{ trans('global.all') }}</option>
+                                        @foreach($users as $key => $item)
+                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                </td>
+                                <td>
+                                    <select class="search">
+                                        <option value>{{ trans('global.all') }}</option>
+                                        @foreach($users as $key => $item)
+                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                </td>
+                                <td>
+                                    <select class="search">
+                                        <option value>{{ trans('global.all') }}</option>
+                                        @foreach($users as $key => $item)
+                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                </td>
+                                <td>
+                                    <select class="search">
+                                        <option value>{{ trans('global.all') }}</option>
+                                        @foreach($users as $key => $item)
+                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                </td>
+                                <td>
+                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
-@endcan
-<div class="card">
-    <div class="card-header">
-        {{ trans('cruds.oltJobRequest.title_singular') }} {{ trans('global.list') }}
-    </div>
-
-    <div class="card-body">
-        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-OltJobRequest">
-            <thead>
-                <tr>
-                    <th width="10">
-
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.id') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.network_type') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.job_type') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.request_type') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.request_status') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.olt_ip') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.number') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.interface') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.service_type') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.port_number') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.device_ip') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.requested_by') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.request_time') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.verified_by') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.verification_time') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.approved_by') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.approval_time') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.rejected_by') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.rejection_time') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.oltJobRequest.fields.script') }}
-                    </th>
-                    <th>
-                        &nbsp;
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($network_types as $key => $item)
-                                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($job_types as $key => $item)
-                                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($request_types as $key => $item)
-                                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($job_request_statuses as $key => $item)
-                                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($olts as $key => $item)
-                                <option value="{{ $item->ip }}">{{ $item->ip }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <select class="search" strict="true">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach(App\Models\OltJobRequest::SERVICE_TYPE_SELECT as $key => $item)
-                                <option value="{{ $key }}">{{ $item }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($users as $key => $item)
-                                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($users as $key => $item)
-                                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($users as $key => $item)
-                                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($users as $key => $item)
-                                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-            </thead>
-        </table>
-    </div>
 </div>
-
-
-
 @endsection
 @section('scripts')
 @parent
