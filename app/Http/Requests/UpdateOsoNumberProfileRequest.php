@@ -25,6 +25,10 @@ class UpdateOsoNumberProfileRequest extends FormRequest
                 'required',
                 'integer',
             ],
+            'oso_number'        => [
+                'string',
+                'nullable',
+            ],
             'pbx_poilot_number' => [
                 'string',
                 'nullable',

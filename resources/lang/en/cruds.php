@@ -293,6 +293,8 @@ return [
             'pbx_poilot_number_helper' => ' ',
             'oso_agw_ip'               => '171KL AGW IP',
             'oso_agw_ip_helper'        => ' ',
+            'oso_number'               => '171KL Number (Database)',
+            'oso_number_helper'        => ' ',
         ],
     ],
     'tndpImsNumber'             => [
@@ -321,7 +323,7 @@ return [
         'fields'         => [
             'id'                       => 'ID',
             'id_helper'                => ' ',
-            'number'                   => 'Number',
+            'number'                   => 'Phone Number',
             'number_helper'            => ' ',
             'is_active'                => 'Active Number Status',
             'is_active_helper'         => ' ',
@@ -343,6 +345,8 @@ return [
             'pbx_poilot_number_helper' => ' ',
             'tndp_agw_ip'              => 'TNDP IMS AGW IP',
             'tndp_agw_ip_helper'       => ' ',
+            'tndp_ims_number'          => 'IMS Number (Database)',
+            'tndp_ims_number_helper'   => ' ',
         ],
     ],
     'employee'                  => [

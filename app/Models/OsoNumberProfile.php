@@ -49,6 +49,7 @@ class OsoNumberProfile extends Model
     protected $fillable = [
         'oso_agw_ip_id',
         'number_id',
+        'oso_number',
         'is_active',
         'is_td',
         'is_isd',

@@ -34,6 +34,9 @@
                                         {{ trans('cruds.osoNumberProfile.fields.number') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.osoNumberProfile.fields.oso_number') }}
+                                    </th>
+                                    <th>
                                         {{ trans('cruds.osoNumberProfile.fields.is_active') }}
                                     </th>
                                     <th>
@@ -70,6 +73,9 @@
                                         </td>
                                         <td>
                                             {{ $osoNumberProfile->number->number ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $osoNumberProfile->oso_number ?? '' }}
                                         </td>
                                         <td>
                                             {{ App\Models\OsoNumberProfile::IS_ACTIVE_RADIO[$osoNumberProfile->is_active] ?? '' }}

@@ -37,6 +37,9 @@
                                     {{ trans('cruds.tndpImsNumberProfile.fields.number') }}
                                 </th>
                                 <th>
+                                    {{ trans('cruds.tndpImsNumberProfile.fields.tndp_ims_number') }}
+                                </th>
+                                <th>
                                     {{ trans('cruds.tndpImsNumberProfile.fields.is_active') }}
                                 </th>
                                 <th>
@@ -79,6 +82,9 @@
                                             <option value="{{ $item->number }}">{{ $item->number }}</option>
                                         @endforeach
                                     </select>
+                                </td>
+                                <td>
+                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                                 </td>
                                 <td>
                                     <select class="search" strict="true">
@@ -184,6 +190,7 @@
 { data: 'id', name: 'id' },
 { data: 'tndp_agw_ip_ip', name: 'tndp_agw_ip.ip' },
 { data: 'number_number', name: 'number.number' },
+{ data: 'tndp_ims_number', name: 'tndp_ims_number' },
 { data: 'is_active', name: 'is_active' },
 { data: 'is_td', name: 'is_td' },
 { data: 'is_isd', name: 'is_isd' },

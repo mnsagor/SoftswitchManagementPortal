@@ -43,6 +43,14 @@
                                 </tr>
                                 <tr>
                                     <th>
+                                        {{ trans('cruds.osoNumberProfile.fields.oso_number') }}
+                                    </th>
+                                    <td>
+                                        {{ $osoNumberProfile->oso_number }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
                                         {{ trans('cruds.osoNumberProfile.fields.is_active') }}
                                     </th>
                                     <td>

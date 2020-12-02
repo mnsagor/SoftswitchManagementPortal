@@ -49,6 +49,7 @@ class TndpImsNumberProfile extends Model
     protected $fillable = [
         'tndp_agw_ip_id',
         'number_id',
+        'tndp_ims_number',
         'is_active',
         'is_td',
         'is_isd',

@@ -16,6 +16,7 @@ class CreateOsoNumberProfilesTable extends Migration
             $table->string('is_eisd')->nullable();
             $table->string('is_pbx')->nullable();
             $table->string('pbx_poilot_number')->nullable();
+            $table->string('oso_number')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -56,6 +56,9 @@ class OsoNumberProfileController extends Controller
                 return $row->number ? $row->number->number : '';
             });
 
+            $table->editColumn('oso_number', function ($row) {
+                return $row->oso_number ? $row->oso_number : "";
+            });
             $table->editColumn('is_active', function ($row) {
                 return $row->is_active ? OsoNumberProfile::IS_ACTIVE_RADIO[$row->is_active] : '';
             });

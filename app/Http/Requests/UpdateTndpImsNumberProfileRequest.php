@@ -25,6 +25,10 @@ class UpdateTndpImsNumberProfileRequest extends FormRequest
                 'required',
                 'integer',
             ],
+            'tndp_ims_number'   => [
+                'string',
+                'nullable',
+            ],
             'pbx_poilot_number' => [
                 'string',
                 'nullable',

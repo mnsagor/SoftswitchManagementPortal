@@ -36,6 +36,14 @@
                             @endif
                             <span class="help-block">{{ trans('cruds.osoNumberProfile.fields.number_helper') }}</span>
                         </div>
+                        <div class="form-group {{ $errors->has('oso_number') ? 'has-error' : '' }}">
+                            <label for="oso_number">{{ trans('cruds.osoNumberProfile.fields.oso_number') }}</label>
+                            <input class="form-control" type="text" name="oso_number" id="oso_number" value="{{ old('oso_number', $osoNumberProfile->oso_number) }}">
+                            @if($errors->has('oso_number'))
+                                <span class="help-block" role="alert">{{ $errors->first('oso_number') }}</span>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.osoNumberProfile.fields.oso_number_helper') }}</span>
+                        </div>
                         <div class="form-group {{ $errors->has('is_active') ? 'has-error' : '' }}">
                             <label>{{ trans('cruds.osoNumberProfile.fields.is_active') }}</label>
                             @foreach(App\Models\OsoNumberProfile::IS_ACTIVE_RADIO as $key => $label)

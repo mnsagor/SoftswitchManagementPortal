@@ -43,6 +43,14 @@
                                 </tr>
                                 <tr>
                                     <th>
+                                        {{ trans('cruds.tndpImsNumberProfile.fields.tndp_ims_number') }}
+                                    </th>
+                                    <td>
+                                        {{ $tndpImsNumberProfile->tndp_ims_number }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
                                         {{ trans('cruds.tndpImsNumberProfile.fields.is_active') }}
                                     </th>
                                     <td>
