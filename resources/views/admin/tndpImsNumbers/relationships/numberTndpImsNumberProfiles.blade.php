@@ -34,6 +34,9 @@
                                         {{ trans('cruds.tndpImsNumberProfile.fields.number') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.tndpImsNumberProfile.fields.tndp_ims_number') }}
+                                    </th>
+                                    <th>
                                         {{ trans('cruds.tndpImsNumberProfile.fields.is_active') }}
                                     </th>
                                     <th>
@@ -70,6 +73,9 @@
                                         </td>
                                         <td>
                                             {{ $tndpImsNumberProfile->number->number ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $tndpImsNumberProfile->tndp_ims_number ?? '' }}
                                         </td>
                                         <td>
                                             {{ App\Models\TndpImsNumberProfile::IS_ACTIVE_RADIO[$tndpImsNumberProfile->is_active] ?? '' }}

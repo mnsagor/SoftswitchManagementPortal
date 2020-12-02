@@ -56,6 +56,9 @@ class TndpImsNumberProfileController extends Controller
                 return $row->number ? $row->number->number : '';
             });
 
+            $table->editColumn('tndp_ims_number', function ($row) {
+                return $row->tndp_ims_number ? $row->tndp_ims_number : "";
+            });
             $table->editColumn('is_active', function ($row) {
                 return $row->is_active ? TndpImsNumberProfile::IS_ACTIVE_RADIO[$row->is_active] : '';
             });

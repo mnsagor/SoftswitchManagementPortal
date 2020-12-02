@@ -36,6 +36,14 @@
                             @endif
                             <span class="help-block">{{ trans('cruds.tndpImsNumberProfile.fields.number_helper') }}</span>
                         </div>
+                        <div class="form-group {{ $errors->has('tndp_ims_number') ? 'has-error' : '' }}">
+                            <label for="tndp_ims_number">{{ trans('cruds.tndpImsNumberProfile.fields.tndp_ims_number') }}</label>
+                            <input class="form-control" type="text" name="tndp_ims_number" id="tndp_ims_number" value="{{ old('tndp_ims_number', $tndpImsNumberProfile->tndp_ims_number) }}">
+                            @if($errors->has('tndp_ims_number'))
+                                <span class="help-block" role="alert">{{ $errors->first('tndp_ims_number') }}</span>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.tndpImsNumberProfile.fields.tndp_ims_number_helper') }}</span>
+                        </div>
                         <div class="form-group {{ $errors->has('is_active') ? 'has-error' : '' }}">
                             <label>{{ trans('cruds.tndpImsNumberProfile.fields.is_active') }}</label>
                             @foreach(App\Models\TndpImsNumberProfile::IS_ACTIVE_RADIO as $key => $label)

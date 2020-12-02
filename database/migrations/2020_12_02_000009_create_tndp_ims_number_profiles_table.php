@@ -16,6 +16,7 @@ class CreateTndpImsNumberProfilesTable extends Migration
             $table->string('is_eisd')->nullable();
             $table->string('is_pbx')->nullable();
             $table->string('pbx_poilot_number')->nullable();
+            $table->string('tndp_ims_number')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
