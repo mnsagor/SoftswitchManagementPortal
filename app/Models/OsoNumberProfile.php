@@ -16,22 +16,22 @@ class OsoNumberProfile extends Model
 
     const IS_TD_RADIO = [
         '1' => 'Yes',
-        '0' => 'No',
+        '2' => 'No',
     ];
 
     const IS_ISD_RADIO = [
         '1' => 'Yes',
-        '0' => 'No',
+        '2' => 'No',
     ];
 
     const IS_EISD_RADIO = [
         '1' => 'Yes',
-        '0' => 'No',
+        '2' => 'No',
     ];
 
     const IS_ACTIVE_RADIO = [
         '1' => 'Active',
-        '0' => 'Inactive',
+        '2' => 'Inactive',
     ];
 
     protected $dates = [
@@ -43,7 +43,7 @@ class OsoNumberProfile extends Model
     const IS_PBX_RADIO = [
         '1' => 'Master',
         '2' => 'Slave',
-        '0' => 'No PBX',
+        '3' => 'No PBX',
     ];
 
     protected $fillable = [

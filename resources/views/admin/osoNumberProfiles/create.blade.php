@@ -39,7 +39,7 @@
                             <label>{{ trans('cruds.osoNumberProfile.fields.is_active') }}</label>
                             @foreach(App\Models\OsoNumberProfile::IS_ACTIVE_RADIO as $key => $label)
                                 <div>
-                                    <input type="radio" id="is_active_{{ $key }}" name="is_active" value="{{ $key }}" {{ old('is_active', '0') === (string) $key ? 'checked' : '' }}>
+                                    <input type="radio" id="is_active_{{ $key }}" name="is_active" value="{{ $key }}" {{ old('is_active', '2') === (string) $key ? 'checked' : '' }}>
                                     <label for="is_active_{{ $key }}" style="font-weight: 400">{{ $label }}</label>
                                 </div>
                             @endforeach
@@ -52,7 +52,7 @@
                             <label>{{ trans('cruds.osoNumberProfile.fields.is_td') }}</label>
                             @foreach(App\Models\OsoNumberProfile::IS_TD_RADIO as $key => $label)
                                 <div>
-                                    <input type="radio" id="is_td_{{ $key }}" name="is_td" value="{{ $key }}" {{ old('is_td', '0') === (string) $key ? 'checked' : '' }}>
+                                    <input type="radio" id="is_td_{{ $key }}" name="is_td" value="{{ $key }}" {{ old('is_td', '2') === (string) $key ? 'checked' : '' }}>
                                     <label for="is_td_{{ $key }}" style="font-weight: 400">{{ $label }}</label>
                                 </div>
                             @endforeach
@@ -65,7 +65,7 @@
                             <label>{{ trans('cruds.osoNumberProfile.fields.is_isd') }}</label>
                             @foreach(App\Models\OsoNumberProfile::IS_ISD_RADIO as $key => $label)
                                 <div>
-                                    <input type="radio" id="is_isd_{{ $key }}" name="is_isd" value="{{ $key }}" {{ old('is_isd', '0') === (string) $key ? 'checked' : '' }}>
+                                    <input type="radio" id="is_isd_{{ $key }}" name="is_isd" value="{{ $key }}" {{ old('is_isd', '2') === (string) $key ? 'checked' : '' }}>
                                     <label for="is_isd_{{ $key }}" style="font-weight: 400">{{ $label }}</label>
                                 </div>
                             @endforeach
@@ -78,7 +78,7 @@
                             <label>{{ trans('cruds.osoNumberProfile.fields.is_eisd') }}</label>
                             @foreach(App\Models\OsoNumberProfile::IS_EISD_RADIO as $key => $label)
                                 <div>
-                                    <input type="radio" id="is_eisd_{{ $key }}" name="is_eisd" value="{{ $key }}" {{ old('is_eisd', '0') === (string) $key ? 'checked' : '' }}>
+                                    <input type="radio" id="is_eisd_{{ $key }}" name="is_eisd" value="{{ $key }}" {{ old('is_eisd', '2') === (string) $key ? 'checked' : '' }}>
                                     <label for="is_eisd_{{ $key }}" style="font-weight: 400">{{ $label }}</label>
                                 </div>
                             @endforeach
@@ -91,7 +91,7 @@
                             <label>{{ trans('cruds.osoNumberProfile.fields.is_pbx') }}</label>
                             @foreach(App\Models\OsoNumberProfile::IS_PBX_RADIO as $key => $label)
                                 <div>
-                                    <input type="radio" id="is_pbx_{{ $key }}" name="is_pbx" value="{{ $key }}" {{ old('is_pbx', '0') === (string) $key ? 'checked' : '' }}>
+                                    <input type="radio" id="is_pbx_{{ $key }}" name="is_pbx" value="{{ $key }}" {{ old('is_pbx', '3') === (string) $key ? 'checked' : '' }}>
                                     <label for="is_pbx_{{ $key }}" style="font-weight: 400">{{ $label }}</label>
                                 </div>
                             @endforeach

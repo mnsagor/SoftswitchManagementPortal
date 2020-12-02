@@ -16,7 +16,7 @@ class JobRequestStatus extends Model
 
     const IS_ACTIVE_RADIO = [
         '1' => 'Active',
-        '0' => 'Inactive',
+        '2' => 'Inactive',
     ];
 
     protected $dates = [
