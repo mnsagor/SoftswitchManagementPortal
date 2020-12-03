@@ -46,6 +46,7 @@ class JobRequest extends Model implements HasMedia
         'agw_ip',
         'tid',
         'note',
+        'call_source_code_id',
         'requested_by_id',
         'request_time',
         'verified_by_id',
@@ -97,6 +98,11 @@ class JobRequest extends Model implements HasMedia
     public function getFileAttribute()
     {
         return $this->getMedia('file');
+    }
+
+    public function call_source_code()
+    {
+        return $this->belongsTo(CallSourceCode::class, 'call_source_code_id');
     }
 
     public function requested_by()

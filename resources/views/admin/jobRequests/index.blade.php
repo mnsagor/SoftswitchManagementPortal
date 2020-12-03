@@ -52,6 +52,9 @@
                                     {{ trans('cruds.jobRequest.fields.tid') }}
                                 </th>
                                 <th>
+                                    {{ trans('cruds.jobRequest.fields.call_source_code') }}
+                                </th>
+                                <th>
                                     {{ trans('cruds.jobRequest.fields.requested_by') }}
                                 </th>
                                 <th>
@@ -131,6 +134,14 @@
                                 </td>
                                 <td>
                                     <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                </td>
+                                <td>
+                                    <select class="search">
+                                        <option value>{{ trans('global.all') }}</option>
+                                        @foreach($call_source_codes as $key => $item)
+                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </td>
                                 <td>
                                     <select class="search">
@@ -253,6 +264,7 @@
 { data: 'number', name: 'number' },
 { data: 'agw_ip', name: 'agw_ip' },
 { data: 'tid', name: 'tid' },
+{ data: 'call_source_code_name', name: 'call_source_code.name' },
 { data: 'requested_by_name', name: 'requested_by.name' },
 { data: 'request_time', name: 'request_time' },
 { data: 'verified_by_name', name: 'verified_by.name' },

@@ -17,51 +17,55 @@ class StoreJobRequestRequest extends FormRequest
     public function rules()
     {
         return [
-            'network_type_id'   => [
+            'network_type_id'     => [
                 'required',
                 'integer',
             ],
-            'job_type_id'       => [
+            'job_type_id'         => [
                 'required',
                 'integer',
             ],
-            'request_type_id'   => [
+            'request_type_id'     => [
                 'required',
                 'integer',
             ],
-            'request_status_id' => [
+            'request_status_id'   => [
                 'required',
                 'integer',
             ],
-            'number'            => [
+            'number'              => [
                 'string',
                 'required',
             ],
-            'agw_ip'            => [
+            'agw_ip'              => [
                 'string',
                 'required',
             ],
-            'tid'               => [
+            'tid'                 => [
                 'string',
                 'required',
             ],
-            'requested_by_id'   => [
+            'call_source_code_id' => [
                 'required',
                 'integer',
             ],
-            'request_time'      => [
+            'requested_by_id'     => [
+                'required',
+                'integer',
+            ],
+            'request_time'        => [
                 'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
                 'nullable',
             ],
-            'verification_time' => [
+            'verification_time'   => [
                 'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
                 'nullable',
             ],
-            'approval_time'     => [
+            'approval_time'       => [
                 'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
                 'nullable',
             ],
-            'rejection_time'    => [
+            'rejection_time'      => [
                 'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
                 'nullable',
             ],
