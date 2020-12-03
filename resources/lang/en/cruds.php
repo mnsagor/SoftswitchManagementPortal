@@ -517,6 +517,8 @@ return [
             'updated_at_helper'        => ' ',
             'deleted_at'               => 'Deleted at',
             'deleted_at_helper'        => ' ',
+            'call_source_code'         => 'Call Source Code Area',
+            'call_source_code_helper'  => ' ',
         ],
     ],
     'osoNetwork'                => [

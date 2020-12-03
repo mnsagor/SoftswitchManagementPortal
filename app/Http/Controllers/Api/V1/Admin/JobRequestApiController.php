@@ -20,7 +20,7 @@ class JobRequestApiController extends Controller
     {
         abort_if(Gate::denies('job_request_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new JobRequestResource(JobRequest::with(['network_type', 'job_type', 'request_type', 'request_status', 'requested_by', 'verified_by', 'approved_by', 'rejected_by'])->get());
+        return new JobRequestResource(JobRequest::with(['network_type', 'job_type', 'request_type', 'request_status', 'call_source_code', 'requested_by', 'verified_by', 'approved_by', 'rejected_by'])->get());
     }
 
     public function store(StoreJobRequestRequest $request)
@@ -40,7 +40,7 @@ class JobRequestApiController extends Controller
     {
         abort_if(Gate::denies('job_request_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new JobRequestResource($jobRequest->load(['network_type', 'job_type', 'request_type', 'request_status', 'requested_by', 'verified_by', 'approved_by', 'rejected_by']));
+        return new JobRequestResource($jobRequest->load(['network_type', 'job_type', 'request_type', 'request_status', 'call_source_code', 'requested_by', 'verified_by', 'approved_by', 'rejected_by']));
     }
 
     public function update(UpdateJobRequestRequest $request, JobRequest $jobRequest)

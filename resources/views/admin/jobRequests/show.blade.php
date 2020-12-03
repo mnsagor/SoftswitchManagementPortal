@@ -103,6 +103,14 @@
                                 </tr>
                                 <tr>
                                     <th>
+                                        {{ trans('cruds.jobRequest.fields.call_source_code') }}
+                                    </th>
+                                    <td>
+                                        {{ $jobRequest->call_source_code->name ?? '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
                                         {{ trans('cruds.jobRequest.fields.requested_by') }}
                                     </th>
                                     <td>
