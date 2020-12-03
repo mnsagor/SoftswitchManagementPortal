@@ -693,4 +693,22 @@ return [
             'device_ip_helper'         => ' ',
         ],
     ],
+    'callSourceCode'            => [
+        'title'          => 'Call Source Code',
+        'title_singular' => 'Call Source Code',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => ' ',
+            'zone'              => 'Division/Office Name',
+            'zone_helper'       => ' ',
+            'created_at'        => 'Created at',
+            'created_at_helper' => ' ',
+            'updated_at'        => 'Updated at',
+            'updated_at_helper' => ' ',
+            'deleted_at'        => 'Deleted at',
+            'deleted_at_helper' => ' ',
+            'code'              => 'Source Code',
+            'code_helper'       => ' ',
+        ],
+    ],
 ];

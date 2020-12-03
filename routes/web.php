@@ -189,6 +189,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('olt-job-requests/process-csv-import', 'OltJobRequestController@processCsvImport')->name('olt-job-requests.processCsvImport');
     Route::resource('olt-job-requests', 'OltJobRequestController');
 
+    // Call Source Codes
+    Route::delete('call-source-codes/destroy', 'CallSourceCodeController@massDestroy')->name('call-source-codes.massDestroy');
+    Route::post('call-source-codes/parse-csv-import', 'CallSourceCodeController@parseCsvImport')->name('call-source-codes.parseCsvImport');
+    Route::post('call-source-codes/process-csv-import', 'CallSourceCodeController@processCsvImport')->name('call-source-codes.processCsvImport');
+    Route::resource('call-source-codes', 'CallSourceCodeController');
+
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('user-alerts/read', 'UserAlertsController@read');
 });
