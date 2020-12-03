@@ -11,6 +11,7 @@ class CreateCallSourceCodesTable extends Migration
         Schema::create('call_source_codes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('code');
+            $table->string('name')->unique();
             $table->timestamps();
             $table->softDeletes();
         });

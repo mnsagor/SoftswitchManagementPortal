@@ -35,6 +35,9 @@
                                         {{ trans('cruds.callSourceCode.fields.zone') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.callSourceCode.fields.name') }}
+                                    </th>
+                                    <th>
                                         {{ trans('cruds.callSourceCode.fields.code') }}
                                     </th>
                                     <th>
@@ -53,6 +56,9 @@
                                         </td>
                                         <td>
                                             {{ $callSourceCode->zone->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $callSourceCode->name ?? '' }}
                                         </td>
                                         <td>
                                             {{ $callSourceCode->code ?? '' }}
