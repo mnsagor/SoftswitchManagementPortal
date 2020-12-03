@@ -100,6 +100,18 @@
                             @endif
                             <span class="help-block">{{ trans('cruds.jobRequest.fields.file_helper') }}</span>
                         </div>
+                        <div class="form-group {{ $errors->has('call_source_code') ? 'has-error' : '' }}">
+                            <label class="required" for="call_source_code_id">{{ trans('cruds.jobRequest.fields.call_source_code') }}</label>
+                            <select class="form-control select2" name="call_source_code_id" id="call_source_code_id" required>
+                                @foreach($call_source_codes as $id => $call_source_code)
+                                    <option value="{{ $id }}" {{ old('call_source_code_id') == $id ? 'selected' : '' }}>{{ $call_source_code }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('call_source_code'))
+                                <span class="help-block" role="alert">{{ $errors->first('call_source_code') }}</span>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.jobRequest.fields.call_source_code_helper') }}</span>
+                        </div>
                         <div class="form-group {{ $errors->has('requested_by') ? 'has-error' : '' }}">
                             <label class="required" for="requested_by_id">{{ trans('cruds.jobRequest.fields.requested_by') }}</label>
                             <select class="form-control select2" name="requested_by_id" id="requested_by_id" required>

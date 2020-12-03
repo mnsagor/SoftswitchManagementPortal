@@ -49,6 +49,9 @@
                                         {{ trans('cruds.jobRequest.fields.tid') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.jobRequest.fields.call_source_code') }}
+                                    </th>
+                                    <th>
                                         {{ trans('cruds.jobRequest.fields.requested_by') }}
                                     </th>
                                     <th>
@@ -112,6 +115,9 @@
                                         </td>
                                         <td>
                                             {{ $jobRequest->tid ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $jobRequest->call_source_code->name ?? '' }}
                                         </td>
                                         <td>
                                             {{ $jobRequest->requested_by->name ?? '' }}
