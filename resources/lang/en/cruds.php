@@ -73,6 +73,8 @@ return [
             'designation_helper'       => ' ',
             'payroll_emp'              => 'Payroll Employee Name',
             'payroll_emp_helper'       => ' ',
+            'call_source_code'         => 'Call Source Code',
+            'call_source_code_helper'  => ' ',
         ],
     ],
     'auditLog'                  => [
@@ -709,6 +711,8 @@ return [
             'deleted_at_helper' => ' ',
             'code'              => 'Source Code',
             'code_helper'       => ' ',
+            'name'              => 'Name',
+            'name_helper'       => ' ',
         ],
     ],
 ];

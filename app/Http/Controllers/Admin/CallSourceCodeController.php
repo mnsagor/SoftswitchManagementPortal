@@ -64,7 +64,7 @@ class CallSourceCodeController extends Controller
     {
         abort_if(Gate::denies('call_source_code_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $callSourceCode->load('zone');
+        $callSourceCode->load('zone', 'callSourceCodeUsers');
 
         return view('admin.callSourceCodes.show', compact('callSourceCode'));
     }

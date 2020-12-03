@@ -48,6 +48,7 @@ class User extends Authenticatable
         'password',
         'approved',
         'remember_token',
+        'call_source_code_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -160,5 +161,10 @@ class User extends Authenticatable
     public function offices()
     {
         return $this->belongsToMany(Office::class);
+    }
+
+    public function call_source_code()
+    {
+        return $this->belongsTo(CallSourceCode::class, 'call_source_code_id');
     }
 }

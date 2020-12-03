@@ -21,6 +21,11 @@ class StoreCallSourceCodeRequest extends FormRequest
                 'required',
                 'integer',
             ],
+            'name'    => [
+                'string',
+                'required',
+                'unique:call_source_codes',
+            ],
             'code'    => [
                 'string',
                 'required',

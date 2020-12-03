@@ -35,6 +35,14 @@
                                 </tr>
                                 <tr>
                                     <th>
+                                        {{ trans('cruds.callSourceCode.fields.name') }}
+                                    </th>
+                                    <td>
+                                        {{ $callSourceCode->name }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
                                         {{ trans('cruds.callSourceCode.fields.code') }}
                                     </th>
                                     <td>
@@ -52,7 +60,23 @@
                 </div>
             </div>
 
-
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ trans('global.relatedData') }}
+                </div>
+                <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+                    <li role="presentation">
+                        <a href="#call_source_code_users" aria-controls="call_source_code_users" role="tab" data-toggle="tab">
+                            {{ trans('cruds.user.title') }}
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane" role="tabpanel" id="call_source_code_users">
+                        @includeIf('admin.callSourceCodes.relationships.callSourceCodeUsers', ['users' => $callSourceCode->callSourceCodeUsers])
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

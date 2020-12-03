@@ -24,6 +24,14 @@
                             @endif
                             <span class="help-block">{{ trans('cruds.callSourceCode.fields.zone_helper') }}</span>
                         </div>
+                        <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+                            <label class="required" for="name">{{ trans('cruds.callSourceCode.fields.name') }}</label>
+                            <input class="form-control" type="text" name="name" id="name" value="{{ old('name', $callSourceCode->name) }}" required>
+                            @if($errors->has('name'))
+                                <span class="help-block" role="alert">{{ $errors->first('name') }}</span>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.callSourceCode.fields.name_helper') }}</span>
+                        </div>
                         <div class="form-group {{ $errors->has('code') ? 'has-error' : '' }}">
                             <label class="required" for="code">{{ trans('cruds.callSourceCode.fields.code') }}</label>
                             <input class="form-control" type="text" name="code" id="code" value="{{ old('code', $callSourceCode->code) }}" required>
