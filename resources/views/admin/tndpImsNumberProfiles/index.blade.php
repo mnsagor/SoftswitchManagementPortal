@@ -58,6 +58,12 @@
                                     {{ trans('cruds.tndpImsNumberProfile.fields.pbx_poilot_number') }}
                                 </th>
                                 <th>
+                                    {{ trans('cruds.tndpImsNumberProfile.fields.request_controller') }}
+                                </th>
+                                <th>
+                                    {{ trans('cruds.tndpImsNumberProfile.fields.is_queued') }}
+                                </th>
+                                <th>
                                     &nbsp;
                                 </th>
                             </tr>
@@ -130,6 +136,22 @@
                                     <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                                 </td>
                                 <td>
+                                    <select class="search" strict="true">
+                                        <option value>{{ trans('global.all') }}</option>
+                                        @foreach(App\Models\TndpImsNumberProfile::REQUEST_CONTROLLER_RADIO as $key => $item)
+                                            <option value="{{ $key }}">{{ $item }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="search" strict="true">
+                                        <option value>{{ trans('global.all') }}</option>
+                                        @foreach(App\Models\TndpImsNumberProfile::IS_QUEUED_RADIO as $key => $item)
+                                            <option value="{{ $key }}">{{ $item }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
                                 </td>
                             </tr>
                         </thead>
@@ -197,6 +219,8 @@
 { data: 'is_eisd', name: 'is_eisd' },
 { data: 'is_pbx', name: 'is_pbx' },
 { data: 'pbx_poilot_number', name: 'pbx_poilot_number' },
+{ data: 'request_controller', name: 'request_controller' },
+{ data: 'is_queued', name: 'is_queued' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

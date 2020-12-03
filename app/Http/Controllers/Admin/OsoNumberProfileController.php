@@ -77,6 +77,12 @@ class OsoNumberProfileController extends Controller
             $table->editColumn('pbx_poilot_number', function ($row) {
                 return $row->pbx_poilot_number ? $row->pbx_poilot_number : "";
             });
+            $table->editColumn('request_controller', function ($row) {
+                return $row->request_controller ? OsoNumberProfile::REQUEST_CONTROLLER_RADIO[$row->request_controller] : '';
+            });
+            $table->editColumn('is_queued', function ($row) {
+                return $row->is_queued ? OsoNumberProfile::IS_QUEUED_RADIO[$row->is_queued] : '';
+            });
 
             $table->rawColumns(['actions', 'placeholder', 'oso_agw_ip', 'number']);
 

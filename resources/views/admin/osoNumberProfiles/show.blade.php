@@ -97,6 +97,22 @@
                                         {{ $osoNumberProfile->pbx_poilot_number }}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.osoNumberProfile.fields.request_controller') }}
+                                    </th>
+                                    <td>
+                                        {{ App\Models\OsoNumberProfile::REQUEST_CONTROLLER_RADIO[$osoNumberProfile->request_controller] ?? '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.osoNumberProfile.fields.is_queued') }}
+                                    </th>
+                                    <td>
+                                        {{ App\Models\OsoNumberProfile::IS_QUEUED_RADIO[$osoNumberProfile->is_queued] ?? '' }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="form-group">

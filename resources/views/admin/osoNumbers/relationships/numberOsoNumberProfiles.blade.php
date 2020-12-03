@@ -55,6 +55,12 @@
                                         {{ trans('cruds.osoNumberProfile.fields.pbx_poilot_number') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.osoNumberProfile.fields.request_controller') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.osoNumberProfile.fields.is_queued') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -94,6 +100,12 @@
                                         </td>
                                         <td>
                                             {{ $osoNumberProfile->pbx_poilot_number ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ App\Models\OsoNumberProfile::REQUEST_CONTROLLER_RADIO[$osoNumberProfile->request_controller] ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ App\Models\OsoNumberProfile::IS_QUEUED_RADIO[$osoNumberProfile->is_queued] ?? '' }}
                                         </td>
                                         <td>
                                             @can('oso_number_profile_show')
