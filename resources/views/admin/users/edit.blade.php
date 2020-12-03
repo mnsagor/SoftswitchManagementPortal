@@ -111,6 +111,18 @@
                             @endif
                             <span class="help-block">{{ trans('cruds.user.fields.office_helper') }}</span>
                         </div>
+                        <div class="form-group {{ $errors->has('call_source_code') ? 'has-error' : '' }}">
+                            <label for="call_source_code_id">{{ trans('cruds.user.fields.call_source_code') }}</label>
+                            <select class="form-control select2" name="call_source_code_id" id="call_source_code_id">
+                                @foreach($call_source_codes as $id => $call_source_code)
+                                    <option value="{{ $id }}" {{ (old('call_source_code_id') ? old('call_source_code_id') : $user->call_source_code->id ?? '') == $id ? 'selected' : '' }}>{{ $call_source_code }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('call_source_code'))
+                                <span class="help-block" role="alert">{{ $errors->first('call_source_code') }}</span>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.user.fields.call_source_code_helper') }}</span>
+                        </div>
                         <div class="form-group">
                             <button class="btn btn-danger" type="submit">
                                 {{ trans('global.save') }}

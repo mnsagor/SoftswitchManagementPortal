@@ -22,6 +22,7 @@ class CallSourceCode extends Model
 
     protected $fillable = [
         'zone_id',
+        'name',
         'code',
         'created_at',
         'updated_at',
@@ -31,6 +32,11 @@ class CallSourceCode extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function callSourceCodeUsers()
+    {
+        return $this->hasMany(User::class, 'call_source_code_id', 'id');
     }
 
     public function zone()

@@ -21,6 +21,11 @@ class UpdateCallSourceCodeRequest extends FormRequest
                 'required',
                 'integer',
             ],
+            'name'    => [
+                'string',
+                'required',
+                'unique:call_source_codes,name,' . request()->route('call_source_code')->id,
+            ],
             'code'    => [
                 'string',
                 'required',
