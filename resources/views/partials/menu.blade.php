@@ -202,6 +202,17 @@
                                 </a>
                             </li>
                         @endcan
+                        @can('call_source_code_access')
+                            <li class="{{ request()->is("admin/call-source-codes") || request()->is("admin/call-source-codes/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.call-source-codes.index") }}">
+                                    <i class="fa-fw fas fa-cogs">
+
+                                    </i>
+                                    <span>{{ trans('cruds.callSourceCode.title') }}</span>
+
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
             @endcan
