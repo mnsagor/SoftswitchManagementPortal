@@ -24,6 +24,11 @@ class TndpImsNumberProfile extends Model
         '2' => 'No',
     ];
 
+    const IS_QUEUED_RADIO = [
+        '1' => 'Yes',
+        '0' => 'No',
+    ];
+
     const IS_EISD_RADIO = [
         '1' => 'Active',
         '2' => 'Inactive',
@@ -32,6 +37,11 @@ class TndpImsNumberProfile extends Model
     const IS_ACTIVE_RADIO = [
         '1' => 'Active',
         '2' => 'Inactive',
+    ];
+
+    const REQUEST_CONTROLLER_RADIO = [
+        '1' => 'Yes',
+        '0' => 'No',
     ];
 
     protected $dates = [
@@ -56,6 +66,8 @@ class TndpImsNumberProfile extends Model
         'is_eisd',
         'is_pbx',
         'pbx_poilot_number',
+        'request_controller',
+        'is_queued',
         'created_at',
         'updated_at',
         'deleted_at',

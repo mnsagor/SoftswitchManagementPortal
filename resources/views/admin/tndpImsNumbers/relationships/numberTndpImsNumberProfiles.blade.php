@@ -55,6 +55,12 @@
                                         {{ trans('cruds.tndpImsNumberProfile.fields.pbx_poilot_number') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.tndpImsNumberProfile.fields.request_controller') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.tndpImsNumberProfile.fields.is_queued') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -94,6 +100,12 @@
                                         </td>
                                         <td>
                                             {{ $tndpImsNumberProfile->pbx_poilot_number ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ App\Models\TndpImsNumberProfile::REQUEST_CONTROLLER_RADIO[$tndpImsNumberProfile->request_controller] ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ App\Models\TndpImsNumberProfile::IS_QUEUED_RADIO[$tndpImsNumberProfile->is_queued] ?? '' }}
                                         </td>
                                         <td>
                                             @can('tndp_ims_number_profile_show')
