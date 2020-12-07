@@ -151,6 +151,7 @@ class JobRequestController extends Controller
 
     public function store(StoreJobRequestRequest $request)
     {
+//        dd($request->all());
         $jobRequest = JobRequest::create($request->all());
 
         foreach ($request->input('file', []) as $file) {
