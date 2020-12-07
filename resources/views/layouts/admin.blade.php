@@ -21,7 +21,31 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/modules/core/common/core.cleanui.css') !!}">
+
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/perfect-scrollbar/css/perfect-scrollbar.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/ladda//dist/ladda-themeless.min.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/bootstrap-select//dist/css/bootstrap-select.min.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/fullcalendar//dist/fullcalendar.min.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/bootstrap-sweetalert//dist/sweetalert.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/summernote//dist/summernote.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/owl.carousel//dist/assets/owl.carousel.min.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/ionrangeslider/css/ion.rangeSlider.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/datatables/media/css/dataTables.bootstrap4.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/c3/c3.min.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/chartist//dist/chartist.min.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/nprogress/nprogress.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/jquery-steps/demo/css/jquery.steps.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/dropify//dist/css/dropify.min.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/font-awesome/css/font-awesome.min.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/cleanhtmlaudioplayer/src/player.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/dist/vendors/cleanhtmlvideoplayer/src/player.css') !!}">
+
     @yield('styles')
+
+
+
 </head>
 
 <body class="sidebar-mini skin-purple" style="height: auto; min-height: 100%;">
@@ -112,6 +136,32 @@
                     </div>
                 </div>
             @endif
+                @if ($message = Session::get('success'))
+                    <div class="row" style='padding:20px 20px 0 20px;'>
+                        <div class="col-lg-12">
+                            <div class="alert alert-success" role="alert" id="id">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <strong>Well done! </strong>&nbsp; {{ $message }} !
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+                @if ($message = Session::get('fail'))
+                    <div class="row" style='padding:20px 20px 0 20px;'>
+                        <div class="col-lg-12">
+                            <div class="alert alert-danger" role="alert" id="id">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <strong>Fail! </strong>&nbsp; {{ $message }} !
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
             @if($errors->count() > 0)
                 <div class="row" style='padding:20px 20px 0 20px;'>
                     <div class="col-lg-12">

@@ -101,6 +101,14 @@
                                         @endforeach
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.user.fields.call_source_code') }}
+                                    </th>
+                                    <td>
+                                        {{ $user->call_source_code->name ?? '' }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="form-group">

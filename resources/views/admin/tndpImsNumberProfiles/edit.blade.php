@@ -117,6 +117,32 @@
                             @endif
                             <span class="help-block">{{ trans('cruds.tndpImsNumberProfile.fields.pbx_poilot_number_helper') }}</span>
                         </div>
+                        <div class="form-group {{ $errors->has('request_controller') ? 'has-error' : '' }}">
+                            <label>{{ trans('cruds.tndpImsNumberProfile.fields.request_controller') }}</label>
+                            @foreach(App\Models\TndpImsNumberProfile::REQUEST_CONTROLLER_RADIO as $key => $label)
+                                <div>
+                                    <input type="radio" id="request_controller_{{ $key }}" name="request_controller" value="{{ $key }}" {{ old('request_controller', $tndpImsNumberProfile->request_controller) === (string) $key ? 'checked' : '' }}>
+                                    <label for="request_controller_{{ $key }}" style="font-weight: 400">{{ $label }}</label>
+                                </div>
+                            @endforeach
+                            @if($errors->has('request_controller'))
+                                <span class="help-block" role="alert">{{ $errors->first('request_controller') }}</span>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.tndpImsNumberProfile.fields.request_controller_helper') }}</span>
+                        </div>
+                        <div class="form-group {{ $errors->has('is_queued') ? 'has-error' : '' }}">
+                            <label>{{ trans('cruds.tndpImsNumberProfile.fields.is_queued') }}</label>
+                            @foreach(App\Models\TndpImsNumberProfile::IS_QUEUED_RADIO as $key => $label)
+                                <div>
+                                    <input type="radio" id="is_queued_{{ $key }}" name="is_queued" value="{{ $key }}" {{ old('is_queued', $tndpImsNumberProfile->is_queued) === (string) $key ? 'checked' : '' }}>
+                                    <label for="is_queued_{{ $key }}" style="font-weight: 400">{{ $label }}</label>
+                                </div>
+                            @endforeach
+                            @if($errors->has('is_queued'))
+                                <span class="help-block" role="alert">{{ $errors->first('is_queued') }}</span>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.tndpImsNumberProfile.fields.is_queued_helper') }}</span>
+                        </div>
                         <div class="form-group">
                             <button class="btn btn-danger" type="submit">
                                 {{ trans('global.save') }}

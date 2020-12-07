@@ -68,4 +68,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Olt Job Requests
     Route::post('olt-job-requests/media', 'OltJobRequestApiController@storeMedia')->name('olt-job-requests.storeMedia');
     Route::apiResource('olt-job-requests', 'OltJobRequestApiController');
+
+    // Call Source Codes
+    Route::apiResource('call-source-codes', 'CallSourceCodeApiController');
 });

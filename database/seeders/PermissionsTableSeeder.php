@@ -544,6 +544,26 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 134,
+                'title' => 'call_source_code_create',
+            ],
+            [
+                'id'    => 135,
+                'title' => 'call_source_code_edit',
+            ],
+            [
+                'id'    => 136,
+                'title' => 'call_source_code_show',
+            ],
+            [
+                'id'    => 137,
+                'title' => 'call_source_code_delete',
+            ],
+            [
+                'id'    => 138,
+                'title' => 'call_source_code_access',
+            ],
+            [
+                'id'    => 139,
                 'title' => 'profile_password_edit',
             ],
         ];

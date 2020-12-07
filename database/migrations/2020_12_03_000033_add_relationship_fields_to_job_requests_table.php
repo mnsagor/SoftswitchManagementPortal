@@ -25,6 +25,8 @@ class AddRelationshipFieldsToJobRequestsTable extends Migration
             $table->foreign('approved_by_id', 'approved_by_fk_2660948')->references('id')->on('users');
             $table->unsignedBigInteger('rejected_by_id')->nullable();
             $table->foreign('rejected_by_id', 'rejected_by_fk_2660951')->references('id')->on('users');
+            $table->unsignedBigInteger('call_source_code_id');
+            $table->foreign('call_source_code_id', 'call_source_code_fk_2713487')->references('id')->on('call_source_codes');
         });
     }
 }

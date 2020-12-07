@@ -55,6 +55,9 @@
                                         {{ trans('cruds.user.fields.office') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.user.fields.call_source_code') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -99,6 +102,9 @@
                                             @foreach($user->offices as $key => $item)
                                                 <span class="label label-info label-many">{{ $item->name }}</span>
                                             @endforeach
+                                        </td>
+                                        <td>
+                                            {{ $user->call_source_code->name ?? '' }}
                                         </td>
                                         <td>
                                             @can('user_show')

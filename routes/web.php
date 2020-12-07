@@ -81,6 +81,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('oso-number-profiles/process-csv-import', 'OsoNumberProfileController@processCsvImport')->name('oso-number-profiles.processCsvImport');
     Route::resource('oso-number-profiles', 'OsoNumberProfileController');
 
+    // Phone Number Validation
+    Route::post('number-lists/validate','OsoNumbersController@validate171klPhoneNumber')->name('validate-171kl-phone-number');
+
+
     // Tndp Ims Numbers
     Route::delete('tndp-ims-numbers/destroy', 'TndpImsNumbersController@massDestroy')->name('tndp-ims-numbers.massDestroy');
     Route::post('tndp-ims-numbers/parse-csv-import', 'TndpImsNumbersController@parseCsvImport')->name('tndp-ims-numbers.parseCsvImport');
@@ -133,6 +137,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Core Job Requests
     Route::resource('core-job-requests', 'CoreJobRequestController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    Route::get('171kl-network/{jobId}/core-job-request','CoreJobRequestController@coreJobRequest')->name('171klnetwork.corejob.request');
+
+    Route::post('171kl-network/core-job/new-connection','OsoNumbersController@storeCoreJobNewConnectionRequest')->name('171klnetwork.corejob.store-new-connection.request');
+    Route::post('171kl-network/core-job/re-connection','CoreJobRequestController@store171klCoreJobReConnectionRequest')->name('171klnetwork.corejob.store-re-connection.request');
+    Route::post('171kl-network/core-job/casual-connection','CoreJobRequestController@store171klCoreJobCasualConnectionRequest')->name('171klnetwork.corejob.store-casual-connection.request');
+    Route::post('171kl-network/core-job/casual-disconnection','CoreJobRequestController@store171klCoreJobCasualDisconnectionRequest')->name('171klnetwork.corejob.store-casual-disconnection.request');
+    Route::post('171kl-network/core-job/restoration','CoreJobRequestController@store171klCoreJobRestorationRequest')->name('171klnetwork.corejob.store-restoration.request');
+    Route::post('171kl-network/core-job/temporary-disconnection','CoreJobRequestController@store171klCoreJobTemporaryDisconnectionRequest')->name('171klnetwork.corejob.store-temporary-disconnection.request');
+
 
     // Core Jobs
     Route::resource('core-jobs', 'CoreJobController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
@@ -188,6 +202,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('olt-job-requests/parse-csv-import', 'OltJobRequestController@parseCsvImport')->name('olt-job-requests.parseCsvImport');
     Route::post('olt-job-requests/process-csv-import', 'OltJobRequestController@processCsvImport')->name('olt-job-requests.processCsvImport');
     Route::resource('olt-job-requests', 'OltJobRequestController');
+
+    // Call Source Codes
+    Route::delete('call-source-codes/destroy', 'CallSourceCodeController@massDestroy')->name('call-source-codes.massDestroy');
+    Route::post('call-source-codes/parse-csv-import', 'CallSourceCodeController@parseCsvImport')->name('call-source-codes.parseCsvImport');
+    Route::post('call-source-codes/process-csv-import', 'CallSourceCodeController@processCsvImport')->name('call-source-codes.processCsvImport');
+    Route::resource('call-source-codes', 'CallSourceCodeController');
 
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('user-alerts/read', 'UserAlertsController@read');
