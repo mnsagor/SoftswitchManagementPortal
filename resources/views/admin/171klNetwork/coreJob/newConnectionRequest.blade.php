@@ -92,6 +92,21 @@
                             </div>
                         </div>
 
+                        @if (\Illuminate\Support\Facades\Auth::user()->isAdmin())
+                        <div class="form-group {{ $errors->has('call_source_code') ? 'has-error' : '' }}">
+                            <label class="required" for="call_source_code_id">{{ trans('cruds.jobRequest.fields.call_source_code') }}</label>
+                            <select class="form-control select2" name="call_source_code_id" id="call_source_code_id" required>
+                                @foreach($call_source_codes as $id => $call_source_code)
+                                    <option value="{{ $id }}" {{ old('call_source_code_id') == $id ? 'selected' : '' }}>{{ $call_source_code }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('call_source_code'))
+                                <span class="help-block" role="alert">{{ $errors->first('call_source_code') }}</span>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.jobRequest.fields.call_source_code_helper') }}</span>
+                        </div>
+                        @endif
+
                         <div class="form-group">
                             <label for="note">{{ "Reference Note" }}</label>
                             <textarea class="form-control ckeditor {{ $errors->has('note') ? 'is-invalid' : '' }}" placeholder="{{"Reference Note (Optional)"}}" name="note" id="note">{!! old('note') !!}</textarea>

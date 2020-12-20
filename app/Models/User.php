@@ -167,4 +167,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(CallSourceCode::class, 'call_source_code_id');
     }
+
+    public function isAdmin() {
+        return $this->roles()->where('title', 'Admin')->exists();
+    }
 }

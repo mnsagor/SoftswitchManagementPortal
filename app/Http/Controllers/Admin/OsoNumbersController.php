@@ -278,11 +278,18 @@ class OsoNumbersController extends Controller
 
     public function storeCoreJobNewConnectionRequest(Store171klCoreJobNewConnectionRequest $request)
     {
+//        dd($request->all());
+
         $network_type_id = NetworkType::all()->where('id',config('global.171KL_NETWORK_ID'))->first();
         $job_type_id = JobType::all()->where('id', config('global.NEW_CONNECTION_REQUEST'))->first();
         $job_request_status_id = JobRequestStatus::all()->where('id', config('global.REQUEST_STATUS_PENDING'))->first();
-        $call_source_code_id = Auth::user()->call_source_code_id;
-//                dd($job_request_status_id->id);
+
+        if(!$request->call_source_code_id){
+            $call_source_code_id = Auth::user()->call_source_code_id;
+            $request->request->add([
+                'call_source_code_id'       =>$call_source_code_id
+            ]);
+        }
 
 //        check the empty then add
         if ($request->request_type_id == null){
@@ -292,7 +299,6 @@ class OsoNumbersController extends Controller
             'network_type_id'           => $network_type_id->id,
             'job_type_id'               => $job_type_id->id,
             'request_status_id'         => $job_request_status_id->id,
-            'call_source_code_id'       =>$call_source_code_id,
         ]);
 
         $jobRequests = JobRequest::all()->where('number', $request->number);

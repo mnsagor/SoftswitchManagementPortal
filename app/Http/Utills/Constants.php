@@ -38,11 +38,11 @@ class Constants
     ];
 
     const JOB_REQUEST_STATUS = [
-        '0' =>'Pending',
-        '1' =>'Authenticated',
-        '2' =>'Ready to execute',
-        '3' =>'Approved',
-        '4' =>'Reject',
+        '1' =>'Pending',
+        '2' =>'Authenticated',
+        '3' =>'Ready to execute',
+        '4' =>'Approved',
+        '5' =>'Reject',
     ];
     const JOB_REQUEST_STATUS_VALUE = [
         'Pending'     => '0',
