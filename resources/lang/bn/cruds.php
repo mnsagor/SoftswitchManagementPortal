@@ -573,9 +573,9 @@ return [
         'title'          => 'ONT Job (IMS Network)',
         'title_singular' => 'ONT Job (IMS Network)',
     ],
-    'jobRequestAuthenticatioin' => [
-        'title'          => 'Job Request Authenticatioin',
-        'title_singular' => 'Job Request Authenticatioin',
+    'jobRequestAuthentication' => [
+        'title'          => 'Job Request Authentication',
+        'title_singular' => 'Job Request Authentication',
     ],
     'myJobRequest'              => [
         'title'          => 'My Job Requests',

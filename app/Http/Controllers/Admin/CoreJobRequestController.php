@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CallSourceCode;
 use App\Models\JobRequestStatus;
 use App\Models\JobType;
 use App\Models\NetworkType;
@@ -36,7 +37,8 @@ class CoreJobRequestController extends Controller
 //
 //                $request_statuses = JobRequestStatus::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 //                return view('admin.171klNetwork.coreJob.newConnectionRequest',compact('network_types'));
-                return view('admin.171klNetwork.coreJob.newConnectionRequest');
+                $call_source_codes = CallSourceCode::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+                return view('admin.171klNetwork.coreJob.newConnectionRequest',compact('call_source_codes'));
                 break;
             case config('global.RE_CONNECTION_REQUEST'):
                 return view('admin.171klNetwork.coreJob.reConnectionRequest');

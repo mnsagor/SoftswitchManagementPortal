@@ -173,7 +173,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('ont-job-ims', 'OntJobImsController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
 
     // Job Request Authenticatioins
-    Route::resource('job-request-authenticatioins', 'JobRequestAuthenticatioinController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+    Route::resource('job-request-authentications', 'JobRequestAuthenticationController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+    Route::resource('job-request-authentications', 'JobRequestAuthenticationController');
+
+    Route::get('job-request-authentication/{id}/authenticate','JobRequestAuthenticationController@authenticate')->name('job-requests.authenticate');
+    Route::get('job-request-authentication/{id}/reject','JobRequestAuthenticationController@reject')->name('job-requests.reject');
 
     // My Job Requests
     Route::resource('my-job-requests', 'MyJobRequestsController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);

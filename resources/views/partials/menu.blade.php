@@ -352,12 +352,12 @@
                             </li>
                         @endcan
                         @can('job_request_authenticatioin_access')
-                            <li class="{{ request()->is("admin/job-request-authenticatioins") || request()->is("admin/job-request-authenticatioins/*") ? "active" : "" }}">
-                                <a href="{{ route("admin.job-request-authenticatioins.index") }}">
+                            <li class="{{ request()->is("admin/job-request-authentications") || request()->is("admin/job-request-authentications/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.job-request-authentications.index") }}">
                                     <i class="fa-fw fab fa-autoprefixer">
 
                                     </i>
-                                    <span>{{ trans('cruds.jobRequestAuthenticatioin.title') }}</span>
+                                    <span>{{ "Job Request Authentication" }}</span>
 
                                 </a>
                             </li>

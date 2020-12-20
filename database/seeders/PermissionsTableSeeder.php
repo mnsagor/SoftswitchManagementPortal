@@ -566,6 +566,13 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 139,
                 'title' => 'profile_password_edit',
             ],
+            [
+                'id'    => 140,
+                'title' => 'job_request_authentication_reject',
+            ],[
+                'id'    => 141,
+                'title' => 'job_request_authentication_authenticate',
+            ],
         ];
 
         Permission::insert($permissions);
