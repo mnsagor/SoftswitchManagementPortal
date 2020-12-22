@@ -472,7 +472,7 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 116,
-                'title' => 'job_request_authenticatioin_access',
+                'title' => 'job_request_authentication_access',
             ],
             [
                 'id'    => 117,

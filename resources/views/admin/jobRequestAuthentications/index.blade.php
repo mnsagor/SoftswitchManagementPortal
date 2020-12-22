@@ -20,6 +20,9 @@
                                         {{ trans('cruds.networkType.fields.id') }}
                                     </th>
                                     <th>
+                                        &nbsp;{{"Action"}}
+                                    </th>
+                                    <th>
                                         {{ trans('cruds.jobRequest.fields.network_type') }}
                                     </th>
                                     <th>
@@ -40,15 +43,16 @@
                                     <th>
                                         {{ trans('cruds.jobRequest.fields.tid') }}
                                     </th>
+
                                     <th>
-                                        {{ trans('cruds.jobRequest.fields.requested_by') }}
-                                    </th>
-                                    <th>
-                                        &nbsp;{{"Action"}}
+                                    {{ trans('cruds.jobRequest.fields.requested_by') }}
                                     </th>
                                 </tr>
                                 <tr>
                                     <td>
+                                    </td>
+                                    <td>
+
                                     </td>
                                     <td>
 
@@ -103,8 +107,6 @@
                                             @endforeach
                                         </select>
                                     </td>
-                                    <td>
-                                    </td>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -123,6 +125,38 @@
                                                     $increment++;
                                                 @endphp
                                             @endif
+                                        </td>
+                                        <td>
+                                            @can('job_request_authentication_access')
+                                                <a class="btn btn-xs btn-primary"
+                                                   href="{{ route('admin.job-request-authentications.show', $jobRequest->id) }}">
+                                                    {{ trans('global.view') }}
+                                                </a>
+                                            @endcan
+                                            @can('job_request_authentication_authenticate')
+                                                <a class="btn btn-xs btn-success" href="{{ route('admin.job-requests.authenticate', $jobRequest->id) }}">
+                                                    {{ "Authenticate" }}
+                                                </a>
+                                            @endcan
+                                            @can('job_request_authentication_reject')
+                                                <form action="{{ route('admin.job-requests.reject', $jobRequest->id) }}"
+                                                      method="GET"
+                                                      onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
+                                                      style="display: inline-block;">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <input type="submit" class="btn btn-xs btn-warning"
+                                                           value="{{ "Reject" }}">
+                                                </form>
+                                            @endcan
+
+                                            {{--                                            @can('network_type_delete')--}}
+                                            {{--                                                <form action="{{ route('admin.network-types.destroy', $networkType->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">--}}
+                                            {{--                                                    <input type="hidden" name="_method" value="DELETE">--}}
+                                            {{--                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
+                                            {{--                                                    <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">--}}
+                                            {{--                                                </form>--}}
+                                            {{--                                            @endcan--}}
+
                                         </td>
                                         <td>
                                             {{$jobRequest->network_type->name ?? ''}}
@@ -145,41 +179,11 @@
                                         <td>
                                             {{ $jobRequest->tid ?? '' }}
                                         </td>
+
                                         <td>
                                             {{ $jobRequest->requested_by->name ?? '' }}
                                         </td>
-                                        <td>
-                                            @can('job_request_authenticatioin_access')
-                                                <a class="btn btn-xs btn-primary"
-                                                   href="{{ route('admin.job-request-authentications.show', $jobRequest->id) }}">
-                                                    {{ trans('global.view') }}
-                                                </a>
-                                            @endcan
-                                                @can('job_request_authentication_authenticate')
-                                                    <a class="btn btn-xs btn-success" href="{{ route('admin.job-requests.authenticate', $jobRequest->id) }}">
-                                                        {{ "Authenticate" }}
-                                                    </a>
-                                                @endcan
-                                            @can('job_request_authentication_reject')
-                                                <form action="{{ route('admin.job-requests.reject', $jobRequest->id) }}"
-                                                      method="GET"
-                                                      onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
-                                                      style="display: inline-block;">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <input type="submit" class="btn btn-xs btn-warning"
-                                                           value="{{ "Reject" }}">
-                                                </form>
-                                            @endcan
 
-{{--                                            @can('network_type_delete')--}}
-{{--                                                <form action="{{ route('admin.network-types.destroy', $networkType->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">--}}
-{{--                                                    <input type="hidden" name="_method" value="DELETE">--}}
-{{--                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
-{{--                                                    <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">--}}
-{{--                                                </form>--}}
-{{--                                            @endcan--}}
-
-                                        </td>
 
                                     </tr>
                                 @endforeach
