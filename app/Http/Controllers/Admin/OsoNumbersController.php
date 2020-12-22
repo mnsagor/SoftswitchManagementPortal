@@ -43,6 +43,7 @@ class OsoNumbersController extends Controller
                 $deleteGate    = 'oso_number_delete';
                 $crudRoutePart = 'oso-numbers';
 
+
                 return view('partials.datatablesActions', compact(
                     'viewGate',
                     'editGate',

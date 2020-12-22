@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Utills\NumberUtil;
 use App\Http\Utills\Scripts;
+use App\Models\CallSourceCode;
 use App\Models\JobRequest;
 use App\Models\NetworkType;
 use App\Models\User;
@@ -19,7 +20,7 @@ class JobRequestAuthenticationController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('job_request_authenticatioin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('job_request_authentication_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 //
         $zoneIds = array();
         $userIds = array();
@@ -74,33 +75,32 @@ class JobRequestAuthenticationController extends Controller
 
     public function authenticate($jobRequestId)
     {
-//        load the logged in user
+//        dd($jobRequestId);
         $user = Auth::user();
 
 //        load the job request data information
-        $jobRequestInfo = \App\JobRequest::find($jobRequestId);
-//        dd($jobRequestInfo->all());
-        $jobRequestInfo->load('requestedBy','approvedBy','verifiedBy');
-//        $jobRequestInfo->load('requestedBy','approvedBy','verifiedBy');
+        $jobRequestInfo = JobRequest::find($jobRequestId);
+        $jobRequestInfo->load('network_type', 'job_type', 'request_type','request_status','requested_by','approved_by','verified_by');
 
-//        Set the request status as authenticated
-//        'REQUEST_STATUS_AUTHENTICATE'    => 1,
-//        set the verification time and verified by user information
-        $jobRequestInfo->request_status = config('global.REQUEST_STATUS_AUTHENTICATE');
-        $jobRequestInfo->verified_by = $user->id;
-        $jobRequestInfo->verification_time = Carbon::now()->toDateTimeString();
 
-////        Mocker Start
-//        $jobRequestInfo->phone_number = "58154573";
-//        $jobRequestInfo->agw_ip = "10.1.6.4";
-//        $jobRequestInfo->tid = "1373";
-////        Mocker End
+        $jobRequestInfo->request_status_id = config('global.REQUEST_STATUS_AUTHENTICATE');
+        $jobRequestInfo->verified_by_id = $user->id;
+        $jobRequestInfo->approval_time = Carbon::now()->format('d-m-Y H:i:s');
+
+        $callSourceCode = CallSourceCode::find($jobRequestInfo->call_source_code_id);
+        $callSourceCode->load('callSourceCodeUsers','zone');
+
+        $moduleId = $callSourceCode->code + 21;
+
+
+
 
 //        Switch statement for generating script
-        switch ($jobRequestInfo->request_type) {
+        switch ($jobRequestInfo->request_type_id) {
             case config('global.NEW_CONNECTION_REQUEST'):
-                $jobRequestInfo->script = Scripts::getNewConnectionScript($jobRequestInfo->phone_number,
-                    $jobRequestInfo->agw_ip, $jobRequestInfo->tid, '1', '22', 1);
+
+                $jobRequestInfo->script = Scripts::getNewConnectionScript($jobRequestInfo->number,
+                    $jobRequestInfo->agw_ip, $jobRequestInfo->tid, $moduleId, $callSourceCode->code);
 //                dd($jobRequestInfo);
                 break;
 
@@ -215,11 +215,12 @@ class JobRequestAuthenticationController extends Controller
             default:
                 break;
         }
+//        dd($jobRequestInfo);
 
 //        Save the job request information
         $jobRequestInfo->save();
 
-        return redirect()->route('admin.job-request-authentication.index')->with('success', 'Successfully Authenticate the job request.');
+        return redirect()->route('admin.job-request-authentications.index')->with('success', 'Successfully Authenticate the job request.');
 
 
 

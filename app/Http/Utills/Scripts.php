@@ -14,7 +14,7 @@ class Scripts
     public $moduleId;
     public $csc;
 
-    public static function getNewConnectionScript($phoneNumber,$agwIp,$tid,$zoneId,$moduleId,$csc){
+    public static function getNewConnectionScript($phoneNumber,$agwIp,$tid,$moduleId,$csc){
 
 
         $newConnectionScript = "ADD VSBR: D=K'".$phoneNumber.", LP=0, DID=ESL, MN=".$moduleId.", EID=\"".$agwIp.
