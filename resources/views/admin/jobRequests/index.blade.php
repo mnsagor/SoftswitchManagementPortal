@@ -78,9 +78,9 @@
                                 <th>
                                     {{ trans('cruds.jobRequest.fields.rejection_time') }}
                                 </th>
-                                <th>
-                                    {{ trans('cruds.jobRequest.fields.script') }}
-                                </th>
+{{--                                <th>--}}
+{{--                                    {{ trans('cruds.jobRequest.fields.script') }}--}}
+{{--                                </th>--}}
                                 <th>
                                     {{ trans('cruds.jobRequest.fields.is_force_request') }}
                                 </th>
@@ -187,9 +187,9 @@
                                 <td>
                                     <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                                 </td>
-                                <td>
-                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                </td>
+{{--                                <td>--}}
+{{--                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">--}}
+{{--                                </td>--}}
                                 <td>
                                     <select class="search" strict="true">
                                         <option value>{{ trans('global.all') }}</option>
@@ -273,7 +273,13 @@
 { data: 'approval_time', name: 'approval_time' },
 { data: 'rejected_by_name', name: 'rejected_by.name' },
 { data: 'rejection_time', name: 'rejection_time' },
-{ data: 'script', name: 'script' },
+// { data: 'script', name: 'script' },
+
+                {{--<button type="button" class="btn btn-outline-dark" data-toggle="collapse" data-target="#{{ $jobRequest->id }}"></button>--}}
+                {{--<div id="{{$jobRequest->id}}" class="collapse">--}}
+                {{--{{ $jobRequest->script ?? '' }}--}}
+                {{--</div>--}}
+
 { data: 'is_force_request', name: 'is_force_request' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],

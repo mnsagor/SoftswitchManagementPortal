@@ -13,6 +13,6 @@ class MyJobRequestsController extends Controller
     {
         abort_if(Gate::denies('my_job_request_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.myJobRequests.index');
+        return view('admin.jobRequestManagement.myJobRequests.index');
     }
 }

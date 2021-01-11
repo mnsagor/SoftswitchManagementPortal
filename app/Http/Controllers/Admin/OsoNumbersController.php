@@ -292,10 +292,10 @@ class OsoNumbersController extends Controller
             ]);
         }
 
-//        check the empty then add
         if ($request->request_type_id == null){
             $request->request->add(['request_type_id' => config('global.NEW_CONNECTION_REQUEST')]);
         }
+
         $request->request->add([
             'network_type_id'           => $network_type_id->id,
             'job_type_id'               => $job_type_id->id,
