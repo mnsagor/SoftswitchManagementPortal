@@ -177,6 +177,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('job-request-authentications', 'JobRequestAuthenticationController');
 
     Route::get('job-request-authentication/{id}/authenticate','JobRequestAuthenticationController@authenticate')->name('job-requests.authenticate');
+    Route::get('job-request-authentication/{id}/approve','JobRequestAuthenticationController@approve')->name('job-requests.approve');
     Route::get('job-request-authentication/{id}/reject','JobRequestAuthenticationController@reject')->name('job-requests.reject');
 
     // My Job Requests

@@ -10,7 +10,7 @@
                 </div>
                 <div class="panel-body">
                     <p>
-                        Text coming soon...
+                        Text coming soon...ffdsfsdfsdf
                     </p>
                 </div>
             </div>

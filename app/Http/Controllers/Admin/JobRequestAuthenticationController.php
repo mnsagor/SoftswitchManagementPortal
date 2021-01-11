@@ -85,7 +85,7 @@ class JobRequestAuthenticationController extends Controller
 
         $jobRequestInfo->request_status_id = config('global.REQUEST_STATUS_AUTHENTICATE');
         $jobRequestInfo->verified_by_id = $user->id;
-        $jobRequestInfo->approval_time = Carbon::now()->format('d-m-Y H:i:s');
+        $jobRequestInfo->verification_time = Carbon::now()->format('d-m-Y H:i:s');
 
         $callSourceCode = CallSourceCode::find($jobRequestInfo->call_source_code_id);
         $callSourceCode->load('callSourceCodeUsers','zone');
@@ -229,26 +229,30 @@ class JobRequestAuthenticationController extends Controller
 
     public function approve($jobRequestId)
     {
+        abort_if(Gate::denies('job_request_authentication_approve'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 //        load the logged in user
         $user = Auth::user();
 
 //        load the job request data information
-        $jobRequestInfo = \App\JobRequest::find($jobRequestId);
-//        dd($jobRequestInfo->all());
-        $jobRequestInfo->load('requestedBy','approvedBy','verifiedBy');
+        $jobRequestInfo = JobRequest::find($jobRequestId);
+        $jobRequestInfo->load('network_type', 'job_type', 'request_type','request_status','requested_by','approved_by','verified_by');
 //        dd($jobRequestInfo);
+
         //              set the verification time and verified by user information
-        $jobRequestInfo->request_status = config('global.REQUEST_STATUS_APPROVED');
-        $jobRequestInfo->approved_by = $user->id;
-        $jobRequestInfo->approval_time = Carbon::now()->toDateTimeString();
+        $jobRequestInfo->request_status_id = config('global.REQUEST_STATUS_APPROVED');
+        $jobRequestInfo->approved_by_id = $user->id;
+        $jobRequestInfo->approval_time = Carbon::now()->format('d-m-Y H:i:s');
+//        dd($jobRequestInfo);
 
-        $numberProfile = NumberUtil::getNumberProfile($jobRequestInfo->phone_number);
+        $numberProfile = NumberUtil::getNumberProfile($jobRequestInfo->number,$jobRequestInfo->network_type_id);
+//        dd($numberProfile);
 
 
-        switch ($jobRequestInfo->request_type) {
+        switch ($jobRequestInfo->request_type_id) {
             case config('global.NEW_CONNECTION_REQUEST'):
-                $numberProfile->numberProfiles->active_number_status = config('global.ACTIVE');
-                $numberProfile->numberProfiles->is_queued = false;
+                $numberProfile->numberOsoNumberProfiles[0]->is_active = config('global.ACTIVE_ID');
+                $numberProfile->numberOsoNumberProfiles[0]->is_queued = false;
+//                dd($numberProfile);
                 $numberProfile->push();
 
                 break;
@@ -355,7 +359,8 @@ class JobRequestAuthenticationController extends Controller
 //        Save the job request information
         $jobRequestInfo->save();
 
-        return redirect()->route('admin.scripts.171kl.authenticated-list')->with('success', 'Successfully Approved the job request.');
+//        return redirect()->route('admin.scripts.171kl.authenticated-list')->with('success', 'Successfully Approved the job request.');
+        return redirect()->route('admin.core-job-osos.index')->with('success', 'Successfully Approved the job request.');
 
 
 
@@ -363,36 +368,42 @@ class JobRequestAuthenticationController extends Controller
 
     public function reject($jobRequestId)
     {
+        abort_if(Gate::denies('job_request_authentication_reject'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
 //        dd($jobRequestId);
 //        load the logged in user
         $user = Auth::user();
 
 //        load the job request data information
         $jobRequestInfo = JobRequest::find($jobRequestId);
-//        dd($jobRequestInfo->all());
-        $jobRequestInfo->load('requestedBy','approvedBy','verifiedBy');
+        $jobRequestInfo->load('network_type', 'job_type', 'request_type','request_status','requested_by','approved_by','verified_by');
+//        dd($jobRequestInfo);
 
-        //        Set the request status as authenticated
-//        'REQUEST_STATUS_REJECT'    => 3,
+
 //        set the verification time and verified by user information
-        $jobRequestInfo->request_status = config('global.REQUEST_STATUS_REJECT');
-        $jobRequestInfo->verified_by = $user->id;
-        $jobRequestInfo->verification_time = Carbon::now()->toDateTimeString();
+        $jobRequestInfo->request_status_id = config('global.REQUEST_STATUS_REJECT');
+        $jobRequestInfo->rejected_by_id = $user->id;
+        $jobRequestInfo->rejection_time = Carbon::now()->format('d-m-Y H:i:s');
+//        dd($jobRequestInfo);
 
 //        Save the job request information
         $jobRequestInfo->save();
 
-        $numberProfile = NumberUtil::getNumberProfile($jobRequestInfo->phone_number);
+        $numberProfile = NumberUtil::getNumberProfile($jobRequestInfo->number,$jobRequestInfo->network_type_id);
+//        dd($numberProfile);
 
-        if($jobRequestInfo->request_type == config('global.PERMANENT_CLOSE_REQUEST')){
-            $numberProfile->numberProfiles->request_controller = true;
+        if($jobRequestInfo->request_type_id == config('global.PERMANENT_CLOSE_REQUEST')){
+            $numberProfile->numberOsoNumberProfiles[0]->request_controller = true;
         }
 
-        $numberProfile->numberProfiles->is_queued = false;
+        $numberProfile->numberOsoNumberProfiles[0]->request_controller = false;
+        $numberProfile->numberOsoNumberProfiles[0]->is_queued = false;
+//        dd($numberProfile);
         $numberProfile->push();
 
 //        return redirect()->route('admin.scripts.171kl.authenticated-list')->with('success', 'Successfully Reject the job request.');
-        return redirect()->route('admin.job-request-authentication.index')->with('success', 'Successfully Reject the job request.');
+//        return redirect()->route('admin.core-job-osos.index')->with('success', 'Successfully Reject the job request.');
+        return redirect()->back()->with('success','Successfully Reject the job request.');
     }
 
 

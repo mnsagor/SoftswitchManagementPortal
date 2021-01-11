@@ -569,9 +569,14 @@ class PermissionsTableSeeder extends Seeder
             [
                 'id'    => 140,
                 'title' => 'job_request_authentication_reject',
-            ],[
+            ],
+            [
                 'id'    => 141,
                 'title' => 'job_request_authentication_authenticate',
+            ],
+            [
+                'id'    => 142,
+                'title' => 'job_request_authentication_approve',
             ],
         ];
 
