@@ -22,7 +22,6 @@ class CoreJobOsoController extends Controller
 
         $jobRequests->load('network_type', 'job_type', 'request_type','request_status','requested_by','approved_by','verified_by');
 
-//        return view('admin.coreJobOsos.index');
         return view('admin.scripts.coreJob171klNetwork.index',compact('jobRequests'));
     }
 }

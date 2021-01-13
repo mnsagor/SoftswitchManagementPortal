@@ -65,6 +65,7 @@ trait CsvImportTrait
 
     public function parseCsvImport(Request $request)
     {
+//        dd($request);
         $file = $request->file('csv_file');
         $request->validate([
             'csv_file' => 'mimes:csv,txt',

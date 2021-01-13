@@ -182,6 +182,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // My Job Requests
     Route::resource('my-job-requests', 'MyJobRequestsController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+    Route::resource('my-job-requests', 'MyJobRequestsController');
 
     // Olts
     Route::delete('olts/destroy', 'OltController@massDestroy')->name('olts.massDestroy');

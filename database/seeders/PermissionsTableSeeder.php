@@ -578,6 +578,10 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 142,
                 'title' => 'job_request_authentication_approve',
             ],
+            [
+                'id'    => 143,
+                'title' => 'my_job_request_show',
+            ],
         ];
 
         Permission::insert($permissions);
