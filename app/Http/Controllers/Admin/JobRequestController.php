@@ -17,6 +17,7 @@ use App\Models\RequestType;
 use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
@@ -28,9 +29,14 @@ class JobRequestController extends Controller
     public function index(Request $request)
     {
         abort_if(Gate::denies('job_request_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $users =User::find(Auth::id());
+//        dd($users->id);
 
         if ($request->ajax()) {
-            $query = JobRequest::with(['network_type', 'job_type', 'request_type', 'request_status', 'call_source_code', 'requested_by', 'verified_by', 'approved_by', 'rejected_by'])->select(sprintf('%s.*', (new JobRequest)->table));
+            $query = JobRequest::with(['network_type', 'job_type', 'request_type', 'request_status', 'call_source_code', 'requested_by', 'verified_by', 'approved_by', 'rejected_by'])
+                ->select(sprintf('%s.*', (new JobRequest)->table));
+//            $query = JobRequest::with(['network_type', 'job_type', 'request_type', 'request_status', 'call_source_code', 'requested_by', 'verified_by', 'approved_by', 'rejected_by'])
+//                ->select(sprintf('%s.*', (new JobRequest)->table))->where('requested_by_id',$users->id);
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');

@@ -31,6 +31,7 @@
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" name="header" checked> @lang('global.app_file_contains_header_row')
+{{--                                            <input type="checkbox" name="header2" checked> @lang('global.app_file_contains_header_row')--}}
                                         </label>
                                     </div>
                                 </div>

@@ -1,28 +1,28 @@
 @extends('layouts.admin')
 @section('content')
-<div class="content">
-    @can('job_request_create')
-        <div style="margin-bottom: 10px;" class="row">
-            <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.job-requests.create') }}">
-                    {{ trans('global.add') }} {{ trans('cruds.jobRequest.title_singular') }}
-                </a>
-                <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
-                    {{ trans('global.app_csvImport') }}
-                </button>
-                @include('csvImport.modal', ['model' => 'JobRequest', 'route' => 'admin.job-requests.parseCsvImport'])
-            </div>
-        </div>
-    @endcan
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    {{ trans('cruds.jobRequest.title_singular') }} {{ trans('global.list') }}
+    <div class="content">
+        @can('job_request_create')
+            <div style="margin-bottom: 10px;" class="row">
+                <div class="col-lg-12">
+                    <a class="btn btn-success" href="{{ route('admin.job-requests.create') }}">
+                        {{ trans('global.add') }} {{ trans('cruds.jobRequest.title_singular') }}
+                    </a>
+                    <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                        {{ trans('global.app_csvImport') }}
+                    </button>
+                    @include('csvImport.modal', ['model' => 'JobRequest', 'route' => 'admin.job-requests.parseCsvImport'])
                 </div>
-                <div class="panel-body">
-                    <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-JobRequest">
-                        <thead>
+            </div>
+        @endcan
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {{ trans('cruds.jobRequest.title_singular') }} {{ trans('global.list') }}
+                    </div>
+                    <div class="panel-body">
+                        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-JobRequest">
+                            <thead>
                             <tr>
                                 <th width="10">
 
@@ -78,9 +78,9 @@
                                 <th>
                                     {{ trans('cruds.jobRequest.fields.rejection_time') }}
                                 </th>
-{{--                                <th>--}}
-{{--                                    {{ trans('cruds.jobRequest.fields.script') }}--}}
-{{--                                </th>--}}
+                                {{--                                <th>--}}
+                                {{--                                    {{ trans('cruds.jobRequest.fields.script') }}--}}
+                                {{--                                </th>--}}
                                 <th>
                                     {{ trans('cruds.jobRequest.fields.is_force_request') }}
                                 </th>
@@ -187,9 +187,9 @@
                                 <td>
                                     <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                                 </td>
-{{--                                <td>--}}
-{{--                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">--}}
-{{--                                </td>--}}
+                                {{--                                <td>--}}
+                                {{--                                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">--}}
+                                {{--                                </td>--}}
                                 <td>
                                     <select class="search" strict="true">
                                         <option value>{{ trans('global.all') }}</option>
@@ -201,16 +201,16 @@
                                 <td>
                                 </td>
                             </tr>
-                        </thead>
-                    </table>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
+
+
+
             </div>
-
-
-
         </div>
     </div>
-</div>
 @endsection
 @section('scripts')
 @parent
