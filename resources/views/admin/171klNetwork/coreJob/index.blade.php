@@ -18,7 +18,7 @@
                     </a>
                 </div>
             </div>
-            {{--        ReConnection Request--}}
+{{--                    ReConnection Request--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="{{route('admin.171klnetwork.corejob.request', config('global.RE_CONNECTION_REQUEST'))}}">
@@ -34,7 +34,7 @@
                     </a>
                 </div>
             </div>
-            {{--        Casual Connection--}}
+{{--            --}}{{--        Casual Connection--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="{{route('admin.171klnetwork.corejob.request', config('global.CASUAL_CONNECTION_REQUEST'))}}">
@@ -51,7 +51,7 @@
 
                 </div>
             </div>
-            {{--        Casual Disconnection--}}
+{{--            --}}{{--        Casual Disconnection--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="{{route('admin.171klnetwork.corejob.request', config('global.CASUAL_DISCONNECTION_REQUEST'))}}">
@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            {{--            Restoration Request--}}
+{{--            --}}{{--            Restoration Request--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="{{route('admin.171klnetwork.corejob.request', config('global.RESTORATION_REQUEST'))}}">
@@ -86,7 +86,7 @@
             </div>
 
 
-            {{--        Temporary Disconnection request--}}
+{{--            --}}{{--        Temporary Disconnection request--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="{{route('admin.171klnetwork.corejob.request', config('global.TEMPORARY_DISCONNECTION_REQUEST'))}}">
@@ -102,7 +102,7 @@
                     </a>
                 </div>
             </div>
-            {{--        Permanent Close Request--}}
+{{--            --}}{{--        Permanent Close Request--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="{{route('admin.171klnetwork.corejob.request', config('global.PERMANENT_CLOSE_REQUEST'))}}">
@@ -118,7 +118,7 @@
                     </a>
                 </div>
             </div>
-            {{--        ISD Facilities Connection Request--}}
+{{--            --}}{{--        ISD Facilities Connection Request--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="">
@@ -135,7 +135,7 @@
 
                 </div>
             </div>
-            {{--        NWD Facilities --}}
+{{--            --}}{{--        NWD Facilities --}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="">
@@ -152,11 +152,10 @@
                 </div>
             </div>
 
-            {{--        Non NWD Facilities --}}
+{{--            --}}{{--        Non NWD Facilities --}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="">
-                        {{--                        <div class="cat__core__step cat__core__step--primary">--}}
                         <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-phone-hang-up"><!-- --></i>
@@ -170,10 +169,11 @@
                 </div>
             </div>
 
+{{--            Centrex--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="">
-                        {{--                        <div class="cat__core__step cat__core__step--primary">--}}
+{{--                                                <div class="cat__core__step cat__core__step--primary">--}}
                         <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-share"><!-- --></i>
@@ -186,11 +186,11 @@
                     </a>
                 </div>
             </div>
-            {{--        PBX Connection--}}
+{{--            --}}{{--        PBX Connection--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="">
-                        {{--                        <div class="cat__core__step cat__core__step--danger">--}}
+{{--                                                <div class="cat__core__step cat__core__step--danger">--}}
                         <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-enter"><!-- --></i>
@@ -204,11 +204,11 @@
 
                 </div>
             </div>
-            {{-- Hotline--}}
+{{--            --}}{{-- Hotline--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="">
-                        {{--                        <div class="cat__core__step cat__core__step--default">--}}
+{{--                                                <div class="cat__core__step cat__core__step--default">--}}
                         <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-price-tags"><!-- --></i>
@@ -223,11 +223,11 @@
             </div>
 
 
-            {{--            Outgoing Call Baring Request--}}
+{{--            --}}{{--            Outgoing Call Baring Request--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="">
-                        {{--                        <div class="cat__core__step cat__core__step--primary">--}}
+{{--                                                <div class="cat__core__step cat__core__step--primary">--}}
                         <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-phone-hang-up"><!-- --></i>
@@ -241,11 +241,11 @@
                 </div>
             </div>
 
-            {{--        Incoming Call Baring request--}}
+{{--            --}}{{--        Incoming Call Baring request--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
-                    {{--                    <a href="{{route('admin.171klnetwork.corejob.request', config('global.NEW_CONNECTION_REQUEST'))}}">--}}
-                    {{--                        <div class="cat__core__step cat__core__step--success">--}}
+                                        <a href="{{route('admin.171klnetwork.corejob.request', config('global.NEW_CONNECTION_REQUEST'))}}">
+{{--                                            <div class="cat__core__step cat__core__step--success">--}}
                     <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-phone"><!-- --></i>
@@ -258,7 +258,7 @@
                     </a>
                 </div>
             </div>
-            {{--        Number Change Request--}}
+{{--            --}}{{--        Number Change Request--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="{{route('admin.171klnetwork.corejob.request', config('global.NUMBER_CHANGE_REQUEST'))}}">
@@ -274,7 +274,7 @@
                     </a>
                 </div>
             </div>
-            {{--        Closing for Shifting Connection--}}
+{{--            --}}{{--        Closing for Shifting Connection--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="{{route('admin.171klnetwork.corejob.request', config('global.CLOSING_FOR_SHIFTING_REQUEST'))}}">
@@ -291,11 +291,11 @@
 
                 </div>
             </div>
-            {{--        Green Number--}}
+{{--            --}}{{--        Green Number--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="">
-                        {{--                        <div class="cat__core__step cat__core__step--default">--}}
+{{--                                                <div class="cat__core__step cat__core__step--default">--}}
                         <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-price-tags"><!-- --></i>
@@ -309,11 +309,11 @@
                 </div>
             </div>
 
-            {{--            Call Forwarding Request--}}
+{{--            --}}{{--            Call Forwarding Request--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="">
-                        {{--                        <div class="cat__core__step cat__core__step--primary">--}}
+{{--                                                <div class="cat__core__step cat__core__step--primary">--}}
                         <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-phone-hang-up"><!-- --></i>
@@ -327,11 +327,11 @@
                 </div>
             </div>
 
-            {{--        Call Waiting request--}}
+{{--            --}}{{--        Call Waiting request--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="{{route('admin.171klnetwork.corejob.request', config('global.NEW_CONNECTION_REQUEST'))}}">
-                        {{--                        <div class="cat__core__step cat__core__step--success">--}}
+{{--                                                <div class="cat__core__step cat__core__step--success">--}}
                         <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-phone"><!-- --></i>
@@ -344,11 +344,11 @@
                     </a>
                 </div>
             </div>
-            {{--        Do not Disturb Request--}}
+{{--            --}}{{--        Do not Disturb Request--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="">
-                        {{--                        <div class="cat__core__step cat__core__step--primary">--}}
+{{--                                                <div class="cat__core__step cat__core__step--primary">--}}
                         <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-share"><!-- --></i>
@@ -361,11 +361,11 @@
                     </a>
                 </div>
             </div>
-            {{--        Call Conference Connection--}}
+{{--            --}}{{--        Call Conference Connection--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="">
-                        {{--                        <div class="cat__core__step cat__core__step--danger">--}}
+{{--                                                <div class="cat__core__step cat__core__step--danger">--}}
                         <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-enter"><!-- --></i>
@@ -379,11 +379,11 @@
 
                 </div>
             </div>
-            {{--        B/W List --}}
+{{--            --}}{{--        B/W List --}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="">
-                        {{--                        <div class="cat__core__step cat__core__step--default">--}}
+{{--                                                <div class="cat__core__step cat__core__step--default">--}}
                         <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-price-tags"><!-- --></i>
@@ -397,11 +397,11 @@
                 </div>
             </div>
 
-            {{--            Absentee Subscriber Request--}}
+{{--            --}}{{--            Absentee Subscriber Request--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="">
-                        {{--                        <div class="cat__core__step cat__core__step--primary">--}}
+{{--                                                <div class="cat__core__step cat__core__step--primary">--}}
                         <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-phone-hang-up"><!-- --></i>
@@ -415,11 +415,11 @@
                 </div>
             </div>
 
-            {{--        Malicious Call Trace request--}}
+{{--            --}}{{--        Malicious Call Trace request--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="{{route('admin.171klnetwork.corejob.request', config('global.NEW_CONNECTION_REQUEST'))}}">
-                        {{--                        <div class="cat__core__step cat__core__step--success">--}}
+{{--                                                <div class="cat__core__step cat__core__step--success">--}}
                         <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-phone"><!-- --></i>
@@ -432,11 +432,12 @@
                     </a>
                 </div>
             </div>
-            {{--        Conversion Request--}}
+{{--            --}}{{--        Conversion Request--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="{{route('admin.171klnetwork.corejob.request', config('global.CONVERSION_REQUEST'))}}">
-                        <div class="cat__core__step cat__core__step--primary">
+{{--                        <div class="cat__core__step cat__core__step--primary">--}}
+                        <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-share"><!-- --></i>
                 </span>
@@ -448,11 +449,11 @@
                     </a>
                 </div>
             </div>
-            {{--        EISD Connection--}}
+{{--            --}}{{--        EISD Connection--}}
             <div class="col-lg-3">
                 <div class="cat__core__widget">
                     <a href="">
-                        {{--                        <div class="cat__core__step cat__core__step--danger">--}}
+{{--                                                <div class="cat__core__step cat__core__step--danger">--}}
                         <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-enter"><!-- --></i>
@@ -466,25 +467,26 @@
 
                 </div>
             </div>
-            {{--        uNLOCK Disconnection--}}
-            <div class="col-lg-3">
-                <div class="cat__core__widget">
-                    <a href="">
-                        {{--                        <div class="cat__core__step cat__core__step--default">--}}
-                        <div class="cat__core__step cat__core__step--active">
+{{--            --}}{{--        uNLOCK Disconnection--}}
+                <div class="col-lg-3">
+                    <div class="cat__core__widget">
+                        <a href="">
+                            <div class="cat__core__step cat__core__step--active">
                 <span class="cat__core__step__digit">
                     <i class="icmn-price-tags"><!-- --></i>
                 </span>
-                            <div class="cat__core__step__desc">
-                                <span class="cat__core__step__title">Unlock</span>
-                                <p>Send Unlock Request</p>
+                                <div class="cat__core__step__desc">
+                                    <span class="cat__core__step__title">Unlock</span>
+                                    <p>Send Unlock Request</p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </div>
 
 
         </div>
+    </div>
     </div>
 @endsection

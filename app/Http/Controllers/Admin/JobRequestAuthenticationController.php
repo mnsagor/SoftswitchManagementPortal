@@ -8,6 +8,8 @@ use App\Http\Utills\Scripts;
 use App\Models\CallSourceCode;
 use App\Models\JobRequest;
 use App\Models\NetworkType;
+use App\Models\OsoNumber;
+use App\Models\TndpImsNumber;
 use App\Models\User;
 use Carbon\Carbon;
 use Gate;
@@ -93,8 +95,6 @@ class JobRequestAuthenticationController extends Controller
         $moduleId = $callSourceCode->code + 21;
 
 
-
-
 //        Switch statement for generating script
         switch ($jobRequestInfo->request_type_id) {
             case config('global.NEW_CONNECTION_REQUEST'):
@@ -105,31 +105,31 @@ class JobRequestAuthenticationController extends Controller
                 break;
 
             case config('global.RE_CONNECTION_REQUEST'):
-                $jobRequestInfo->script = Scripts::getReConnectionScript($jobRequestInfo->phone_number,
+                $jobRequestInfo->script = Scripts::getReConnectionScript($jobRequestInfo->number,
                     $jobRequestInfo->agw_ip, $jobRequestInfo->tid, '1', '22', 1);
                 break;
             case config('global.CASUAL_CONNECTION_REQUEST'):
-                $jobRequestInfo->script = Scripts::getCasualConnectionScript($jobRequestInfo->phone_number,
+                $jobRequestInfo->script = Scripts::getCasualConnectionScript($jobRequestInfo->number,
                     $jobRequestInfo->agw_ip, $jobRequestInfo->tid, '1', '22', 1);
                 break;
 
             case config('global.CASUAL_DISCONNECTION_REQUEST'):
-                $jobRequestInfo->script = Scripts::getCasualDisconnectionScript($jobRequestInfo->phone_number);
+                $jobRequestInfo->script = Scripts::getCasualDisconnectionScript($jobRequestInfo->number);
                 break;
             case config('global.RESTORATION_REQUEST')  :
-                $jobRequestInfo->script = Scripts::getRestorationScript($jobRequestInfo->phone_number);
+                $jobRequestInfo->script = Scripts::getRestorationScript($jobRequestInfo->number);
                 break;
 
             case config('global.TEMPORARY_DISCONNECTION_REQUEST')  :
-                $jobRequestInfo->script = Scripts::getTemporaryDisconnectionScript($jobRequestInfo->phone_number);
+                $jobRequestInfo->script = Scripts::getTemporaryDisconnectionScript($jobRequestInfo->number);
                 break;
 
             case config('global.PERMANENT_CLOSE_REQUEST')  :
-                $jobRequestInfo->script = Scripts::getPermanentCloseScript($jobRequestInfo->phone_number);
+                $jobRequestInfo->script = Scripts::getPermanentCloseScript($jobRequestInfo->number);
                 break;
 
             case config('global.ISD_FACILITIES_REQUEST')  :
-                $jobRequestInfo->script = Scripts::getIsdFacilitiesScript($jobRequestInfo->phone_number);
+                $jobRequestInfo->script = Scripts::getIsdFacilitiesScript($jobRequestInfo->number);
                 break;
 
             case config('global.NWD_FACILITIES_REQUEST')  :
@@ -253,7 +253,7 @@ class JobRequestAuthenticationController extends Controller
                 $numberProfile->numberOsoNumberProfiles[0]->is_active = config('global.ACTIVE_ID');
                 $numberProfile->numberOsoNumberProfiles[0]->is_queued = false;
 //                dd($numberProfile);
-                $numberProfile->push();
+
 
                 break;
 
@@ -267,26 +267,23 @@ class JobRequestAuthenticationController extends Controller
             case config('global.CASUAL_DISCONNECTION_REQUEST'):
                 break;
             case config('global.RESTORATION_REQUEST')  :
-                $numberProfile->numberProfiles->td_status = false;
-                $numberProfile->numberProfiles->is_queued = false;
-                $numberProfile->push();
+                $numberProfile->numberOsoNumberProfiles[0]->td_status = false;
+                $numberProfile->numberOsoNumberProfiles[0]->is_queued = false;
                 break;
 
             case config('global.TEMPORARY_DISCONNECTION_REQUEST')  :
-                $numberProfile->numberProfiles->td_status = true;
-                $numberProfile->numberProfiles->is_queued = false;
-                $numberProfile->push();
+                $numberProfile->numberOsoNumberProfiles[0]->is_td = true;
+                $numberProfile->numberOsoNumberProfiles[0]->is_queued = false;
                 break;
 
             case config('global.PERMANENT_CLOSE_REQUEST')  :
-                $numberProfile->numberProfiles->is_queued = false;
-                $numberProfile->numberProfiles->active_number_status = config('global.INACTIVE');
-                $numberProfile->numberProfiles->td_status = false;
-                $numberProfile->numberProfiles->isd_status = false;
-                $numberProfile->numberProfiles->eisd_status = false;
-                $numberProfile->numberProfiles->pbx_status = false;
+                $numberProfile->numberOsoNumberProfiles[0]->is_queued = false;
+                $numberProfile->numberOsoNumberProfiles[0]->active_number_status = config('global.INACTIVE');
+                $numberProfile->numberOsoNumberProfiles[0]->td_status = false;
+                $numberProfile->numberOsoNumberProfiles[0]->isd_status = false;
+                $numberProfile->numberOsoNumberProfiles[0]->eisd_status = false;
+                $numberProfile->numberOsoNumberProfiles[0]->pbx_status = false;
 
-                $numberProfile->push();
 
 
                 break;
@@ -357,7 +354,9 @@ class JobRequestAuthenticationController extends Controller
         }
 
 //        Save the job request information
+//        dd($jobRequestInfo);
         $jobRequestInfo->save();
+        $numberProfile->push();
 
 //        return redirect()->route('admin.scripts.171kl.authenticated-list')->with('success', 'Successfully Approved the job request.');
         return redirect()->route('admin.core-job-osos.index')->with('success', 'Successfully Approved the job request.');
@@ -379,30 +378,36 @@ class JobRequestAuthenticationController extends Controller
         $jobRequestInfo->load('network_type', 'job_type', 'request_type','request_status','requested_by','approved_by','verified_by');
 //        dd($jobRequestInfo);
 
-
 //        set the verification time and verified by user information
         $jobRequestInfo->request_status_id = config('global.REQUEST_STATUS_REJECT');
         $jobRequestInfo->rejected_by_id = $user->id;
         $jobRequestInfo->rejection_time = Carbon::now()->format('d-m-Y H:i:s');
 //        dd($jobRequestInfo);
 
+        $numberProfile = NumberUtil::getNumberProfile($jobRequestInfo->number,$jobRequestInfo->network_type_id);
+//        dd($numberProfile);
+        if($jobRequestInfo->network_type->id == config('global.171KL_NETWORK_ID')){
+            if($jobRequestInfo->request_type_id == config('global.NEW_CONNECTION_REQUEST')){
+                $numberProfile->numberOsoNumberProfiles[0]->request_controller = false;
+                $numberProfile->numberOsoNumberProfiles[0]->is_queued = false;
+            }elseif($jobRequestInfo->request_type_id == config('global.PERMANENT_CLOSE_REQUEST')){
+                $numberProfile->numberOsoNumberProfiles[0]->request_controller = true;
+                $numberProfile->numberOsoNumberProfiles[0]->is_queued = false;
+            }else{
+                $numberProfile->numberOsoNumberProfiles[0]->is_queued = false;
+            }
+        }
+        elseif($jobRequestInfo->network_type->id == config('global.TNDP_IMS_NETWORK_ID')){
+        }
+
+
+
+//        dd($numberProfile);
 //        Save the job request information
         $jobRequestInfo->save();
 
-        $numberProfile = NumberUtil::getNumberProfile($jobRequestInfo->number,$jobRequestInfo->network_type_id);
-//        dd($numberProfile);
-
-        if($jobRequestInfo->request_type_id == config('global.PERMANENT_CLOSE_REQUEST')){
-            $numberProfile->numberOsoNumberProfiles[0]->request_controller = true;
-        }
-
-        $numberProfile->numberOsoNumberProfiles[0]->request_controller = false;
-        $numberProfile->numberOsoNumberProfiles[0]->is_queued = false;
-//        dd($numberProfile);
         $numberProfile->push();
 
-//        return redirect()->route('admin.scripts.171kl.authenticated-list')->with('success', 'Successfully Reject the job request.');
-//        return redirect()->route('admin.core-job-osos.index')->with('success', 'Successfully Reject the job request.');
         return redirect()->back()->with('success','Successfully Reject the job request.');
     }
 

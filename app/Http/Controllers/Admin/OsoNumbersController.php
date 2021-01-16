@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Requests\MassDestroyOsoNumberRequest;
 use App\Http\Requests\Store171klCoreJobNewConnectionRequest;
+use App\Http\Requests\Store171klCoreJobTdRequest;
 use App\Http\Requests\StoreOsoNumberRequest;
 use App\Http\Requests\UpdateOsoNumberRequest;
 use App\Http\Utills\NumberUtil;
@@ -168,6 +169,7 @@ class OsoNumbersController extends Controller
 
 //                    if(NumberUtil::isActive171klNumber($phoneNumber->number)){
                     if(NumberUtil::isActiveNumber171kl($phoneNumber)){
+
                         $data['error'] = true;
                         $data['msg'] = "The Given number is already active.";
 
@@ -248,7 +250,7 @@ class OsoNumbersController extends Controller
                 elseif ($inputRequestType == config('global.TEMPORARY_DISCONNECTION_REQUEST') && $inputPhoneNumber != null){
 
                     //Write code here
-                    if( NumberUtil::isActiveNumber($phoneNumber->phone_number)){
+                    if( NumberUtil::isActiveNumber171kl($phoneNumber)){
                         $data['error'] = false;
                         $data['msg'] = "The Given number is eligible for Temporary Disconnect Request.";
 
@@ -257,7 +259,6 @@ class OsoNumbersController extends Controller
                         $data['msg'] = "Then Given number is Inactive. Cannot proceed request for Temporary Disconnection.";
                     }
                     return $data;
-
                 }
                 elseif ($inputRequestType == config('global.PERMANENT_CLOSE_REQUEST') && $inputPhoneNumber != null){
 
@@ -282,7 +283,7 @@ class OsoNumbersController extends Controller
 //        dd($request->all());
 
         $network_type_id = NetworkType::all()->where('id',config('global.171KL_NETWORK_ID'))->first();
-        $job_type_id = JobType::all()->where('id', config('global.NEW_CONNECTION_REQUEST'))->first();
+        $job_type_id = JobType::all()->where('id', config('global.CORE_JOB'))->first();
         $job_request_status_id = JobRequestStatus::all()->where('id', config('global.REQUEST_STATUS_PENDING'))->first();
 
         if(!$request->call_source_code_id){
@@ -333,4 +334,54 @@ class OsoNumbersController extends Controller
             return redirect()->back()->with('success', 'New Connection Request is submitted Successfully');
         }
     }
+
+    public function store171klCoreJobTemporaryDisconnectionRequest(Store171klCoreJobTdRequest $request){
+//        dd($request->all());
+
+
+
+        if ($request->request_type_id == null){
+            $request->request->add(['request_type_id' => config('global.TEMPORARY_DISCONNECTION_REQUEST')]);
+        }
+
+        $network_type_id = NetworkType::all()->where('id',config('global.171KL_NETWORK_ID'))->first();
+        $job_type_id = JobType::all()->where('id', config('global.CORE_JOB'))->first();
+        $job_request_status_id = JobRequestStatus::all()->where('id', config('global.REQUEST_STATUS_PENDING'))->first();
+        $current_date_time = Carbon::now()->format('d-m-Y H:i:s');
+
+        $phoneNumber = OsoNumber::all()->where('number',$request->number)->first();
+        $numberProfile = NumberUtil::getNumberProfile($request->number,$network_type_id->id);
+        if($numberProfile->numberOsoNumberProfiles[0]->is_queued == true){
+            return redirect()->back()->with('fail', 'Given number '. $request->number .' is already in processing queue. Please communicate with admin');
+        }elseif(!NumberUtil::isActive171klNumber($request->number)) {
+            return redirect()->back()->with('fail', 'Cannot proceed request. Given number ' . $request->number . ' is already Inactive number.');
+        }elseif ($numberProfile->numberOsoNumberProfiles[0]->is_td == config('global.ACTIVE_ID')) {
+            return redirect()->back()->with('fail', 'Given number ' . $request->number . ' is already Temporary Disconnected');
+        }else{
+            //process the request and insert into database.
+            $request->request->add([
+                'network_type_id'           => $network_type_id->id,
+                'job_type_id'               => $job_type_id->id,
+                'request_status_id'         => $job_request_status_id->id,
+                'request_time' => $current_date_time,
+                'agw_ip' => $numberProfile->agw_ip->ip,
+                'tid' => $phoneNumber->tid,
+                'call_source_code_id' => Auth::user()->call_source_code_id,
+            ]);
+
+
+            $numberProfile->numberOsoNumberProfiles[0]->is_queued = true;
+
+            //Insert into database
+
+            $jobRequest = JobRequest::create($request->all());
+            $numberProfile->push();
+
+            return redirect()->back()->with('success', 'Temporary Disconnection Request is submitted Successfully');
+
+        }
+
+
+    }
+
 }

@@ -12,28 +12,28 @@
                 </span>
                             <div class="cat__core__step__desc">
                                 <span class="cat__core__step__title">New Connection</span>
-                                <p>Send New Connection Request</p>
+                                <p>Send New Connection Request dd</p>
                             </div>
                         </div>
                     </a>
                 </div>
             </div>
-            {{--        ReConnection Request--}}
-            {{--            <div class="col-lg-3">--}}
-            {{--                <div class="cat__core__widget">--}}
-            {{--                    <a href="{{route('admin.171klnetwork.corejob.request', config('global.RE_CONNECTION_REQUEST'))}}">--}}
-            {{--                        <div class="cat__core__step cat__core__step--primary">--}}
-            {{--                <span class="cat__core__step__digit">--}}
-            {{--                    <i class="icmn-share"><!-- --></i>--}}
-            {{--                </span>--}}
-            {{--                            <div class="cat__core__step__desc">--}}
-            {{--                                <span class="cat__core__step__title">Re-Connection</span>--}}
-            {{--                                <p>Send Re-Connection Request</p>--}}
-            {{--                            </div>--}}
-            {{--                        </div>--}}
-            {{--                    </a>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
+{{--                    ReConnection Request--}}
+                        <div class="col-lg-3">
+                            <div class="cat__core__widget">
+                                <a href="{{route('admin.171klnetwork.corejob.request', config('global.RE_CONNECTION_REQUEST'))}}">
+                                    <div class="cat__core__step cat__core__step--primary">
+                            <span class="cat__core__step__digit">
+                                <i class="icmn-share"><!-- --></i>
+                            </span>
+                                        <div class="cat__core__step__desc">
+                                            <span class="cat__core__step__title">Re-Connection</span>
+                                            <p>Send Re-Connection Request</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
             {{--            --}}{{--        Casual Connection--}}
             {{--            <div class="col-lg-3">--}}
             {{--                <div class="cat__core__widget">--}}

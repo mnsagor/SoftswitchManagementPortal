@@ -18,7 +18,8 @@ class CoreJobRequestController extends Controller
     {
         abort_if(Gate::denies('core_job_request_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.coreJobRequests.index');
+//        return view('admin.coreJobRequests.index');
+        return view('admin.171klNetwork.coreJob.index');
     }
 
     public function coreJobRequest($RequestTypeid)
