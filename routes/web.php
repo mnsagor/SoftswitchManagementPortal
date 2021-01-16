@@ -135,6 +135,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('job-requests/process-csv-import', 'JobRequestController@processCsvImport')->name('job-requests.processCsvImport');
     Route::resource('job-requests', 'JobRequestController');
 
+    // Job Request for Batch import
+    Route::post('job-requests/parse-csv-import-td', 'OsoNumbersController@parseCsvImportForTd')->name('job-requests.parseCsvImport.td');
+    Route::post('job-requests/process-csv-import-td', 'JobRequestController@processCsvImportForTd')->name('job-requests.processTdCsvImport');
+
     // Core Job Requests
     Route::resource('core-job-requests', 'CoreJobRequestController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
 

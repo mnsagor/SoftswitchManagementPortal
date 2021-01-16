@@ -412,6 +412,7 @@ class OsoNumbersController extends Controller
                 'tid' => $phoneNumber->tid,
                 'call_source_code_id' => Auth::user()->call_source_code_id,
             ]);
+//            dd($request->all());
             $numberProfile->numberOsoNumberProfiles[0]->is_queued = true;
 
             //Insert into database
