@@ -141,11 +141,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('171kl-network/{jobId}/core-job-request','CoreJobRequestController@coreJobRequest')->name('171klnetwork.corejob.request');
 
     Route::post('171kl-network/core-job/new-connection','OsoNumbersController@storeCoreJobNewConnectionRequest')->name('171klnetwork.corejob.store-new-connection.request');
-    Route::post('171kl-network/core-job/re-connection','CoreJobRequestController@store171klCoreJobReConnectionRequest')->name('171klnetwork.corejob.store-re-connection.request');
-    Route::post('171kl-network/core-job/casual-connection','CoreJobRequestController@store171klCoreJobCasualConnectionRequest')->name('171klnetwork.corejob.store-casual-connection.request');
-    Route::post('171kl-network/core-job/casual-disconnection','CoreJobRequestController@store171klCoreJobCasualDisconnectionRequest')->name('171klnetwork.corejob.store-casual-disconnection.request');
-    Route::post('171kl-network/core-job/restoration','CoreJobRequestController@store171klCoreJobRestorationRequest')->name('171klnetwork.corejob.store-restoration.request');
-    Route::post('171kl-network/core-job/temporary-disconnection','CoreJobRequestController@store171klCoreJobTemporaryDisconnectionRequest')->name('171klnetwork.corejob.store-temporary-disconnection.request');
+    Route::post('171kl-network/core-job/re-connection','OsoNumbersController@store171klCoreJobReConnectionRequest')->name('171klnetwork.corejob.store-re-connection.request');
+    Route::post('171kl-network/core-job/casual-connection','OsoNumbersController@store171klCoreJobCasualConnectionRequest')->name('171klnetwork.corejob.storeFauth-casual-connection.request');
+    Route::post('171kl-network/core-job/casual-disconnection','OsoNumbersController@store171klCoreJobCasualDisconnectionRequest')->name('171klnetwork.corejob.store-casual-disconnection.request');
+    Route::post('171kl-network/core-job/restoration','OsoNumbersController@store171klCoreJobRestorationRequest')->name('171klnetwork.corejob.store-restoration.request');
+    Route::post('171kl-network/core-job/temporary-disconnection','OsoNumbersController@store171klCoreJobTemporaryDisconnectionRequest')->name('171klnetwork.corejob.store-temporary-disconnection.request');
 
 
     // Core Jobs
