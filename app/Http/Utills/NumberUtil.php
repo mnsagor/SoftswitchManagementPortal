@@ -4,7 +4,7 @@
 namespace App\Http\Utills;
 
 
-use App\JobRequest;
+use App\Models\JobRequest;
 use App\Models\OsoNumber;
 use App\Models\OsoNumberProfile;
 use App\Models\TndpImsNumber;
@@ -75,28 +75,21 @@ class NumberUtil
         }
 
     }
-    public static function isTdNumber($phoneNumber){
 
-        $phoneNumber = NumberList::all()
-            ->where('phone_number',$phoneNumber)->first();
+    public static function isTdNumber($phoneNumber, $network_type_id)
+    {
 //        dd($phoneNumber);
+        $numberProfile = self::getNumberProfile($phoneNumber, $network_type_id);
 
-        if($phoneNumber == null){
+
+        if ($numberProfile->numberOsoNumberProfiles[0]->is_td == 2) // No td
+        {
             return false;
-        } else {
-            $phoneNumber->load('numberProfiles','agw');
-//            dd($phoneNumber);
 
-            if($phoneNumber->numberProfiles->td_status == 0) // Inactive number
-            {
-                return false;
-
-            } else if ($phoneNumber->numberProfiles->td_status == 1)
-            {
-                return true;
-            }
-
+        } else if ($numberProfile->numberOsoNumberProfiles[0]->is_td == 1) {
+            return true;
         }
+
 
     }
 
@@ -118,27 +111,16 @@ class NumberUtil
 
     }
 
-//    public static function getNumberProfile ($phoneNumber){
-//
-//        if(self::isNumberExist($phoneNumber)) {
-//            $numberProfile = NumberList::all()
-//                ->where('phone_number',$phoneNumber)->first();
-//
-//            $numberProfile->load('numberProfiles','agw');
-//
-//            return $numberProfile;
-//        } else {
-//            return null;
-//        }
-//    }
 
     public static function getNumberProfile ($phoneNumber,$network_type_id){
+//        dd($network_type_id);
 
         if($network_type_id == config('global.171KL_NETWORK_ID')){
+//            dd($network_type_id);
             $numberProfile = OsoNumber::all()->where('number',$phoneNumber)->first();
             $numberProfile->load('numberOsoNumberProfiles', 'agw_ip');
 //            dd($numberProfile->numberOsoNumberProfiles[0]->oso_number);
-//            dd($numberProfile->agw_ip->ip);
+//            dd($numberProfile);
             return $numberProfile;
         }
         elseif($network_type_id == config('global.TNDP_IMS_NETWORK_ID')){

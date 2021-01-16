@@ -253,8 +253,6 @@ class JobRequestAuthenticationController extends Controller
                 $numberProfile->numberOsoNumberProfiles[0]->is_active = config('global.ACTIVE_ID');
                 $numberProfile->numberOsoNumberProfiles[0]->is_queued = false;
 //                dd($numberProfile);
-
-
                 break;
 
             case config('global.RE_CONNECTION_REQUEST'):
@@ -267,7 +265,7 @@ class JobRequestAuthenticationController extends Controller
             case config('global.CASUAL_DISCONNECTION_REQUEST'):
                 break;
             case config('global.RESTORATION_REQUEST')  :
-                $numberProfile->numberOsoNumberProfiles[0]->td_status = false;
+                $numberProfile->numberOsoNumberProfiles[0]->is_td = config('global.INACTIVE_ID');
                 $numberProfile->numberOsoNumberProfiles[0]->is_queued = false;
                 break;
 
