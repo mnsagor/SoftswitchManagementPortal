@@ -56,6 +56,7 @@ return [
 
     'ACTIVE_ID' => '1',
     'INACTIVE_ID' => '2',
+    'NO_PBX_ID' => '3',
 
 
 

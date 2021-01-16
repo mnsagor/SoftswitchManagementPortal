@@ -276,14 +276,11 @@ class JobRequestAuthenticationController extends Controller
 
             case config('global.PERMANENT_CLOSE_REQUEST')  :
                 $numberProfile->numberOsoNumberProfiles[0]->is_queued = false;
-                $numberProfile->numberOsoNumberProfiles[0]->active_number_status = config('global.INACTIVE');
-                $numberProfile->numberOsoNumberProfiles[0]->td_status = false;
-                $numberProfile->numberOsoNumberProfiles[0]->isd_status = false;
-                $numberProfile->numberOsoNumberProfiles[0]->eisd_status = false;
-                $numberProfile->numberOsoNumberProfiles[0]->pbx_status = false;
-
-
-
+                $numberProfile->numberOsoNumberProfiles[0]->is_active = config('global.INACTIVE_ID');
+                $numberProfile->numberOsoNumberProfiles[0]->is_td = config('global.INACTIVE_ID');
+                $numberProfile->numberOsoNumberProfiles[0]->is_isd = config('global.INACTIVE_ID');
+                $numberProfile->numberOsoNumberProfiles[0]->is_eisd = config('global.INACTIVE_ID');
+                $numberProfile->numberOsoNumberProfiles[0]->is_pbx = config('global.NO_PBX_ID');
                 break;
 
             case config('global.ISD_FACILITIES_REQUEST')  :

@@ -146,6 +146,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('171kl-network/core-job/casual-disconnection','OsoNumbersController@store171klCoreJobCasualDisconnectionRequest')->name('171klnetwork.corejob.store-casual-disconnection.request');
     Route::post('171kl-network/core-job/restoration','OsoNumbersController@store171klCoreJobRestorationRequest')->name('171klnetwork.corejob.store-restoration.request');
     Route::post('171kl-network/core-job/temporary-disconnection','OsoNumbersController@store171klCoreJobTemporaryDisconnectionRequest')->name('171klnetwork.corejob.store-temporary-disconnection.request');
+    Route::post('171kl-network/core-job/permanent-close','OsoNumbersController@store171klCoreJobPermanentCloseRequest')->name('171klnetwork.corejob.store-permanent-close.request');
 
 
     // Core Jobs
