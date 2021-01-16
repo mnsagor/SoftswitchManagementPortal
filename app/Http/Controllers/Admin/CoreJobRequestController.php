@@ -29,15 +29,6 @@ class CoreJobRequestController extends Controller
             case config('global.NEW_CONNECTION_REQUEST'):
 //               abort_if(Gate::denies('new_connection_request_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-//                $network_types = NetworkType::all()->where('name','TNDP IMS')->first();
-//                dd($network_types->id);
-
-//                $job_types = JobType::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-//
-//                $request_types = RequestType::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-//
-//                $request_statuses = JobRequestStatus::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-//                return view('admin.171klNetwork.coreJob.newConnectionRequest',compact('network_types'));
                 $call_source_codes = CallSourceCode::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
                 return view('admin.171klNetwork.coreJob.newConnectionRequest',compact('call_source_codes'));
                 break;
