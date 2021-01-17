@@ -23,7 +23,6 @@ class MyJobRequestsController extends Controller
         abort_if(Gate::denies('my_job_request_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $users =User::find(Auth::id());
-//        dd($users->id);
 
         if ($request->ajax()) {
 
@@ -127,12 +126,16 @@ class MyJobRequestsController extends Controller
         return view('admin.jobRequestManagement.myJobRequests.index', compact('network_types', 'job_types', 'request_types', 'job_request_statuses', 'call_source_codes', 'users', 'users', 'users', 'users'));
     }
 
-    public function show(JobRequest $jobRequest)
+    public function show($jobId)
     {
+//        dd($jobId);
         abort_if(Gate::denies('my_job_request_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $jobRequest->load('network_type', 'job_type', 'request_type', 'request_status', 'call_source_code', 'requested_by', 'verified_by', 'approved_by', 'rejected_by');
 
-        return view('admin.jobRequests.show', compact('jobRequest'));
+        $jobRequest = JobRequest::all()->where('id',$jobId)->first();
+        $jobRequest->load('network_type', 'job_type', 'request_type', 'request_status', 'call_source_code', 'requested_by', 'verified_by', 'approved_by', 'rejected_by');
+//        dd($jobRequest);
+
+        return view('admin.jobRequestManagement.myJobRequests.show', compact('jobRequest'));
     }
 }

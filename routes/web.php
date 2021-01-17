@@ -136,8 +136,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('job-requests', 'JobRequestController');
 
     // Job Request for Batch import
-    Route::post('job-requests/parse-csv-import-td', 'OsoNumbersController@parseCsvImportForTd')->name('job-requests.parseCsvImport.td');
-    Route::post('job-requests/process-csv-import-td', 'JobRequestController@processCsvImportForTd')->name('job-requests.processTdCsvImport');
+    Route::post('job-requests/parse-csv-import-td', 'OsoNumbersController@parseCsvImportFor171klCoreJob')->name('job-requests.parseCsvImport.td');
+    Route::post('job-requests/process-csv-import-td', 'JobRequestController@processCsvImportFor171klCoreJob')->name('job-requests.processTdCsvImport');
 
     // Core Job Requests
     Route::resource('core-job-requests', 'CoreJobRequestController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
@@ -187,7 +187,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // My Job Requests
     Route::resource('my-job-requests', 'MyJobRequestsController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
-    Route::resource('my-job-requests', 'MyJobRequestsController');
+    Route::get('my-job-requests/{id}/show', 'MyJobRequestsController@show')->name('my-job-requests.show');
 
     // Olts
     Route::delete('olts/destroy', 'OltController@massDestroy')->name('olts.massDestroy');
