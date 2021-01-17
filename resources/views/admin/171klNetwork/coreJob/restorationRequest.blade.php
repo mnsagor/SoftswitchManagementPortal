@@ -13,7 +13,9 @@
                                 <button class="btn btn-info" data-toggle="modal" data-target="#csvImportModal">
                                     {{ "Batch Import" }}
                                 </button>
-                                {{--            @include('csvImport.modal', ['model' => 'NumberProfile', 'route' => 'admin.number-profiles.parseCsvImport'])--}}
+                                @include('admin.171klNetwork.csvImport.restorationModal', ['model' => 'JobRequest',
+                                'route' => 'admin.job-requests.parseCsvImport.171kl-coreJob'])
+
                             </div>
                         </div>
                         <form method="POST" action="{{ route("admin.171klnetwork.corejob.store-restoration.request") }}" enctype="multipart/form-data">

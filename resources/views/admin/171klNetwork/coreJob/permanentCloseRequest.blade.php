@@ -13,6 +13,7 @@
                                 <button class="btn btn-info" data-toggle="modal" data-target="#csvImportModal">
                                     {{ "Batch Import" }}
                                 </button>
+                                @include('admin.171klNetwork.csvImport.pcModal', ['model' => 'JobRequest', 'route' => 'admin.job-requests.parseCsvImport.171kl-coreJob'])
                                 {{--            @include('csvImport.modal', ['model' => 'NumberProfile', 'route' => 'admin.number-profiles.parseCsvImport'])--}}
                             </div>
                         </div>

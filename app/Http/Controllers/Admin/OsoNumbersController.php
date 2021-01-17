@@ -324,7 +324,6 @@ class OsoNumbersController extends Controller
             $request->request->add([
                 'request_time' => $current_date_time
             ]);
-//        dd($request->all());
 
             $jobRequest = JobRequest::create($request->all());
 //            dd($jobRequest);
