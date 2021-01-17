@@ -112,6 +112,7 @@ trait CsvImportTrait
     public function processCsvImportFor171klCoreJob(Request $request){
 
         $jobRequestType = $request->input('jobRequestType');
+//        dd($jobRequestType);
 
         $network_type_id = NetworkType::all()->where('id',config('global.171KL_NETWORK_ID'))->first();
         $job_type_id = JobType::all()->where('id', config('global.CORE_JOB'))->first();
@@ -134,19 +135,8 @@ trait CsvImportTrait
             $insert = [];
             switch ($jobRequestType) {
                 case config('global.NEW_CONNECTION_REQUEST'):
-                    break;
+//                    dd($jobRequestType);
 
-                case config('global.RE_CONNECTION_REQUEST'):
-                    break;
-                case config('global.CASUAL_CONNECTION_REQUEST'):
-                    break;
-
-                case config('global.CASUAL_DISCONNECTION_REQUEST'):
-                    break;
-                case config('global.RESTORATION_REQUEST')  :
-                    break;
-
-                case config('global.TEMPORARY_DISCONNECTION_REQUEST')  :
                     foreach ($reader as $key => $row) {
                         if ($hasHeader && $key == 0) {
                             continue;
@@ -157,6 +147,101 @@ trait CsvImportTrait
                             if (isset($row[$k])) {
                                 $phoneNumber = OsoNumber::all()->where('number',$row[$k])->first();
                                 $numberProfile = NumberUtil::getNumberProfile($row[$k],$network_type_id->id);
+
+                                if($numberProfile->numberOsoNumberProfiles[0]->is_queued == false
+                                    && $numberProfile->numberOsoNumberProfiles[0]->request_controller == false
+                                    && $numberProfile->numberOsoNumberProfiles[0]->is_active == config('global.INACTIVE_ID')){
+
+                                    $tmp["requested_by_id"] = Auth::user()->id;
+                                    $tmp["request_type_id"] = config('global.NEW_CONNECTION_REQUEST');
+                                    $tmp["number"] = $row[$k];
+                                    $tmp["network_type_id"] = $network_type_id->id;
+                                    $tmp["job_type_id"] = $job_type_id->id;
+                                    $tmp["request_status_id"] = $job_request_status_id->id;
+                                    $tmp["request_time"] = Carbon::now();
+                                    $tmp["agw_ip"] = $numberProfile->agw_ip->ip;
+                                    $tmp["tid"] = $phoneNumber->tid;
+                                    $tmp["call_source_code_id"] = Auth::user()->call_source_code_id;
+
+                                    $numberProfile->numberOsoNumberProfiles[0]->is_queued = true;
+                                    $numberProfile->numberOsoNumberProfiles[0]->request_controller = true;
+                                    $numberProfile->push();
+                                }
+                            }
+                        }
+
+                        if (count($tmp) > 0) {
+                            $insert[] = $tmp;
+                        }
+                    }
+
+                    break;
+
+                case config('global.RE_CONNECTION_REQUEST'):
+                    dd($jobRequestType);
+                    break;
+                case config('global.CASUAL_CONNECTION_REQUEST'):
+                    dd($jobRequestType);
+                    break;
+
+                case config('global.CASUAL_DISCONNECTION_REQUEST'):
+                    dd($jobRequestType);
+                    break;
+                case config('global.RESTORATION_REQUEST')  :
+//                    dd($jobRequestType);
+                    foreach ($reader as $key => $row) {
+                        if ($hasHeader && $key == 0) {
+                            continue;
+                        }
+                        $tmp = [];
+
+                        foreach ($fields as $header => $k) {
+                            if (isset($row[$k])) {
+                                $phoneNumber = OsoNumber::all()->where('number',$row[$k])->first();
+                                $numberProfile = NumberUtil::getNumberProfile($row[$k],$network_type_id->id);
+//                                dd($numberProfile);
+
+                                if($numberProfile->numberOsoNumberProfiles[0]->is_queued == false
+                                    && $numberProfile->numberOsoNumberProfiles[0]->is_td == config('global.ACTIVE_ID')
+                                    && NumberUtil::isActive171klNumber($row[$k])){
+
+                                    $tmp["requested_by_id"] = Auth::user()->id;
+                                    $tmp["request_type_id"] = config('global.RESTORATION_REQUEST');
+                                    $tmp["number"] = $row[$k];
+                                    $tmp["network_type_id"] = $network_type_id->id;
+                                    $tmp["job_type_id"] = $job_type_id->id;
+                                    $tmp["request_status_id"] = $job_request_status_id->id;
+//                            $tmp["request_time"] = Carbon::now()->format('d-m-Y H:i:s');
+                                    $tmp["request_time"] = Carbon::now();
+                                    $tmp["agw_ip"] = $numberProfile->agw_ip->ip;
+                                    $tmp["tid"] = $phoneNumber->tid;
+                                    $tmp["call_source_code_id"] = Auth::user()->call_source_code_id;
+
+                                    $numberProfile->numberOsoNumberProfiles[0]->is_queued = true;
+                                    $numberProfile->push();
+                                }
+                            }
+                        }
+
+                        if (count($tmp) > 0) {
+                            $insert[] = $tmp;
+                        }
+                    }
+                    break;
+
+                case config('global.TEMPORARY_DISCONNECTION_REQUEST')  :
+
+                    foreach ($reader as $key => $row) {
+                        if ($hasHeader && $key == 0) {
+                            continue;
+                        }
+                        $tmp = [];
+
+                        foreach ($fields as $header => $k) {
+                            if (isset($row[$k])) {
+                                $phoneNumber = OsoNumber::all()->where('number',$row[$k])->first();
+                                $numberProfile = NumberUtil::getNumberProfile($row[$k],$network_type_id->id);
+//                                dd($numberProfile);
 
                                 if($numberProfile->numberOsoNumberProfiles[0]->is_queued == false
                                     && $numberProfile->numberOsoNumberProfiles[0]->is_td == config('global.INACTIVE_ID')
@@ -188,6 +273,46 @@ trait CsvImportTrait
                     break;
 
                 case config('global.PERMANENT_CLOSE_REQUEST')  :
+//                    dd($jobRequestType);
+                    foreach ($reader as $key => $row) {
+                        if ($hasHeader && $key == 0) {
+                            continue;
+                        }
+                        $tmp = [];
+
+                        foreach ($fields as $header => $k) {
+                            if (isset($row[$k])) {
+                                $phoneNumber = OsoNumber::all()->where('number',$row[$k])->first();
+                                $numberProfile = NumberUtil::getNumberProfile($row[$k],$network_type_id->id);
+//                                dd($numberProfile);
+
+                                if($numberProfile->numberOsoNumberProfiles[0]->is_queued == false
+//                                    && NumberUtil::isActive171klNumber($row[$k])
+                                    && $numberProfile->numberOsoNumberProfiles[0]->is_active == config('global.ACTIVE_ID')){
+
+                                    $tmp["requested_by_id"] = Auth::user()->id;
+                                    $tmp["request_type_id"] = config('global.PERMANENT_CLOSE_REQUEST');
+                                    $tmp["number"] = $row[$k];
+                                    $tmp["network_type_id"] = $network_type_id->id;
+                                    $tmp["job_type_id"] = $job_type_id->id;
+                                    $tmp["request_status_id"] = $job_request_status_id->id;
+//                            $tmp["request_time"] = Carbon::now()->format('d-m-Y H:i:s');
+                                    $tmp["request_time"] = Carbon::now();
+                                    $tmp["agw_ip"] = $numberProfile->agw_ip->ip;
+                                    $tmp["tid"] = $phoneNumber->tid;
+                                    $tmp["call_source_code_id"] = Auth::user()->call_source_code_id;
+
+                                    $numberProfile->numberOsoNumberProfiles[0]->is_queued = true;
+                                    $numberProfile->numberOsoNumberProfiles[0]->request_controller = false;
+                                    $numberProfile->push();
+                                }
+                            }
+                        }
+
+                        if (count($tmp) > 0) {
+                            $insert[] = $tmp;
+                        }
+                    }
                     break;
 
                 case config('global.ISD_FACILITIES_REQUEST')  :
@@ -307,28 +432,42 @@ trait CsvImportTrait
         $fillables = $model->getFillable();
 
         $redirect = url()->previous();
+//        $routeName = 'admin.' . strtolower(Str::plural(Str::kebab($modelName))) . '.processCsvImport.171kl-coreJob';
+        $routeName = 'admin.' . strtolower(Str::plural(Str::kebab($modelName))) . '.processCsvImport.171kl-coreJob';
 
 
         switch ($jobRequestType) {
             case config('global.NEW_CONNECTION_REQUEST'):
+
+//                dd($routeName);
+                return view('admin.171klNetwork.csvImport.parseNewConnectionInput', compact('headers', 'filename', 'fillables', 'hasHeader', 'modelName', 'lines', 'redirect', 'routeName'));
                 break;
 
             case config('global.RE_CONNECTION_REQUEST'):
+                dd($jobRequestType);
                 break;
             case config('global.CASUAL_CONNECTION_REQUEST'):
+                dd($jobRequestType);
                 break;
 
             case config('global.CASUAL_DISCONNECTION_REQUEST'):
+                dd($jobRequestType);
                 break;
             case config('global.RESTORATION_REQUEST')  :
+//                dd($jobRequestType);
+                return view('admin.171klNetwork.csvImport.parseRestorationInput', compact('headers', 'filename', 'fillables', 'hasHeader', 'modelName', 'lines', 'redirect', 'routeName'));
                 break;
 
             case config('global.TEMPORARY_DISCONNECTION_REQUEST')  :
-                $routeName = 'admin.' . strtolower(Str::plural(Str::kebab($modelName))) . '.processTdCsvImport';
+//                $routeName = 'admin.' . strtolower(Str::plural(Str::kebab($modelName))) . '.processCsvImport.171kl-coreJob';
+//                dd($routeName);
+                return view('admin.171klNetwork.csvImport.parseTdInput', compact('headers', 'filename', 'fillables', 'hasHeader', 'modelName', 'lines', 'redirect', 'routeName'));
 
                 break;
 
             case config('global.PERMANENT_CLOSE_REQUEST')  :
+//                dd($jobRequestType);
+                return view('admin.171klNetwork.csvImport.parsePcInput', compact('headers', 'filename', 'fillables', 'hasHeader', 'modelName', 'lines', 'redirect', 'routeName'));
                 break;
 
             case config('global.ISD_FACILITIES_REQUEST')  :
@@ -399,8 +538,6 @@ trait CsvImportTrait
 
 //        dd($routeName);
 //        admin.job-requests.processTdCsvImport
-
-        return view('admin.171klNetwork.csvImport.parseTdInput', compact('headers', 'filename', 'fillables', 'hasHeader', 'modelName', 'lines', 'redirect', 'routeName'));
 
 
     }
