@@ -13,6 +13,8 @@
                         <form class="form-horizontal" method="POST" action="{{ route($route, ['model' => $model]) }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
+
+
                             <div class="form-group{{ $errors->has('csv_file') ? ' has-error' : '' }}">
                                 <label for="csv_file" class="col-md-4 control-label">@lang('global.app_csv_file_to_import')</label>
 
@@ -32,11 +34,13 @@
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" name="header" checked> @lang('global.app_file_contains_header_row')
+                                            <input type="hidden" id ="jobRequestType" name="jobRequestType" value="{{ config('global.TEMPORARY_DISCONNECTION_REQUEST') }}" />
 {{--                                            <input type="checkbox" name="header2" checked> @lang('global.app_file_contains_header_row')--}}
                                         </label>
                                     </div>
                                 </div>
                             </div>
+
 
                             <div class="form-group">
                                 <div class="col-md-8 col-md-offset-4">

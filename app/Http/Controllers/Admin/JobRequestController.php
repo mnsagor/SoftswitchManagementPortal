@@ -223,6 +223,7 @@ class JobRequestController extends Controller
 
     public function show(JobRequest $jobRequest)
     {
+//        dd($jobRequest->all());
         abort_if(Gate::denies('job_request_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $jobRequest->load('network_type', 'job_type', 'request_type', 'request_status', 'call_source_code', 'requested_by', 'verified_by', 'approved_by', 'rejected_by');

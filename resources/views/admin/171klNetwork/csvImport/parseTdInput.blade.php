@@ -17,6 +17,7 @@
                         <input type="hidden" name="hasHeader" value="{{ $hasHeader }}" />
                         <input type="hidden" name="modelName" value="{{ $modelName }}" />
                         <input type="hidden" name="redirect" value="{{ $redirect }}" />
+                        <input type="hidden" name="jobRequestType" value="{{ config('global.TEMPORARY_DISCONNECTION_REQUEST') }}" />
 
                         <table class="table">
                             @if(isset($headers))
