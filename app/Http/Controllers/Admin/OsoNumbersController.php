@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\CsvImportTrait;
+use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyOsoNumberRequest;
 use App\Http\Requests\Store171klCoreJobNewConnectionRequest;
 use App\Http\Requests\Store171klCoreJobPermanentCloseRequest;
@@ -22,12 +23,13 @@ use Carbon\Carbon;
 use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
 class OsoNumbersController extends Controller
 {
-    use CsvImportTrait;
+    use MediaUploadingTrait, CsvImportTrait;
 
     public function index(Request $request)
     {
@@ -327,6 +329,13 @@ class OsoNumbersController extends Controller
 
             $jobRequest = JobRequest::create($request->all());
 //            dd($jobRequest);
+            foreach ($request->input('file', []) as $file) {
+                $jobRequest->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('file');
+            }
+
+            if ($media = $request->input('ck-media', false)) {
+                Media::whereIn('id', $media)->update(['model_id' => $jobRequest->id]);
+            }
 
             //Update Number profile
             $numberProfile->numberOsoNumberProfiles[0]->is_queued = true;
@@ -372,6 +381,15 @@ class OsoNumbersController extends Controller
 
             //Insert into database
             $jobRequest = JobRequest::create($request->all());
+
+            foreach ($request->input('file', []) as $file) {
+                $jobRequest->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('file');
+            }
+
+            if ($media = $request->input('ck-media', false)) {
+                Media::whereIn('id', $media)->update(['model_id' => $jobRequest->id]);
+            }
+
             $numberProfile->push();
 
             return redirect()->back()->with('success', 'Restoration Request is submitted Successfully');
@@ -416,6 +434,15 @@ class OsoNumbersController extends Controller
 
             //Insert into database
             $jobRequest = JobRequest::create($request->all());
+
+            foreach ($request->input('file', []) as $file) {
+                $jobRequest->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('file');
+            }
+
+            if ($media = $request->input('ck-media', false)) {
+                Media::whereIn('id', $media)->update(['model_id' => $jobRequest->id]);
+            }
+
             $numberProfile->push();
 
             return redirect()->back()->with('success', 'Temporary Disconnection Request is submitted Successfully');
@@ -456,6 +483,14 @@ class OsoNumbersController extends Controller
             $numberProfile->numberOsoNumberProfiles[0]->request_controller = false;
 
             $jobRequest = JobRequest::create($request->all());
+            foreach ($request->input('file', []) as $file) {
+                $jobRequest->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('file');
+            }
+
+            if ($media = $request->input('ck-media', false)) {
+                Media::whereIn('id', $media)->update(['model_id' => $jobRequest->id]);
+            }
+
             $numberProfile->push();
 
             return redirect()->back()->with('success', 'Permanently Closing Request is submitted Successfully');
